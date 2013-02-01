@@ -462,11 +462,11 @@ p {
 	background-color:transparent;
 	text-align:center;
 }
-.twitter tr {
+#twitterstream tr {
 	background-color:transparent;
 }
 
-.twitter {
+#twitterstream {
 	max-width:800px;
 	float:left;
 	width:100%;
@@ -508,7 +508,7 @@ p {
 		margin:0 auto;
 	}
 
-	.twitter {
+	#twitterstream {
 		float:none;
 		margin:0 auto;
 	}
