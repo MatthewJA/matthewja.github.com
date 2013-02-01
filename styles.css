@@ -1,0 +1,31 @@
+* {
+	padding:0;
+	margin:0;
+}
+
+body {
+	min-height:100%;
+	background-color:#788FB3;
+	color:#FFFFFF;
+	margin-top:10%;
+}
+
+h1 {
+	font-family:Oxygen;
+	font-size:80px;
+	text-align:center;
+	font-weight:normal;
+	color:#FFFFFF;
+}
+
+h2 {
+	text-align:center;
+	font-family:Oxygen;
+	font-size:30px;
+	font-weight:normal;
+}
+
+#stickman {
+	text-align:center;
+	margin-top:25px;
+}

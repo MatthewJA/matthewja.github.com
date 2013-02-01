@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Port Macquarie High School
+		</title>
+		
+		<link rel="stylesheet" type="text/css" href="styles.css"> 
+		<link rel="shortcut icon" 
+			type="image/x-icon" 
+			href="static/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<!--[if !IE 7]>
+			<style type="text/css">
+				#wrapper {display:table;height:100%}
+			</style>
+		<![endif]-->
+
+		<!--[if IE 6]>
+			<style type="text/css">
+				#headergrad {display:none;}
+			</style>
+		<![endif]-->
+
+		
+		<script src="src/twitter.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			getTwitters('tweets', {
+				id: 'portmac_hs', 
+				count: 2, 
+				enableLinks: true, 
+				ignoreReplies: true,
+				includeRT: true,
+				template: '<td class="twitterText">%text%</td><td class="twitterTime">%time%</td>'
+				//<span class="twitterPrefix"><img height="16" width="16" src="%user_profile_image_url%">
+				//template: '<span class="twitterStatus">%text%</span> <em class="twitterTime"><a href="http://twitter.com/%user_screen_name%/statuses/%id%">%time%</a></em>'
+			});
+		</script>
+	</head>
+	<body>
+		<div id="wrapper"> <!-- this is for pushing the footer to the bottom of the screen -->
+			<div id="header">
+				<div id="headergrad">
+				</div>
+				<div id="logo">
+					<a href="index.html">
+						<img src="static/logo.png">
+					</a>
+				</div>
+				<div id="address">
+					Owen Street<br>
+					Port Macquarie<br>
+					2444
+				</div>
+			</div>
+			
+			<div class="nav">
+				<ul>
+					<li><a href="index.html" class="selected">Home</a></li>
+					<li><a href="information.html">Information</a></li>
+					<li><a href="newsletters.html">Newsletters</a></li>
+					<li><a href="heritage.html">Heritage</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<div id="context">
+				<div id="homepage" style="text-align:center;">
+					<div class="superbox">
+						<div class="box">
+							<div class="boxtitle">
+								Information
+							</div>
+							<img src="static/schoolflags.jpg">
+							<p>
+								Port Macquarie High School provides a comprehensive education for around 800 Year 7-12 students.
+								Our teachers are dedicated, experienced, and committed to providing their students with a quality education and a wealth of opportunities.
+							</p>
+							<div class="seemore">
+								<a href="information.html">See more...</a>
+							</div>
+						</div>
+						
+						<div class="box">
+							<div class="boxtitle">
+								Curriculum
+							</div>
+							<img src="static/commercialkitchen.jpg">
+							<p>
+								Our school offers a diverse range of courses, from Extension Mathematics to Marine Studies.
+								With kitchens, science laboratories and beach-front location, Port Macquarie High School has the facilities for a
+								complete education.
+							</p>
+							<div class="seemore">
+								<a href="curriculum.html">See more...</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="superbox">
+						<div class="box">
+							<div class="boxtitle">
+								News
+							</div>
+							<img src="static/website.jpg">
+							<p>
+								Port Macquarie High School has an excellent new website to replace the existing one. The previous site existed from 2005 through to 2012, and was a greatly appreciated update from the blank white pages of the 2004 site.
+							</p>
+							<div class="seemore">
+							</div>
+						</div>
+						
+						<div class="box">
+							<div class="boxtitle">
+								Events
+							</div>
+							<iframe src="https://www.google.com/calendar/embed?title=Port%20Macquarie%20High%20School%20Calendar&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;hl=en_GB&amp;bgcolor=%23FFFFFF&amp;src=portmac.h%40gmail.com&amp;color=%23875509&amp;ctz=Australia%2FSydney&amp;mode=AGENDA" style=" border-width:0 " frameborder="0" scrolling="no" id="fpcalendar"></iframe>
+							<div class="seemore">
+								<a href="calendar.html">See full calendar here.</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="twitterbox">
+			<div class="twittericon">
+				<a href="https://twitter.com/portmac_hs"><img src="static/twitter.png"></a>
+			</div>
+			<div class="twitter" id="tweets">
+				&lt;Loading tweets from <a href="http://twitter.com/portmac_hs">@portmac_hs</a>&gt;
+			</div>
+			<div style="clear:both"></div>
+			<div class="push"></div>
+		</div>
+		</div>
+		
+		<div id="footer">
+			<div id="footerlinks">
+				<a href="contact.html">Contact</a>
+				<a href="about.html">About</a>
+				<a href="http://www.portmac-h.schools.nsw.edu.au/moodle/login/index.php">Moodle</a>
+				<a href="sitemap.html">Sitemap</a>
+			</div>
+			<a href="index.html"><img src="static/logo.png" id="footerlogo"></a>
+		</div>
+	</body>
+</html>

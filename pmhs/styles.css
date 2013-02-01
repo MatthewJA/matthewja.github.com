@@ -1,0 +1,610 @@
+* {
+	margin: 0;
+}
+
+html, body {
+	height:100%;
+	
+	margin:0;
+	
+	font-family:Trebuchet MS, Tahoma, Arial, sans-serif;
+
+	background-color:#F7F7F7;
+	
+	min-width:320px;
+}
+
+h1 {
+	font-size:200%;
+	text-align:center;
+	border-bottom:2px solid #1166bb;
+}
+
+h2 {
+	font-size:150%;
+	text-align:center;
+	border-bottom:2px solid #1166bb;
+	margin-bottom:10px;
+	margin-top:10px;
+	clear:both; /* mainly for the floating images on the principals page, but yeah */
+}
+
+h3 {
+	font-size:125%;
+	text-align:center;
+}
+
+#header {
+	height:300px;
+	width:100% !important;
+	
+	background-image:url("static/panobanner.jpg");
+	background-position:right;
+	background-repeat:no-repeat;
+	background-color:#71AFFE;
+	
+}
+
+#headergrad {
+	width:100%;
+	height:300px;
+	position:absolute;
+	background-image:url("static/white_gradient.png");
+	background-repeat:repeat-x;
+	top:0;
+	left:0;
+}
+
+#logo {
+	position:absolute;
+	left:5%;
+	top:25px;
+}
+
+#logo img {
+	height:250px;
+	border:0;
+}
+
+#address {
+	position:absolute;
+	right:5%;
+	top:80px;
+	color:white;
+	font-weight:bold;
+	font-size:125%;
+}
+
+.nav {
+	height:auto;
+	width:100%;
+	
+	background-color:#F7F7F7;
+	background-image:url('static/nav_gradient.png');
+	background-repeat:repeat-x;
+	
+	text-align:center;
+	
+	padding-bottom:10px;
+}
+
+.nav ul {
+	max-width:900px;
+	margin:0 auto;
+	padding:10px 0 0 0;
+	
+	font-weight:bold;
+	color:#AAA;
+	
+	text-align:center;
+	
+	list-style-type:none;
+}
+.nav li {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	
+	text-align:center;
+	width:140px; /* 800 / number of links */
+}
+
+.nav a {
+	color:#AAA;
+	text-decoration:none;
+}
+
+.nav a:hover {
+	color:#777;
+}
+
+a {
+	color:#AAA;
+	text-decoration:none;
+	font-weight:bold;
+	border:none;
+}
+
+a:hover {
+	color:#777;
+}
+
+#context {
+	padding-top:10px;
+}
+
+.superbox {
+	display:inline-block;
+	/* ie7 */
+	*display: inline;
+	zoom:1;
+}
+
+.box {
+	width:400px;
+	height:370px; /* factor in padding! */
+	
+	padding-bottom:30px;
+	
+	margin:10px;
+	
+	background-color:#FEFEFE;
+	
+	display:inline-block;
+	float:left;
+	text-align:left;
+	
+	position:relative; /* so .seemore works */
+	
+}
+
+.box .boxtitle {
+	width:100%;
+	padding:5px 0px;
+	border-bottom:2px solid #1166bb;
+	
+	font-weight:bold;
+
+	text-align:center;
+}
+
+.box p {
+	padding:0 10px;
+	font-size:90%;
+}
+
+.seemore {
+	border-top:2px solid #1166bb;
+	margin:10px;
+	position:absolute;
+	bottom:10px;
+	
+	height:10px;
+	width:380px;
+	
+	text-align:right;
+}
+
+.box img {
+	width:100%; /* even if the pictures are 400px wide, they'll resize dynamically with media queries */
+}
+
+#wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+	width:100%;
+}
+#footer {
+	background:#DDDDDD;
+	position:relative;
+}
+#footer, .push {
+	height: 60px;
+	clear: both;
+}
+
+#contact {
+	font-size:150%;
+	margin:0 auto;
+	width:auto !important;
+}
+#contact img {
+	margin-right:20px;
+	display:block;
+}
+#contact td {
+	vertical-align:middle;
+	height:90px;
+}
+
+.aftertitle {
+	background-image:none;
+	width:100%;
+	text-align:center;
+}
+.aftertitle ul {
+	list-style-type:none;
+	margin:0 auto;
+	padding:0;
+}
+.aftertitle li {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+
+}
+
+#footerlogo {
+	position:absolute;
+	right:0;
+	height:60px; /* footer height */
+	border:0;
+}
+
+#footerlinks {
+	position:absolute;
+	right:70px; /* scaled width of logo */
+}
+#footerlinks a {
+	margin-top:1.5em;
+	width:70px;
+	display:inline-block;
+	border-left:1px solid gray;
+	text-align:center;
+	font-size:14px;
+	text-decoration:none;
+	color:#555;
+}
+#footerlinks a:hover {
+	color:#777;
+}
+#footerlinks a:first-child {
+	border-left:none;
+}
+
+#sidebar {
+	float:left;
+	padding:10px;
+	margin:10px;
+	width:300px;
+	height:500px;
+	border-right:2px solid #1166bb;
+}
+
+#facultiescontents {
+	text-align:center;
+}
+#facultiescontents ul {
+	padding:0;
+	
+	text-align:left;
+	list-style-type:none;
+	font-size:90%;
+
+	width:300px;
+	margin:0 auto 20px auto;
+}
+
+#faculties {
+	text-align:center;
+}
+
+.staff {
+	text-align:center;
+	display:inline-block;
+	/* ie7 */
+	*display: inline;
+	zoom:1;
+	
+	margin:20px;
+	vertical-align:text-top;
+	width:320px;
+}
+
+.staff .staffname {
+	border-bottom:2px solid #1166bb;
+	font-weight:bold;
+}
+
+.staff .staffdetailsentry img {
+	width:24px;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.staff .staffdetailsentry {
+	padding-left:30px;
+	position:relative;
+	min-height:24px;
+	margin:2px 0;
+	max-width:290px;
+}
+
+.content {
+	width:900px;
+	margin:20px auto;
+	text-align:left;
+}
+
+.contentbanner {
+	width:100%;
+ }
+.contentbanner img {
+	width:100%;
+ }
+
+.selected {
+	border-bottom:2px solid #AAA;
+}
+.selected:hover {
+	border-bottom:2px solid #777;
+}
+
+.uniform {
+	width:300px;
+	margin:0 auto;
+	margin-bottom:20px;
+}
+
+.left {
+	float:left;
+	margin:20px;
+}
+.right {
+	float:right;
+	margin:20px;
+}
+.centre {
+	margin:20px auto;
+	display:block;
+	text-align:center;
+}
+
+#principals {
+	width:100%;
+	text-align:center;
+}
+
+.canteen {
+	width:300px;
+	margin: 20px auto;
+}
+
+table {
+	width:100%;
+	border-collapse:collapse;
+}
+
+th {
+	text-align:center;
+	border-bottom:2px solid #1166bb;
+}
+.canteen td {
+	text-align:right;
+}
+.canteen td:first-child {
+	text-align:left;
+}
+
+#policieslist {
+	margin-top:20px;
+}
+
+#policieslist ul {
+	text-align:center;
+	padding:0;
+	list-style-type:none;
+	font-size:125%;
+}
+
+#policieslist h3 {
+	text-align:center;
+	border-bottom:2px solid #1166bb;
+}
+
+#calendarframe {
+ text-align:center;
+}
+
+
+.twitterbox {
+	max-width:900px;
+	text-align:center;
+	margin:0 auto;
+}
+
+#fpcalendar {
+	width:400px;
+	height:335px;
+	position:absolute;
+}
+
+.nameslist {
+	text-align:center;
+}
+
+.duxes td:first-child {
+	width:50px;
+}
+
+tr:nth-child(2n) {
+	background-color:#D6DEE7;
+}
+
+p {
+	margin-bottom:10px;
+}
+
+.newsletters {
+	width:100%;
+	list-style-type:none;
+	text-align:center;
+	padding:0;
+}
+
+.newsletters li:nth-child(2n) {
+	background-color:#D6DEE7;
+}
+
+.marginless {
+	margin-top:0;
+}
+
+
+.twitterTime {
+	max-width:95px;
+	color:#1166bb;
+	background-color:transparent;
+}
+.twitterText {
+	background-color:transparent;
+	text-align:center;
+}
+.twitter tr {
+	background-color:transparent;
+}
+
+.twitter {
+	max-width:800px;
+	float:left;
+	width:100%;
+}
+
+.twittericon {
+	max-width:100px;
+	float:left;
+}
+
+@media (max-width: 845px) {
+	.box {
+		float:none;
+	}
+	
+}
+
+@media (max-width: 900px) {
+	.content {
+		width:auto;
+		padding:5px;
+	}
+	
+	img {
+		max-width:100%; /* you can override this with specific rules if needed */
+	}
+	
+	.left, .right {
+		margin-left:0;
+		margin-right:0;
+	}
+	
+	#calendarframe iframe {
+		width:100%;
+	}
+
+	.twittericon {
+		float:none;
+		margin:0 auto;
+	}
+
+	.twitter {
+		float:none;
+		margin:0 auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.box {
+		width:300px;
+		height:300px;
+		font-size:75%;
+		margin-right:0;
+		margin-left:0;
+	}
+	
+	#fpcalendar {
+		width:300px;
+		height:280px;
+	}
+	
+	.seemore {
+		border-top:2px solid #1166bb;
+		margin:8px;
+		position:absolute;
+		bottom:8px;
+		height:8px;
+		width:284px;
+	}
+	.box .boxtitle {
+		width:277px;
+		padding:3px;
+		margin:0 7px;
+		border-bottom:2px solid #1166bb;
+		
+	}
+	#nav {
+		width:100%;
+	}
+	#contact {
+		width:300px;
+		font-size:100%;
+	}
+	#contact img {
+		width:48px;
+	}
+	#logo {
+		position:relative;
+		top:0;
+		left:0;
+	}
+	#logo img{
+		height:125px;
+	}
+	#address {
+		position:relative;
+		top:0;
+		left:0;
+		color:black;
+	}
+	#header {
+		text-align:center;
+		height:220px;
+		width:100%;
+	}
+	#headergrad {
+		top:-80px;
+	}
+	#box img {
+		margin:0;
+	}
+	#footerlogo {
+		display:none;
+	}
+	#footerlinks {
+		position:block;
+		width:100%;
+		text-align:center;
+		right:0;
+	}
+	
+	html, body {
+		min-width:300px;
+	}
+	
+	.contentbanner {
+		width:100%;
+	}
+	.content {
+		width:auto;
+		padding:5px;
+	}
+	
+	.staff {
+		margin: 20px 0;
+		max-width: 300px;
+	}
+	
+}
+
+
