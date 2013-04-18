@@ -10,19 +10,23 @@ body {
 	margin-top:10%;
 }
 
-h1 {
-	font-family:Oxygen;
-	font-size:80px;
+h1, h2, h3 {
+	font-family:Oxygen, Tahoma, Sans-serif;
 	text-align:center;
 	font-weight:normal;
-	color:#FFFFFF;
+}
+
+h1 {
+	font-size:80px;
 }
 
 h2 {
-	text-align:center;
-	font-family:Oxygen;
 	font-size:30px;
-	font-weight:normal;
+}
+
+h3 {
+	font-size:20px;
+	font-weight:bold;
 }
 
 #stickman {
