@@ -8,6 +8,8 @@ body {
 	background-color:#788FB3;
 	color:#FFFFFF;
 	margin-top:10%;
+	margin:0;
+	padding:0;
 }
 
 h1, h2, h3 {
@@ -27,6 +29,14 @@ h2 {
 h3 {
 	font-size:20px;
 	font-weight:bold;
+}
+
+.box {
+	width:300px;
+	height:200px;
+	background-color:#9AAFCE;
+	float:left;
+	padding:10px;
 }
 
 #stickman {
