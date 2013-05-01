@@ -49,3 +49,7 @@ h3 {
 	margin-top:25px;
 	clear:both;
 }
+
+#gsicd {
+	background-image:url("/static/gsicd.png");
+}
