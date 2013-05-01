@@ -5,10 +5,15 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
 			var angle = 0;
-			var changeAngle = Math.PI/100;
+			var changeAngle = 0;
+			var acc = 0.001;
+
 
 			function draw(context, canvas) {
-				context.clearRect (0, 0, 500, 500);
+				console.log(angle);
+				console.log(acc);
+
+				context.clearRect (0, 0, 600, 600);
 
 				context.strokeStyle = "#570576";
 				context.lineWidth = 10;
@@ -38,7 +43,7 @@
 				// 210px long.
 				// starts at 350, 40
 				// change is 210*cos(angle)
-				context.moveTo(350, 40);
+				context.moveTo(350, 45);
 				context.lineTo(350+210*Math.cos(angle), 40+210*Math.sin(angle));
 				context.closePath();
 				context.stroke();
@@ -50,13 +55,7 @@
 				context.fill();
 
 				angle += changeAngle;
-				if (angle >= Math.PI) {
-					changeAngle = -changeAngle;
-					angle = Math.PI;
-				} else if (angle <= 0) {
-					changeAngle = -changeAngle;
-					angle = 0;
-				}
+				changeAngle += acc*Math.cos(angle);
 
 				setTimeout(function() {
 					draw(context, canvas);
@@ -74,7 +73,7 @@
 	</head>
 	<body>
 		<!-- attributes feel so dirty -->
-		<canvas width="500" height="500" id="canvas">
+		<canvas width="600" height="600" id="canvas">
 			lolwut
 		</canvas>
 	</body>
