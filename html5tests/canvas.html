@@ -2,10 +2,19 @@
 <html>
 	<head>
 		<title>Canvas Testing</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				var context = canvas.get(0).getContext("2d");
+
+				context.fillRect(40, 40, 100, 100);
+			});
+		</script>
 	</head>
 	<body>
 		<!-- attributes feel so dirty -->
-		<canvas width="500" height="500">
+		<canvas width="500" height="500" id="canvas">
 			lolwut
 		</canvas>
 	</body>
