@@ -4,9 +4,11 @@
 		<title>Canvas Testing</title>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				var canvas = $("#canvas");
-				var context = canvas.get(0).getContext("2d");
+			var angle = 0;
+			var changeAngle = Math.PI/100;
+
+			function draw(context, canvas) {
+				context.clearRect (0, 0, 500, 500);
 
 				context.strokeStyle = "#570576";
 				context.lineWidth = 10;
@@ -33,8 +35,11 @@
 				context.lineWidth = 5;
 				context.strokeStyle = "#ff8fff";
 				context.beginPath();
+				// 210px long.
+				// starts at 350, 40
+				// change is 210*cos(angle)
 				context.moveTo(350, 40);
-				context.lineTo(350, 250);
+				context.lineTo(350+210*Math.cos(angle), 40+210*Math.sin(angle));
 				context.closePath();
 				context.stroke();
 
@@ -43,6 +48,27 @@
 				context.closePath();
 				context.fillStyle = "#Df6dfe"
 				context.fill();
+
+				angle += changeAngle;
+				if (angle >= Math.PI) {
+					changeAngle = -changeAngle;
+					angle = Math.PI;
+				} else if (angle <= 0) {
+					changeAngle = -changeAngle;
+					angle = 0;
+				}
+
+				setTimeout(function() {
+					draw(context, canvas);
+				}, 10);
+			};
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				var context = canvas.get(0).getContext("2d");
+
+				draw(context, canvas);
+
 			});
 		</script>
 	</head>
