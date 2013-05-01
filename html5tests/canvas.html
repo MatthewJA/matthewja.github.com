@@ -8,7 +8,41 @@
 				var canvas = $("#canvas");
 				var context = canvas.get(0).getContext("2d");
 
+				context.strokeStyle = "#570576";
+				context.lineWidth = 10;
+				context.beginPath();
+				context.moveTo(45, 140);
+				context.lineTo(135, 240);
+				context.lineTo(135, 140);
+				context.lineTo(45, 240);
+				context.closePath();
+				context.stroke();
+
+				context.fillStyle = "#790798";
 				context.fillRect(40, 40, 100, 100);
+
+				context.beginPath(); // #yolo
+				context.moveTo(140, 40);
+				context.lineTo(340, 40);
+				context.lineTo(350, 60);
+				context.lineTo(140, 140);
+				context.closePath();
+				context.fillStyle = "#9b29ba";
+				context.fill();
+
+				context.lineWidth = 5;
+				context.strokeStyle = "#ff8fff";
+				context.beginPath();
+				context.moveTo(350, 40);
+				context.lineTo(350, 250);
+				context.closePath();
+				context.stroke();
+
+				context.beginPath();
+				context.arc(350, 40, 40, 0, Math.PI, false);
+				context.closePath();
+				context.fillStyle = "#Df6dfe"
+				context.fill();
 			});
 		</script>
 	</head>
