@@ -5,13 +5,13 @@
 		<link rel="stylesheet" type="text/css" href="./styles.css">
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 		<script type="text/javascript">
-			function goToScreen(a, b, d) {
+			function goToScreen(a, b, d, t) {
 				if (d >= 0) {
 					document.getElementById("screen"+a).style.top = (100-d)+"%";
 					document.getElementById("screen"+b).style.top = (-d)+"%";
-					setTimeout(function(){
-						goToScreen(a, b, d-1);
-					});
+					setTimeout(function() {
+						goToScreen(a, b, d-2, t/0.95);
+					}, t);
 				};				
 			};
 		</script>
@@ -21,7 +21,7 @@
 			<h1>Hello, world! :D</h1>
 			<h2>I am Matthew Alger and I make things sometimes</h2>
 
-			<div class="box" id="gsicd" onclick="goToScreen(1, 2, 100);">
+			<div class="box" id="gsicd" onclick="goToScreen(1, 2, 100, 1);">
 				<h3>Good Sir, I Cannot Draw</h3>
 			</div>
 
@@ -42,14 +42,13 @@
 
 		<div id="screen2">
 			<h1>Good Sir, I Cannot Draw</h1>
-			<h2>It's a webcomic, about things!</h2>
-			<h3>Good Sir, I Cannot Draw is a comedy webcomic that I have written and drawn since 2010.</h3>
+			<h2>A webcomic about things, since 2010!</h2>
 
 			<div class="box" onclick="window.location='http://gsicd.matthewja.com';">
 				<h3>Get on it!</h3>
 			</div>
 
-			<h3 onclick="goToScreen(2, 1, 100)">&lt;BACK&gt;</h3>
+			<h3 onclick="goToScreen(2, 1, 100, 0)">&lt;BACK&gt;</h3>
 		</div>
 	</body>
 </html>
