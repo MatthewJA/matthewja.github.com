@@ -29,6 +29,9 @@
 			var widthFactor = 0.5;
 			var treeHeight = 0;
 			var maxTreeHeight = 0;
+			var maxSteps = 7;
+			var changed = true;
+			var angleDiff = Math.PI/8;
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -50,13 +53,13 @@
 			}
 
 			function recursiveDraw(context, branch, step) {
-				branch.draw(context);
+				
 				if (step>0) {
 					var angles = [
-						branch.angle-Math.PI/8,
-						branch.angle+Math.PI/8,
-						branch.angle-Math.PI/8,
-						branch.angle+Math.PI/8
+						branch.angle-angleDiff,
+						branch.angle+angleDiff,
+						branch.angle-angleDiff,
+						branch.angle+angleDiff
 						];
 					var xDisplacement = [
 						1/3,
@@ -90,13 +93,19 @@
 					};
 
 				};
+				branch.draw(context);
 			};
 
 			function draw(context) {
-				context.canvas.width = window.innerWidth;
-				context.canvas.height = window.innerHeight;
+				if (changed) {
+					console.log("changed");
+					changed = false;
 
-				recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#80461B", 20), 7);
+					context.canvas.width = window.innerWidth;
+					context.canvas.height = window.innerHeight;
+					
+					recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#80461B", 20), maxSteps);
+					}
 
 				setTimeout(function(){
 					draw(context);
@@ -116,12 +125,28 @@
 			$(function(){
 				$('#lengthslider').change(function(){
 					lengthFactor = this.value/100;
+					changed = true;
 				});
 				$('#lengthslider').change();
 				$('#heightslider').change(function(){
 					treeHeight = this.value/100*maxTreeHeight;
+					changed = true;
 				});
 				$('#heightslider').change();
+				$('#angleslider').change(function(){
+					angleDiff = this.value/180*Math.PI;
+					changed = true;
+				});
+				$('#angleslider').change();
+				$('#stepslider').change(function(){
+					if (this.value == 9) {
+						alert("Don't be silly.");
+					} else {
+						changed = true;
+						maxSteps = this.value;
+					}
+				});
+				$('#stepslider').change();
 			});
 		</script>
 	</head>
@@ -135,9 +160,16 @@
 
 		<div id="controls">
 			<label>Length</label>
-			<input id="lengthslider" type="range" min="0" max="100"><br>
+			<input id="lengthslider" type="range" min="0" max="100" value="50"><br>
+
 			<label>Height</label>
-			<input id="heightslider" type="range" min="0" max="100">
+			<input id="heightslider" type="range" min="0" max="100" value="66"><br>
+
+			<label>Angle</label>
+			<input id="angleslider" type="range" min="0" max="180" value="22.5"><br>
+
+			<label>Steps</label>
+			<input id="stepslider" type="range" min="0" max="9" value="7">
 		</div>
 	</body>
 </html>
