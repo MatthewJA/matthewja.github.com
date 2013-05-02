@@ -8,18 +8,28 @@
 				padding:0;
 				margin:0;
 				font-family:'Merriweather Sans', Tahoma, sans-serif;
+				color:#EFEFEF;
 			}
 			body, html {
 				min-height:100%;
 				overflow:auto;
+				background-color:#222222;
 			}
 			#canvas {
 				position:absolute;
 			}
 			#controls {
 				position:absolute;
-				bottom:10px;
-				left:10px;
+				bottom:0px;
+				left:0px;
+				background-color:#FFFFFF;
+				color:#000000;
+				padding:10px;
+			}
+			#controls label {
+				display:inline-block;
+				width:100px;
+				color:#000000;
 			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -32,6 +42,7 @@
 			var maxSteps = 7;
 			var changed = true;
 			var angleDiff = Math.PI/8;
+			var randomness = 0;
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -81,7 +92,7 @@
 									branch.length*lengthFactor,
 									branch.baseX+childBaseX*xDisplacement[i],
 									branch.baseY+childBaseY*yDisplacement[i],
-									angles[i],
+									angles[i]+Math.PI*(Math.random()*randomness-randomness/2)/2,
 									childColour,
 									branch.width*widthFactor
 									)
@@ -104,7 +115,7 @@
 					context.canvas.width = window.innerWidth;
 					context.canvas.height = window.innerHeight;
 					
-					recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#80461B", 20), maxSteps);
+					recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#664411", 20), maxSteps); // #80461B
 					}
 
 				setTimeout(function(){
@@ -128,16 +139,25 @@
 					changed = true;
 				});
 				$('#lengthslider').change();
+
 				$('#heightslider').change(function(){
 					treeHeight = this.value/100*maxTreeHeight;
 					changed = true;
 				});
 				$('#heightslider').change();
+
 				$('#angleslider').change(function(){
 					angleDiff = this.value/180*Math.PI;
 					changed = true;
 				});
 				$('#angleslider').change();
+
+				$('#randomslider').change(function(){
+					randomness = this.value/200;
+					changed = true;
+				});
+				$('#randomslider').change();
+
 				$('#stepslider').change(function(){
 					if (this.value == 9) {
 						alert("Don't be silly.");
@@ -167,6 +187,9 @@
 
 			<label>Angle</label>
 			<input id="angleslider" type="range" min="0" max="180" value="22.5"><br>
+
+			<label>Randomness</label>
+			<input id="randomslider" type="range" min="0" max="200" value="0"><br>
 
 			<label>Steps</label>
 			<input id="stepslider" type="range" min="0" max="9" value="7">
