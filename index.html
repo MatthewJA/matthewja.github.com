@@ -4,16 +4,22 @@
 		<title>MatthewJA</title>
 		<link rel="stylesheet" type="text/css" href="./styles.css">
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
-			function goToScreen(a, b, d, t) {
-				if (d >= 0) {
-					document.getElementById("screen"+a).style.top = (100-d)+"%";
-					document.getElementById("screen"+b).style.top = (-d)+"%";
-					setTimeout(function() {
-						goToScreen(a, b, d-2, t/0.95);
-					}, t);
-				};				
-			};
+			// function goToScreenUp(a, b, d, t) {
+			// 	if (d >= 0) {
+			// 		document.getElementById("screen"+a).style.top = (d-100)+"%";
+			// 		document.getElementById("screen"+b).style.top = (d)+"%";
+			// 		setTimeout(function() {
+			// 			goToScreen(a, b, d-2, t/0.95);
+			// 		}, t);
+			// 	};				
+			// };
+			function goToScreen(a) {
+						$('html, body').stop().animate({
+							scrollTop: $("#screen"+a).position().top
+						}, 1500);
+			}
 		</script>
 	</head>
 	<body>
@@ -21,11 +27,11 @@
 			<h1>Hello, world! :D</h1>
 			<h2>I am Matthew Alger and I make things sometimes</h2>
 
-			<div class="box" id="gsicd" onclick="goToScreen(1, 2, 100, 1);">
+			<div class="box" id="gsicd" onclick="goToScreen(2);">
 				<h3>Good Sir, I Cannot Draw</h3>
 			</div>
 
-			<div class="box" onclick="goToScreen(1, 3, 100, 1);">
+			<div class="box" onclick="goToScreen(3);">
 				<h3>Coding and Programming</h3>
 				I can program in a variety of languages.
 			</div>
@@ -48,7 +54,7 @@
 				<h3>Get on it!</h3>
 			</div>
 
-			<h3 class="back" onclick="goToScreen(2, 1, 100, 1)">&lt;BACK&gt;</h3>
+			<h3 class="back" onclick="goToScreen(1)">&lt;BACK&gt;</h3>
 		</div>
 
 		<div id="screen3">
@@ -59,7 +65,7 @@
 				<h3>HTML5 Tree Generator</h3>
 			</div>
 
-			<h3 class="back" onclick="goToScreen(3, 1, 100, 1)">&lt;BACK&gt;</h3>
+			<h3 class="back" onclick="goToScreen(1)">&lt;BACK&gt;</h3>
 		</div>
 	</body>
 </html>
