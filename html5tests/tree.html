@@ -1,11 +1,34 @@
 <!DOCTYPE HTML> <!-- hello world -->
 <html>
 	<head>
-		<title>Canvas Testing</title>
+		<title>Treecursion</title>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+		<style>
+			* {
+				padding:0;
+				margin:0;
+				font-family:'Merriweather Sans', Tahoma, sans-serif;
+			}
+			body, html {
+				min-height:100%;
+				overflow:auto;
+			}
+			#canvas {
+				position:absolute;
+			}
+			#controls {
+				position:absolute;
+				bottom:10px;
+				left:10px;
+			}
+		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 		<script type="text/javascript">
 			var lengthFactor = 0.5;
 			var widthFactor = 0.5;
+			var treeHeight = 0;
+			var maxTreeHeight = 0;
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -30,10 +53,10 @@
 				branch.draw(context);
 				if (step>0) {
 					var angles = [
-						branch.angle-Math.PI/4,
-						branch.angle+Math.PI/4,
-						branch.angle-Math.PI/4,
-						branch.angle+Math.PI/4
+						branch.angle-Math.PI/8,
+						branch.angle+Math.PI/8,
+						branch.angle-Math.PI/8,
+						branch.angle+Math.PI/8
 						];
 					var xDisplacement = [
 						1/3,
@@ -65,20 +88,56 @@
 					for (var i = 0; i < children.length; i++) {
 						recursiveDraw(context, children[i], step-1);
 					};
+
 				};
 			};
+
+			function draw(context) {
+				context.canvas.width = window.innerWidth;
+				context.canvas.height = window.innerHeight;
+
+				recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#80461B", 20), 7);
+
+				setTimeout(function(){
+					draw(context);
+				}, 30);
+			}
 
 			$(document).ready(function() {
 				var canvas = $("#canvas");
 				var context = canvas.get(0).getContext("2d");
+				context.canvas.width = window.innerWidth;
+				context.canvas.height = window.innerHeight;
+				treeHeight = canvas.height()*2/3;
+				maxTreeHeight = canvas.height();
+				draw(context);
+			});
 
-				recursiveDraw(context, new Branch(500, 300, 600, 3*Math.PI/2, "#80461B", 20), 10);
+			$(function(){
+				$('#lengthslider').change(function(){
+					lengthFactor = this.value/100;
+				});
+				$('#lengthslider').change();
+				$('#heightslider').change(function(){
+					treeHeight = this.value/100*maxTreeHeight;
+				});
+				$('#heightslider').change();
 			});
 		</script>
 	</head>
 	<body>
-		<canvas width="600" height="600" id="canvas">
+		<h1 style="position:absolute; left:10px;">Treecursion</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">(For Chrome)</h2>
+
+		<canvas id="canvas">
 			&#35;yolo
 		</canvas>
+
+		<div id="controls">
+			<label>Length</label>
+			<input id="lengthslider" type="range" min="0" max="100"><br>
+			<label>Height</label>
+			<input id="heightslider" type="range" min="0" max="100">
+		</div>
 	</body>
 </html>
