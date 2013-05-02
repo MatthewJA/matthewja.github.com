@@ -43,6 +43,7 @@
 			var changed = true;
 			var angleDiff = Math.PI/8;
 			var randomness = 0;
+			var branchCount = 4;
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -51,7 +52,7 @@
 				this.angle = angle;
 				this.colour = colour;
 				this.width = width;
-			}
+			};
 
 			Branch.prototype.draw = function(context) {
 				context.strokeStyle = this.colour;
@@ -61,24 +62,43 @@
 				context.lineTo(this.baseX+this.length*Math.cos(this.angle), this.baseY+this.length*Math.sin(this.angle));
 				context.closePath();
 				context.stroke();
-			}
+			};
+
+			function getAngles(branch) {
+				var baseAngles = [
+					branch.angle-angleDiff,
+					branch.angle+angleDiff,
+					branch.angle-angleDiff,
+					branch.angle+angleDiff,
+					branch.angle
+				];
+				var angles = [];
+				for (var i = 0; i < branchCount; i++) {
+					angles.push(baseAngles[i]);
+				};
+				return angles;
+			};
+
+			function getDisplacements(branch) {
+				var baseDisplacements = [
+					1/3,
+					1/3,
+					2/3,
+					2/3,
+					3/3
+				];
+				var displacements = [];
+				for (var i = 0; i < branchCount; i++) {
+					displacements.push(baseDisplacements[i]);
+				};
+				return displacements;
+			};
 
 			function recursiveDraw(context, branch, step) {
-				
 				if (step>0) {
-					var angles = [
-						branch.angle-angleDiff,
-						branch.angle+angleDiff,
-						branch.angle-angleDiff,
-						branch.angle+angleDiff
-						];
-					var xDisplacement = [
-						1/3,
-						1/3,
-						2/3,
-						2/3
-						];
-					var yDisplacement = xDisplacement;
+					var angles = getAngles(branch);
+					var xDisplacements = getDisplacements(branch);
+					var yDisplacements = xDisplacements;
 					var children = [];
 					var childBaseX = branch.length*Math.cos(branch.angle);
 					var childBaseY = branch.length*Math.sin(branch.angle);
@@ -90,8 +110,8 @@
 						children.push(
 								new Branch(
 									branch.length*lengthFactor,
-									branch.baseX+childBaseX*xDisplacement[i],
-									branch.baseY+childBaseY*yDisplacement[i],
+									branch.baseX+childBaseX*xDisplacements[i],
+									branch.baseY+childBaseY*yDisplacements[i],
 									angles[i]+Math.PI*(Math.random()*randomness-randomness/2)/2,
 									childColour,
 									branch.width*widthFactor
@@ -121,7 +141,7 @@
 				setTimeout(function(){
 					draw(context);
 				}, 30);
-			}
+			};
 
 			$(document).ready(function() {
 				var canvas = $("#canvas");
@@ -158,6 +178,12 @@
 				});
 				$('#randomslider').change();
 
+				$('#branchslider').change(function(){
+					branchCount = this.value;
+					changed = true;
+				});
+				$('#branchslider').change();
+
 				$('#stepslider').change(function(){
 					if (this.value == 9) {
 						alert("Don't be silly.");
@@ -192,7 +218,10 @@
 			<input id="randomslider" type="range" min="0" max="200" value="0"><br>
 
 			<label>Steps</label>
-			<input id="stepslider" type="range" min="0" max="9" value="7">
+			<input id="stepslider" type="range" min="0" max="9" value="7"><br>
+
+			<label>Branches</label>
+			<input id="branchslider" type="range" min="0" max="5" value="4">
 		</div>
 	</body>
 </html>
