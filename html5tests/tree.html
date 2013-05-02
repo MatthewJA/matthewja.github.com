@@ -50,6 +50,7 @@
 			var angleDiff = Math.PI/8;
 			var randomness = 0;
 			var branchCount = 4;
+			var leafType = "none";
 
 			var startColour = [102.0, 68.0, 17.0];
 			var endColour = [102.0, 255.0, 17.0];
@@ -66,12 +67,19 @@
 
 			Branch.prototype.draw = function(context) {
 				context.strokeStyle = this.colour;
+				context.fillStyle = this.colour;
 				context.lineWidth = this.width;
 				context.beginPath();
 				context.moveTo(this.baseX, this.baseY);
 				context.lineTo(this.baseX+this.length*Math.cos(this.angle), this.baseY+this.length*Math.sin(this.angle));
 				context.closePath();
 				context.stroke();
+				if (this.width >= 10) {
+					context.beginPath();
+					context.arc(this.baseX+(this.length-1)*Math.cos(this.angle), this.baseY+(this.length-1)*Math.sin(this.angle), this.width/2, this.angle-Math.PI/2, this.angle+Math.PI/2, false);
+					context.closePath();
+					context.fill();
+				}
 			};
 
 			function getAngles(branch) {
@@ -104,7 +112,7 @@
 				return displacements;
 			};
 
-			function drawLeaf(context, branch, type) {
+			function drawLeaf(context, branch, angle, xDisp, yDisp) {
 				var colour = "rgb("+
 						Math.floor(Math.min(255, endColour[0]*2/3))+","+
 						Math.floor(Math.min(255, endColour[1]*2/3))+","+
@@ -112,13 +120,13 @@
 				context.fillStyle = colour;
 				context.strokeStyle = colour;
 				context.beginPath();
-				var x = branch.baseX+branch.length*Math.cos(branch.angle);
-				var y = branch.baseY+branch.length*Math.sin(branch.angle);
-				if (type == "circle") {
+				var x = branch.baseX+branch.length*Math.cos(branch.angle)*xDisp+(Math.random()*20-10);
+				var y = branch.baseY+branch.length*Math.sin(branch.angle)*yDisp+(Math.random()*20-10);
+				if (leafType == "circle") {
 					context.arc(x, y, 5, 0, 2*Math.PI, false);
 					context.closePath();
 					context.fill();
-				} else if (type == "cross") {
+				} else if (leafType == "cross") {
 					context.moveTo(x+5, y);
 					context.lineTo(x-5, y);
 					context.closePath();
@@ -151,34 +159,29 @@
 						getNextColour(endColour[0], startColour[0], step)+","+
 						getNextColour(endColour[1], startColour[1], step)+","+
 						getNextColour(endColour[2], startColour[2], step)+")";
-
-					for (var i = 0; i < angles.length; i++) {
-						children.push(
-								new Branch(
-									branch.length*lengthFactor,
-									branch.baseX+childBaseX*xDisplacements[i],
-									branch.baseY+childBaseY*yDisplacements[i],
-									angles[i]+Math.PI*(Math.random()*randomness-randomness/2)/2,
-									childColour,
-									branch.width*widthFactor
-									)
-							);
-					};
-					for (var i = 0; i < children.length; i++) {
-						recursiveDraw(context, children[i], step-1);
-					};
-
-				};
-				if (step == 0) {
-					var type = $('input[name=leaves]:checked').val();
-					if (type != "none") {
-						drawLeaf(context, branch, type);
+					if (leafType != "none" && step == 1) {
+						for (var i = 0; i < angles.length; i++) {
+							drawLeaf(context, branch, angles[i], xDisplacements[i], yDisplacements[i]);
+						};
+					} else {
+						for (var i = 0; i < angles.length; i++) {
+							children.push(
+									new Branch(
+										branch.length*lengthFactor,
+										branch.baseX+childBaseX*xDisplacements[i],
+										branch.baseY+childBaseY*yDisplacements[i],
+										angles[i]+Math.PI*(Math.random()*randomness-randomness/2)/2,
+										childColour,
+										branch.width*widthFactor
+										)
+								);
+						};
+						for (var i = 0; i < children.length; i++) {
+							recursiveDraw(context, children[i], step-1);
+						};
 					}
-					
-				}
+				};
 				branch.draw(context);
-
-				
 			};
 
 			function draw(context) {
@@ -248,6 +251,7 @@
 				$('#stepslider').change();
 
 				$('input[name=leaves]').change(function(){
+					leafType = $('input[name=leaves]:checked').val();
 					changed=true;
 				});
 
@@ -288,7 +292,7 @@
 	</head>
 	<body>
 		<h1 style="position:absolute; left:10px;">Treecursion</h1>
-		<h2 style="position:absolute; top:35px; left:30px;">(For Chrome)</h2>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 
 		<canvas id="canvas">
 			&#35;yolo
@@ -333,5 +337,6 @@
 					<label for="leavescross">Cross</label>
 			</div>
 		</div>
+
 	</body>
 </html>
