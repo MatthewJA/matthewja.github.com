@@ -31,6 +31,12 @@
 				width:100px;
 				color:#000000;
 			}
+			#colours label{
+				width:auto;
+			}
+			#colours input {
+				width:50px;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -44,6 +50,10 @@
 			var angleDiff = Math.PI/8;
 			var randomness = 0;
 			var branchCount = 4;
+
+			var startColour = [102.0, 68.0, 17.0];
+			var endColour = [102.0, 255.0, 17.0];
+
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -94,6 +104,40 @@
 				return displacements;
 			};
 
+			function drawLeaf(context, branch, type) {
+				var colour = "rgb("+
+						Math.floor(Math.min(255, endColour[0]*2/3))+","+
+						Math.floor(Math.min(255, endColour[1]*2/3))+","+
+						Math.floor(Math.min(255, endColour[2]*2/3))+")";
+				context.fillStyle = colour;
+				context.strokeStyle = colour;
+				context.beginPath();
+				var x = branch.baseX+branch.length*Math.cos(branch.angle);
+				var y = branch.baseY+branch.length*Math.sin(branch.angle);
+				if (type == "circle") {
+					context.arc(x, y, 5, 0, 2*Math.PI, false);
+					context.closePath();
+					context.fill();
+				} else if (type == "cross") {
+					context.moveTo(x+5, y);
+					context.lineTo(x-5, y);
+					context.closePath();
+					context.stroke()
+					context.beginPath();
+					context.moveTo(x, y+5);
+					context.lineTo(x, y-5);
+					context.closePath();
+					context.stroke();
+				}
+			}
+
+			function getNextColour(end, start, step) {
+				var colourDiff = end-start;
+				var portion = colourDiff/maxSteps;
+				var upto = portion*(maxSteps-step);
+				return Math.floor(upto + start);
+			}
+
 			function recursiveDraw(context, branch, step) {
 				if (step>0) {
 					var angles = getAngles(branch);
@@ -102,10 +146,12 @@
 					var children = [];
 					var childBaseX = branch.length*Math.cos(branch.angle);
 					var childBaseY = branch.length*Math.sin(branch.angle);
-					var childColour = branch.colour.substring(0, 3) + (
-							Math.min(parseInt(branch.colour.substring(3, 5), 16) + 16, 0xFF).toString(16)
-						) + branch.colour.substring(5);
-					
+					var childColour = "rgb("+
+						//y = (end-start)/max*(max-step+1)
+						getNextColour(endColour[0], startColour[0], step)+","+
+						getNextColour(endColour[1], startColour[1], step)+","+
+						getNextColour(endColour[2], startColour[2], step)+")";
+
 					for (var i = 0; i < angles.length; i++) {
 						children.push(
 								new Branch(
@@ -118,24 +164,31 @@
 									)
 							);
 					};
-
 					for (var i = 0; i < children.length; i++) {
 						recursiveDraw(context, children[i], step-1);
 					};
 
 				};
+				if (step == 0) {
+					var type = $('input[name=leaves]:checked').val();
+					if (type != "none") {
+						drawLeaf(context, branch, type);
+					}
+					
+				}
 				branch.draw(context);
+
+				
 			};
 
 			function draw(context) {
 				if (changed) {
-					console.log("changed");
 					changed = false;
 
 					context.canvas.width = window.innerWidth;
 					context.canvas.height = window.innerHeight;
 					
-					recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "#664411", 20), maxSteps); // #80461B
+					recursiveDraw(context, new Branch(treeHeight, canvas.width/2, canvas.height, 3*Math.PI/2, "rgb("+startColour[0]+","+startColour[1]+","+startColour[2]+")", 20), maxSteps); // #80461B
 					}
 
 				setTimeout(function(){
@@ -193,6 +246,43 @@
 					}
 				});
 				$('#stepslider').change();
+
+				$('input[name=leaves]').change(function(){
+					changed=true;
+				});
+
+				// colour stuff
+				$('#startred').change(function(){
+					startColour[0] = parseInt(this.value);
+					changed = true;
+				});
+				$('#startred').change();
+				$('#startgreen').change(function(){
+					startColour[1] = parseInt(this.value);
+					changed = true;
+				});
+				$('#startgreen').change();
+				$('#startblue').change(function(){
+					startColour[2] = parseInt(this.value);
+					changed = true;
+				});
+				$('#startblue').change();
+
+				$('#endred').change(function(){
+					endColour[0] = parseInt(this.value);
+					changed = true;
+				});
+				$('#endred').change();
+				$('#endgreen').change(function(){
+					endColour[1] = parseInt(this.value);
+					changed = true;
+				});
+				$('#endgreen').change();
+				$('#endblue').change(function(){
+					endColour[2] = parseInt(this.value);
+					changed = true;
+				});
+				$('#endblue').change();
 			});
 		</script>
 	</head>
@@ -221,7 +311,27 @@
 			<input id="stepslider" type="range" min="0" max="9" value="7"><br>
 
 			<label>Branches</label>
-			<input id="branchslider" type="range" min="0" max="5" value="4">
+			<input id="branchslider" type="range" min="0" max="5" value="4"><br>
+
+			<div id="colours">
+				<label>Start Colour</label>
+				<label>R</label><input id="startred" type="range" min="0" max="255" value="102">
+				<label>G</label><input id="startgreen" type="range" min="0" max="255" value="68">
+				<label>B</label><input id="startblue" type="range" min="0" max="255" value="17"><br>
+
+				<label>End Colour</label>
+				<label>R</label><input id="endred" type="range" min="0" max="255" value="102">
+				<label>G</label><input id="endgreen" type="range" min="0" max="255" value="255">
+				<label>B</label><input id="endblue" type="range" min="0" max="255" value="17"><br>
+
+				<label>Leaves</label>
+					<input type="radio" id="leavesnone" name="leaves" value="none">
+					<label for="leavesnone">None</label>
+					<input type="radio" id="leavescircle" name="leaves" value="circle">
+					<label for="leavescircle">Circle</label>
+					<input type="radio" id="leavescross" name="leaves" value="cross">
+					<label for="leavescross">Cross</label>
+			</div>
 		</div>
 	</body>
 </html>
