@@ -1,0 +1,78 @@
+<!DOCTYPE HTML> <!-- hello world -->
+<html>
+	<head>
+		<title>Canvas Testing</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function drawBranch(context, length, baseX, baseY, angle, colour, width) {
+				context.strokeStyle = colour;
+				context.lineWidth = width;
+				context.beginPath();
+				context.moveTo(baseX, baseY);
+				context.lineTo(baseX+length*Math.cos(angle), baseY+length*Math.sin(angle));
+				context.closePath();
+				context.stroke();
+			}
+
+			function Branch(length, baseX, baseY, angle, colour, width) {
+				this.length = length;
+				this.baseX = baseX;
+				this.baseY = baseY;
+				this.angle = angle;
+				this.colour = colour;
+				this.width = width;
+			}
+
+			Branch.prototype.draw = function(context) {
+
+			}
+
+			function recursiveDraw(context, length, baseX, baseY, angle, colour, width, step) {
+				drawBranch(context, length, baseX, baseY, angle, colour, width);
+				console.log(colour);
+				if (step>0) {
+					var children = [
+						// 50% of branch
+						[
+							baseX+length*Math.cos(angle)/2,
+							baseY+length*Math.sin(angle)/2,
+							angle+Math.PI/4,
+						],
+						// other side
+						[
+							baseX+length*Math.cos(angle)/2,
+							baseY+length*Math.sin(angle)/2,
+							angle-Math.PI/4,
+						]
+					];
+					nextColour = colour;
+
+					for (var i = 0; i < children.length; i++) {
+						recursiveDraw(
+							context,
+							length/2,
+							children[i][0],
+							children[i][1],
+							children[i][2],
+							nextColour,
+							width/2,
+							step-1
+						);
+					};
+				}
+			};
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				var context = canvas.get(0).getContext("2d");
+
+				recursiveDraw(context, 500, 300, 600, 3*Math.PI/2, 0x999999, 20, 10);
+			});
+		</script>
+	</head>
+	<body>
+		<canvas width="600" height="600" id="canvas">
+			&#35;yolo
+		</canvas>
+	</body>
+</html>
