@@ -4,15 +4,8 @@
 		<title>Canvas Testing</title>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
-			function drawBranch(context, length, baseX, baseY, angle, colour, width) {
-				context.strokeStyle = colour;
-				context.lineWidth = width;
-				context.beginPath();
-				context.moveTo(baseX, baseY);
-				context.lineTo(baseX+length*Math.cos(angle), baseY+length*Math.sin(angle));
-				context.closePath();
-				context.stroke();
-			}
+			var lengthFactor = 0.5;
+			var widthFactor = 0.5;
 
 			function Branch(length, baseX, baseY, angle, colour, width) {
 				this.length = length;
@@ -24,49 +17,47 @@
 			}
 
 			Branch.prototype.draw = function(context) {
-
+				context.strokeStyle = this.colour;
+				context.lineWidth = this.width;
+				context.beginPath();
+				context.moveTo(this.baseX, this.baseY);
+				context.lineTo(this.baseX+this.length*Math.cos(this.angle), this.baseY+this.length*Math.sin(this.angle));
+				context.closePath();
+				context.stroke();
 			}
 
-			function recursiveDraw(context, length, baseX, baseY, angle, colour, width, step) {
-				drawBranch(context, length, baseX, baseY, angle, colour, width);
-				console.log(colour);
+			function recursiveDraw(context, branch, step) {
+				branch.draw(context);
 				if (step>0) {
-					var children = [
-						// 50% of branch
-						[
-							baseX+length*Math.cos(angle)/2,
-							baseY+length*Math.sin(angle)/2,
-							angle+Math.PI/4,
-						],
-						// other side
-						[
-							baseX+length*Math.cos(angle)/2,
-							baseY+length*Math.sin(angle)/2,
-							angle-Math.PI/4,
-						]
-					];
-					nextColour = colour;
+					var angles = [branch.angle-Math.PI/4, branch.angle+Math.PI/4];
+					var children = [];
+					var childBaseX = branch.baseX+branch.length*Math.cos(branch.angle)/2;
+					var childBaseY = branch.baseY+branch.length*Math.sin(branch.angle)/2;
+					
+					for (var i = 0; i < angles.length; i++) {
+						children.push(
+								new Branch(
+									branch.length*lengthFactor,
+									childBaseX,
+									childBaseY,
+									angles[i],
+									branch.colour,
+									branch.width*widthFactor
+									)
+							);
+					};
 
 					for (var i = 0; i < children.length; i++) {
-						recursiveDraw(
-							context,
-							length/2,
-							children[i][0],
-							children[i][1],
-							children[i][2],
-							nextColour,
-							width/2,
-							step-1
-						);
+						recursiveDraw(context, children[i], step-1);
 					};
-				}
+				};
 			};
 
 			$(document).ready(function() {
 				var canvas = $("#canvas");
 				var context = canvas.get(0).getContext("2d");
 
-				recursiveDraw(context, 500, 300, 600, 3*Math.PI/2, 0x999999, 20, 10);
+				recursiveDraw(context, new Branch(500, 300, 600, 3*Math.PI/2, "#80461B", 20), 10);
 			});
 		</script>
 	</head>
