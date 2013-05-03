@@ -17,7 +17,7 @@ body {
 	text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .box , .back {
 	font-family:Oxygen, Tahoma, Sans-serif;
 	text-align:center;
 	font-weight:normal;
@@ -31,9 +31,18 @@ h2 {
 	font-size:30px;
 }
 
-h3 {
+h3, .box {
 	font-size:20px;
 	font-weight:bold;
+}
+
+a:link, a:visited, a:active, a:hover {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.back {
+	display:block;
 }
 
 .box {
@@ -88,10 +97,6 @@ h3 {
 #screen3 {
 	background-color:#88EE77;
 	top:200%;
-}
-
-.back {
-	cursor:pointer;
 }
 
 #screen2 .box {

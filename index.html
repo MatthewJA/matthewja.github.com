@@ -6,20 +6,11 @@
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
-			// function goToScreenUp(a, b, d, t) {
-			// 	if (d >= 0) {
-			// 		document.getElementById("screen"+a).style.top = (d-100)+"%";
-			// 		document.getElementById("screen"+b).style.top = (d)+"%";
-			// 		setTimeout(function() {
-			// 			goToScreen(a, b, d-2, t/0.95);
-			// 		}, t);
-			// 	};				
-			// };
 			function goToScreen(a) {
 						$('html, body').stop().animate({
 							scrollTop: $("#screen"+a).position().top
 						}, 400);
-			}
+			};
 		</script>
 	</head>
 	<body>
@@ -27,44 +18,44 @@
 			<h1>Hello, world! :D</h1>
 			<h2>I am Matthew Alger and I make things sometimes</h2>
 
-			<div class="box" id="gsicd" onclick="goToScreen(2);">
-				<h3>Good Sir, I Cannot Draw</h3>
-			</div>
+			<a class="box" id="gsicd" onclick="goToScreen(2); return false;" href="#screen2">
+				Good Sir, I Cannot Draw
+			</a>
 
-			<div class="box" id="codingprogramming" onclick="goToScreen(3);">
-				<h3>Coding and Programming</h3>
-			</div>
+			<a class="box" id="codingprogramming" onclick="goToScreen(3); return false;" href="#screen3">
+				Coding and Programming
+			</a>
 
-			<div class="box">
-				<h3>Contact</h3>
+			<a class="box">
+				Contact
 				To be continued?
-			</div>
+			</a>
 
-			<div id="stickman">
+			<a id="stickman">
 				<img src="./static/stickman_frontfacing.png">
-			</div>
+			</a>
 		</div>
 
 		<div id="screen2">
 			<h1>Good Sir, I Cannot Draw</h1>
 			<h2>A webcomic about things, since 2010!</h2>
 
-			<div class="box" id="gsicd2" onclick="window.location='http://gsicd.matthewja.com';">
-				<h3>Get on it!</h3>
-			</div>
+			<a class="box" id="gsicd2" href="http://gsicd.matthewja.com/">
+				Get on it!
+			</a>
 
-			<h3 class="back" onclick="goToScreen(1)">&lt;BACK&gt;</h3>
+			<a class="back" onclick="goToScreen(1); return false;" href="#">&lt;BACK&gt;</a>
 		</div>
 
 		<div id="screen3">
 			<h1>Coding and Programming</h1>
 			<h2>Here's some stuff I've done recently:</h2>
 
-			<div class="box" id="treegen" onclick="window.location='/html5tests/tree.html';">
-				<h3>HTML5 Tree Generator</h3>
-			</div>
+			<a class="box" id="treegen" href="/html5tests/tree.html">
+				HTML5 Tree Generator
+			</a>
 
-			<h3 class="back" onclick="goToScreen(1)">&lt;BACK&gt;</h3>
+			<a class="back" onclick="goToScreen(1); return false;" href="#">&lt;BACK&gt;</a>
 		</div>
 	</body>
 </html>
