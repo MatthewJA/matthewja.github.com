@@ -106,3 +106,7 @@ a:link, a:visited, a:active, a:hover {
 #screen3 .box {
 	background-color:#99FF88;
 }
+
+.text {
+	font-size:75%;
+}
