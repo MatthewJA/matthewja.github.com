@@ -1,0 +1,84 @@
+<!DOCTYPE HTML> <!-- hello world -->
+<html>
+	<head>
+		<title>Mandelbrot</title>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+		<style>
+			* {
+				padding:0;
+				margin:0;
+				font-family:'Merriweather Sans', Tahoma, sans-serif;
+				color:#EFEFEF;
+			}
+			body, html {
+				min-height:100%;
+				overflow:hidden;
+				background-color:#222222;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			var scale = 1;
+			var detail = 1;
+			var steps = 1;
+
+			function squareComplex(re, im) {
+				// (re + im)^2 = re^2 - im^2, 2*re*im
+				return [re*re - im*im, 2*re*im]; 
+			};
+
+			function mandelbrotRelation(re, im, totalSum, steps) {
+				if (steps <= 0) {
+					return totalSum;
+				} else if (modulus(totalSum) > 2) {
+					return totalSum;
+				} else {
+					var z = squareComplex(totalSum[0], totalSum[1]);
+					return mandelbrotRelation(re, im, [z[0]+re, z[1]+im], steps-1);
+				};
+			};
+
+			function drawBlackSpot(context, re, im) {
+				context.beginPath();
+				context.arc(Math.floor(re*scale), Math.floor(im*scale), 0.53, 0, 2*Math.PI, false);
+				context.closePath();
+				context.fill();
+			};
+
+			function modulus(complex) {
+				return Math.sqrt(complex[0]*complex[0] + complex[1]*complex[1]);
+			};
+
+			function drawMandelbrot(context, steps) {
+				for (var re = -2; re <= 2; re+=detail) {
+					for (var im = -2; im <= 2; im+=detail) {
+						if (modulus(mandelbrotRelation(re, im, [0, 0], steps)) <= 2) {
+							drawBlackSpot(context, re*100+200, im*100+100);
+						};
+					};
+				};
+			};
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				var context = canvas.get(0).getContext("2d");
+				context.canvas.width = window.innerWidth;
+				context.canvas.height = window.innerHeight;
+				scale = context.canvas.height/200;
+				detail = 0.0018;
+				steps = 50;
+				drawMandelbrot(context, steps);
+			});
+		</script>
+	</head>
+	<body>
+		<h1 style="position:absolute; left:10px;">Mandelbrot</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
+		<canvas id="canvas">
+			&#35;swag
+		</canvas>
+
+	</body>
+</html>
