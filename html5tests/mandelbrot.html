@@ -21,7 +21,9 @@
 		<script type="text/javascript">
 			var scale = 1;
 			var detail = 1;
-			var steps = 1;
+
+			var xOffset = 2;
+			var yOffset = 1;
 
 			function squareComplex(re, im) {
 				// (re + im)^2 = re^2 - im^2, 2*re*im
@@ -37,23 +39,20 @@
 				};
 			};
 
-			function drawSpot(context, re, im) {
-				context.beginPath();
-				context.fillStyle = "#FFFFFF";
-				context.arc(Math.floor(re*scale), Math.floor(im*scale), 0.53, 0, 2*Math.PI, false);
-				context.closePath();
-				context.fill();
+			function drawSpot(context, colour, re, im) {
+				context.fillStyle = colour;
+				context.fillRect(Math.floor(re*scale), Math.floor(im*scale), detail*350, detail*350)
 			};
 
 			function modulus(complex) {
 				return Math.sqrt(complex[0]*complex[0] + complex[1]*complex[1]);
 			};
 
-			function drawMandelbrot(context, steps) {
+			function drawMandelbrot(context, colour, steps) {
 				for (var re = -2; re <= 2; re+=detail) {
 					for (var im = -2; im <= 2; im+=detail) {
 						if (modulus(mandelbrotRelation(re, im, [0, 0], steps)) <= 2) {
-							drawSpot(context, re*100+200, im*100+100);
+							drawSpot(context, colour, (re+xOffset)*100, (im+yOffset)*100);
 						};
 					};
 				};
@@ -65,9 +64,13 @@
 				context.canvas.width = window.innerWidth;
 				context.canvas.height = window.innerHeight;
 				scale = context.canvas.height/200;
-				detail = 0.0018;
-				steps = 45;
-				drawMandelbrot(context, steps);
+				detail = 0.01;
+				var maxSteps = 40;
+				for (var steps = 0; steps < maxSteps; steps++) {
+					var value = 255/maxSteps*steps
+					var colour = "rgb(" + value + "," + value + "," + value +")";
+					drawMandelbrot(context, colour, steps);
+				}				
 			});
 		</script>
 	</head>
