@@ -21,6 +21,7 @@
 		<script type="text/javascript">
 			var scale = 1;
 			var detail = 1;
+			var maxSteps = 1;
 
 			var xOffset = 2;
 			var yOffset = 1;
@@ -32,6 +33,7 @@
 
 			function mandelbrotRelation(re, im, totalSum, steps) {
 				if (steps <= 0 || modulus(totalSum) > 2) {
+					totalSum.push(steps);
 					return totalSum;
 				} else {
 					var z = squareComplex(totalSum[0], totalSum[1]);
@@ -48,12 +50,17 @@
 				return Math.sqrt(complex[0]*complex[0] + complex[1]*complex[1]);
 			};
 
-			function drawMandelbrot(context, colour, steps) {
+			function drawMandelbrot(context, steps) {
 				for (var re = -2; re <= 2; re+=detail) {
 					for (var im = -2; im <= 2; im+=detail) {
-						if (modulus(mandelbrotRelation(re, im, [0, 0], steps)) <= 2) {
-							drawSpot(context, colour, (re+xOffset)*100, (im+yOffset)*100);
+						relation = mandelbrotRelation(re, im, [0, 0], steps);
+						if (modulus(relation) <= 2) {
+							var colour = "#FFFFFF";
+						} else {
+							var value = 255-(255/maxSteps*relation[2]);
+							var colour = "rgb("+value+","+value+","+value+")";
 						};
+						drawSpot(context, colour, (re+xOffset)*100, (im+yOffset)*100);
 					};
 				};
 			};
@@ -65,12 +72,8 @@
 				context.canvas.height = window.innerHeight;
 				scale = context.canvas.height/200;
 				detail = 0.01;
-				var maxSteps = 40;
-				for (var steps = 0; steps < maxSteps; steps++) {
-					var value = 255/maxSteps*steps
-					var colour = "rgb(" + value + "," + value + "," + value +")";
-					drawMandelbrot(context, colour, steps);
-				}				
+				maxSteps = 51;
+				drawMandelbrot(context, maxSteps);				
 			});
 		</script>
 	</head>
