@@ -29,9 +29,7 @@
 			};
 
 			function mandelbrotRelation(re, im, totalSum, steps) {
-				if (steps <= 0) {
-					return totalSum;
-				} else if (modulus(totalSum) > 2) {
+				if (steps <= 0 || modulus(totalSum) > 2) {
 					return totalSum;
 				} else {
 					var z = squareComplex(totalSum[0], totalSum[1]);
@@ -39,8 +37,9 @@
 				};
 			};
 
-			function drawBlackSpot(context, re, im) {
+			function drawSpot(context, re, im) {
 				context.beginPath();
+				context.fillStyle = "#FFFFFF";
 				context.arc(Math.floor(re*scale), Math.floor(im*scale), 0.53, 0, 2*Math.PI, false);
 				context.closePath();
 				context.fill();
@@ -54,7 +53,7 @@
 				for (var re = -2; re <= 2; re+=detail) {
 					for (var im = -2; im <= 2; im+=detail) {
 						if (modulus(mandelbrotRelation(re, im, [0, 0], steps)) <= 2) {
-							drawBlackSpot(context, re*100+200, im*100+100);
+							drawSpot(context, re*100+200, im*100+100);
 						};
 					};
 				};
@@ -67,7 +66,7 @@
 				context.canvas.height = window.innerHeight;
 				scale = context.canvas.height/200;
 				detail = 0.0018;
-				steps = 50;
+				steps = 45;
 				drawMandelbrot(context, steps);
 			});
 		</script>
