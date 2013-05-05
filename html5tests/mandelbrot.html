@@ -15,6 +15,28 @@
 				overflow:hidden;
 				background-color:#222222;
 			}
+			#controls {
+				position:absolute;
+				bottom:0px;
+				left:0px;
+				background-color:#FFFFFF;
+				color:#000000;
+				padding:10px;
+				width:200px;
+			}
+			#controls label {
+				display:inline-block;
+				width:100px;
+				color:#000000;
+			}
+
+			#detailslider {
+				width:100%;
+			}
+
+			#xoffsetslider, #yoffsetslider {
+				width:50%;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -22,6 +44,8 @@
 			var scale = 1;
 			var detail = 1;
 			var maxSteps = 1;
+
+			var context = null;
 
 			var xOffset = 2;
 			var yOffset = 1;
@@ -67,7 +91,7 @@
 
 			$(document).ready(function() {
 				var canvas = $("#canvas");
-				var context = canvas.get(0).getContext("2d");
+				context = canvas.get(0).getContext("2d");
 				context.canvas.width = window.innerWidth;
 				context.canvas.height = window.innerHeight;
 				scale = context.canvas.height/200;
@@ -75,6 +99,31 @@
 				maxSteps = 51;
 				drawMandelbrot(context, maxSteps);				
 			});
+
+
+			$(function(){
+				$('#stepsslider').change(function(){
+						maxSteps = this.value;
+						context.canvas.width = window.innerWidth;
+						drawMandelbrot(context,maxSteps);
+				});
+
+				$('#detailslider').change(function(){
+						detail = (10000-this.value)/10000;
+						context.canvas.width = window.innerWidth;
+						drawMandelbrot(context,maxSteps);
+				});
+				$('#xoffsetslider').change(function(){
+						context.canvas.width = window.innerWidth;
+						xOffset = this.value/100;
+						drawMandelbrot(context,maxSteps);
+				});$('#yoffsetslider').change(function(){
+						yOffset = this.value/100;
+						context.canvas.width = window.innerWidth;
+						drawMandelbrot(context,maxSteps);
+				});
+			});
+
 		</script>
 	</head>
 	<body>
@@ -84,6 +133,17 @@
 		<canvas id="canvas">
 			&#35;swag
 		</canvas>
+
+		<div id="controls">
+			<!--<label>Steps</label>
+			<input id="stepsslider" type="range" min="0" max="60" value="51"><br>
+			Steps is really painfully slow to deal with. -->
+			<label>Detail</label>
+			<input id="detailslider" type="range" min="1" max="9985" value="9900"><br>
+
+			<label>Offset</label>
+			<input id="xoffsetslider" type="range" min="-1000" max="1000" value="200"><input id="yoffsetslider" type="range" min="-1000" max="1000" value="100">
+		</div>
 
 	</body>
 </html>
