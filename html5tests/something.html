@@ -22,6 +22,9 @@
 				margin-top:60px;
 				display:block;
 			}
+			#updates {
+				margin:0 auto;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -35,7 +38,11 @@
 				87:"w",
 				65:"a",
 				83:"s",
-				68:"d"
+				68:"d",
+				38:'up',
+				37:'left',
+				40:'down',
+				39:'right'
 			}
 
 			// objects
@@ -75,17 +82,17 @@
 			};
 
 			Player.prototype.update = function(dt) {
-				if (isKeyDown["w"]) {
-					this.move(1, dt);
-				};
-				if (isKeyDown["a"]) {
-					this.move(2, dt);
-				};
-				if (isKeyDown["s"]) {
+				if (isKeyDown["s"] || isKeyDown['down']) {
 					this.move(3, dt);
 				};
-				if (isKeyDown["d"]) {
+				if (isKeyDown["d"] || isKeyDown['right']) {
 					this.move(0, dt);
+				};
+				if (isKeyDown["w"] || isKeyDown['up']) {
+					this.move(1, dt);
+				};
+				if (isKeyDown["a"] || isKeyDown['left']) {
+					this.move(2, dt);
 				};
 			};
 
@@ -108,7 +115,6 @@
 			// events
 			function keyDown(e) {
 				isKeyDown[keyMap[e.keyCode]] = true
-				console.log(isKeyDown, e.keyCode)
 
 				e.preventDefault();
 				return false;
@@ -134,11 +140,19 @@
 		</script>
 	</head>
 	<body>
-		<h1 style="position:absolute; left:10px; top:0px;">CFRPG Engine Pre-Alpha v0.03</h1>
+		<h1 style="position:absolute; left:10px; top:0px;">CFRPG Engine Pre-Alpha v0.04</h1>
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
-
+		
 		<canvas id="canvas" width="800" height="600" tabindex="1">
 			it's like a big love polygon and everyone's invited
 		</canvas>
+
+		<table id="updates">
+			<th>Updates</th><th></th>
+			<tr><td>v0.01</td><td>Canvas element</td></tr>
+			<tr><td>v0.02</td><td>Square player</td></tr>
+			<tr><td>v0.03</td><td>Movable player</td></tr>
+			<tr><td>v0.04</td><td>Added arrow key movement</td></tr>
+		</table>
 	</body>
 </html>
