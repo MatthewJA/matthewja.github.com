@@ -1,0 +1,68 @@
+<!DOCTYPE HTML> <!-- hello world -->
+<html>
+	<head>
+		<title>CFRPG Engine Pre-Alpha</title>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+		<style>
+			* {
+				padding:0;
+				margin:0;
+				font-family:'Merriweather Sans', Tahoma, sans-serif;
+				color:#EFEFEF;
+			}
+			body, html {
+				min-height:100%;
+				overflow:auto;
+				background-color:#222222;
+			}
+			#canvas {
+				position:absolute;
+			}
+			#controls {
+				position:absolute;
+				bottom:0px;
+				left:0px;
+				background-color:#FFFFFF;
+				color:#000000;
+				padding:10px;
+			}
+			#controls label {
+				display:inline-block;
+				width:100px;
+				color:#000000;
+			}
+			#colours label{
+				width:auto;
+			}
+			#colours input {
+				width:50px;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			function Player(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				var context = canvas.get(0).getContext("2d");
+				context.canvas.width = "800px";
+				context.canvas.height = "600px";
+				setInterval();
+			});
+
+		</script>
+	</head>
+	<body>
+		<h1 style="position:absolute; left:10px;">CFRPG Engine Pre-Alpha v0.01</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
+		<canvas id="canvas">
+			it's like a big love polygon and everyone's invited
+		</canvas>
+	</body>
+</html>
