@@ -12,56 +12,132 @@
 			}
 			body, html {
 				min-height:100%;
-				overflow:auto;
 				background-color:#222222;
 			}
 			#canvas {
-				position:absolute;
-			}
-			#controls {
-				position:absolute;
-				bottom:0px;
-				left:0px;
+				width:800px;
+				height:600px;
 				background-color:#FFFFFF;
-				color:#000000;
-				padding:10px;
-			}
-			#controls label {
-				display:inline-block;
-				width:100px;
-				color:#000000;
-			}
-			#colours label{
-				width:auto;
-			}
-			#colours input {
-				width:50px;
+				margin:0 auto;
+				margin-top:60px;
+				display:block;
 			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 		<script type="text/javascript">
+			// init global variables
+			var context = null;
+			var player = null;
+			var timeLast = Date.now();
+			var isKeyDown = {};
+			var keyMap = {
+				87:"w",
+				65:"a",
+				83:"s",
+				68:"d"
+			}
+
+			// objects
+			//// Player object
 			function Player(x, y) {
 				this.x = x;
 				this.y = y;
-			}
+				this.width = 50;
+				this.height = 50;
 
+				this.speed = 0.2;
+			};
 
+			Player.prototype.draw = function() {
+				context.fillStyle = "#000000";
+				context.fillRect(this.x, this.y, this.width, this.height);
+			};
+
+			Player.prototype.move = function(dir, dt) {
+				var speed = this.speed*dt;
+				switch(dir) {
+					case 0:
+						this.x += speed;
+						break;
+					case 1:
+						this.y -= speed;
+						break;
+					case 2:
+						this.x -= speed;
+						break;
+					case 3:
+						this.y += speed;
+						break;
+					default:
+						break;
+				};
+			};
+
+			Player.prototype.update = function(dt) {
+				if (isKeyDown["w"]) {
+					this.move(1, dt);
+				};
+				if (isKeyDown["a"]) {
+					this.move(2, dt);
+				};
+				if (isKeyDown["s"]) {
+					this.move(3, dt);
+				};
+				if (isKeyDown["d"]) {
+					this.move(0, dt);
+				};
+			};
+
+			// core functions
+			function main() {
+				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+				var timeNow = Date.now();
+				var dt = timeNow - timeLast;
+
+				player.draw();
+				update(dt);
+
+				timeLast = timeNow;
+			};
+
+			function update(dt) {
+				player.update(dt);
+			};
+
+			// events
+			function keyDown(e) {
+				isKeyDown[keyMap[e.keyCode]] = true
+				console.log(isKeyDown, e.keyCode)
+
+				e.preventDefault();
+				return false;
+			};
+
+			function keyUp(e) {
+				isKeyDown[keyMap[e.keyCode]] = false;
+
+				e.preventDefault();
+				return false;
+			};
+
+			// setup function
 			$(document).ready(function() {
-				var canvas = $("#canvas");
-				var context = canvas.get(0).getContext("2d");
-				context.canvas.width = "800px";
-				context.canvas.height = "600px";
-				setInterval();
+				var canvas = $("#canvas").get(0);
+				context = canvas.getContext("2d");
+				player = new Player(400, 300);
+				canvas.addEventListener( "keydown", keyDown, true);
+				canvas.addEventListener( "keyup", keyUp, true);
+				setInterval(main, 1);
 			});
 
 		</script>
 	</head>
 	<body>
-		<h1 style="position:absolute; left:10px;">CFRPG Engine Pre-Alpha v0.01</h1>
+		<h1 style="position:absolute; left:10px; top:0px;">CFRPG Engine Pre-Alpha v0.03</h1>
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 
-		<canvas id="canvas">
+		<canvas id="canvas" width="800" height="600" tabindex="1">
 			it's like a big love polygon and everyone's invited
 		</canvas>
 	</body>
