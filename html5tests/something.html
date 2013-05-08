@@ -32,6 +32,8 @@
 			// init global variables
 			var context = null;
 			var player = null;
+			var entities = [];
+			var colliders = [];
 			var timeLast = Date.now();
 			var isKeyDown = {};
 			var keyMap = {
@@ -43,57 +45,115 @@
 				37:'left',
 				40:'down',
 				39:'right'
-			}
+			};
+			var currentRoom = null;
 
 			// objects
-			//// Player object
-			function Player(x, y) {
+			//// Entity object
+			function Entity(x, y, width, height) {
 				this.x = x;
 				this.y = y;
-				this.width = 50;
-				this.height = 50;
+				this.width = width;
+				this.height = height;
 
-				this.speed = 0.2;
+				this.mobify = function(speed) {
+					this.mob = new Mob(speed, this);
+				};
+
+				this.draw = function() {
+					context.fillStyle = "#000000";
+					context.fillRect(Math.round(this.x),
+									 Math.round(this.y),
+									 this.width,
+									 this.height);
+				};
+
+				this.update = function() {};
+
+				this.enableCollisions = function() {
+					colliders.push(this);
+				};
+
+				this.register = function() {
+					entities.push(this);
+					return this;
+				};
 			};
 
-			Player.prototype.draw = function() {
-				context.fillStyle = "#000000";
-				context.fillRect(this.x, this.y, this.width, this.height);
+			function playerUpdate(dt) {
+				// set a mob's update script to this to make them player
+				if(isKeyDown["s"] || isKeyDown['down']) {
+					this.mob.move(3, dt);
+				}
+				if(isKeyDown["d"] || isKeyDown['right']) {
+					this.mob.move(0, dt);
+				}
+				if(isKeyDown["w"] || isKeyDown['up']) {
+					this.mob.move(1, dt);
+				}
+				if(isKeyDown["a"] || isKeyDown['left']) {
+					this.mob.move(2, dt);
+				}
 			};
 
-			Player.prototype.move = function(dir, dt) {
-				var speed = this.speed*dt;
+			//// Mob object
+			function Mob(speed, entity) {
+				this.speed = speed;
+				this.entity = entity;
+
+				this.draw = this.entity.draw;
+				this.update = this.entity.update;
+
+				this.playerify = function() {
+					if(player) // remove player functionality from last player
+						player.entity.update = function(dt) {};
+
+					this.entity.update = playerUpdate;
+					player = this;
+				};
+
+				this.move = function(dir, dt) {
+					this.displace(dir, dt);
+					if(this.testCollisions(false))
+						this.displace((dir + 2) % 4, dt);
+				};
+			};
+
+			Mob.prototype.displace = function(dir, dt) {
+				var speed = this.speed * dt;
 				switch(dir) {
 					case 0:
-						this.x += speed;
+						this.entity.x += speed;
 						break;
 					case 1:
-						this.y -= speed;
+						this.entity.y -= speed;
 						break;
 					case 2:
-						this.x -= speed;
+						this.entity.x -= speed;
 						break;
 					case 3:
-						this.y += speed;
+						this.entity.y += speed;
 						break;
 					default:
 						break;
-				};
+				}
 			};
 
-			Player.prototype.update = function(dt) {
-				if (isKeyDown["s"] || isKeyDown['down']) {
-					this.move(3, dt);
-				};
-				if (isKeyDown["d"] || isKeyDown['right']) {
-					this.move(0, dt);
-				};
-				if (isKeyDown["w"] || isKeyDown['up']) {
-					this.move(1, dt);
-				};
-				if (isKeyDown["a"] || isKeyDown['left']) {
-					this.move(2, dt);
-				};
+			Mob.prototype.testCollisions = function(returnFoundCollider) {
+				for(var i = 0; i < colliders.length; i++) {
+					var current = colliders[i];
+					if(this.entity.x > current.x + current.width ||
+						this.entity.x + this.entity.width < current.x ||
+						this.entity.y > current.y + current.height ||
+						this.entity.y + this.entity.height < current.y)
+						continue;
+					if(returnFoundCollider)
+						return current;
+					else
+						return true;
+				}
+				return false;
+
 			};
 
 			// core functions
@@ -102,14 +162,22 @@
 				var timeNow = Date.now();
 				var dt = timeNow - timeLast;
 
-				player.draw();
 				update(dt);
+				draw();
 
 				timeLast = timeNow;
 			};
 
 			function update(dt) {
-				player.update(dt);
+				for(var i = 0; i < entities.length; i++) {
+					entities[i].update(dt);
+				}
+			};
+
+			function draw() {
+				for(var i = 0; i < entities.length; i++) {
+					entities[i].draw();
+				}
 			};
 
 			// events
@@ -131,16 +199,27 @@
 			$(document).ready(function() {
 				var canvas = $("#canvas").get(0);
 				context = canvas.getContext("2d");
-				player = new Player(400, 300);
 				canvas.addEventListener( "keydown", keyDown, true);
 				canvas.addEventListener( "keyup", keyUp, true);
+
+				makePlayer();
+				
 				setInterval(main, 1);
 			});
+
+			function makePlayer() {
+				player = new Entity(375, 275, 50, 50).register();
+				player.mobify(.2);
+				player = player.mob;
+				player.playerify();
+				// demo
+				new Entity(200, 200, 25, 25).register().enableCollisions();
+			}
 
 		</script>
 	</head>
 	<body>
-		<h1 style="position:absolute; left:10px; top:0px;">CFRPG Engine Pre-Alpha v0.04</h1>
+		<h1 style="position:absolute; left:10px; top:0px;">CFRPG Engine Pre-Alpha v0.06</h1>
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 		
 		<canvas id="canvas" width="800" height="600" tabindex="1">
@@ -149,10 +228,12 @@
 
 		<table id="updates">
 			<th>Updates</th><th></th>
-			<tr><td>v0.01</td><td>Canvas element</td></tr>
-			<tr><td>v0.02</td><td>Square player</td></tr>
-			<tr><td>v0.03</td><td>Movable player</td></tr>
-			<tr><td>v0.04</td><td>Added arrow key movement</td></tr>
+			<tr><td>v0.01</td><td>Matt: Canvas element</td></tr>
+			<tr><td>v0.02</td><td>Matt: Square player</td></tr>
+			<tr><td>v0.03</td><td>Matt: Movable player</td></tr>
+			<tr><td>v0.04</td><td>Matt: Added arrow key movement</td></tr>
+			<tr><td>v0.05</td><td>Bio: Entity/Mob classes</td></tr>
+			<tr><td>v0.06</td><td>Bio: Collision detection</td></tr>
 		</table>
 	</body>
 </html>
