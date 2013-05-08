@@ -58,6 +58,7 @@
 
 				this.mobify = function(speed) {
 					this.mob = new Mob(speed, this);
+					return this;
 				};
 
 				this.draw = function() {
@@ -72,6 +73,7 @@
 
 				this.enableCollisions = function() {
 					colliders.push(this);
+					return this;
 				};
 
 				this.register = function() {
@@ -142,6 +144,8 @@
 			Mob.prototype.testCollisions = function(returnFoundCollider) {
 				for(var i = 0; i < colliders.length; i++) {
 					var current = colliders[i];
+					if(current == this.entity)
+						continue;
 					if(this.entity.x > current.x + current.width ||
 						this.entity.x + this.entity.width < current.x ||
 						this.entity.y > current.y + current.height ||
