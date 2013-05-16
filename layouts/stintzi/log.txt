@@ -1,2 +1,2 @@
-Compressed all .png images into 8bit. 1/5 the file size.
+Probably need to compress some images.
 Resized layout to 960px wide.

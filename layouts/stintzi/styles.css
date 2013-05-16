@@ -5,7 +5,7 @@
 
 body {
 	background-color:#DDF2FF;
-	background-image:url("files/topimage.png");
+	background-image:url("files/topimage.jpg");
 	background-size:100% auto;
 	background-repeat:repeat-x;
 	background-attachment:top middle;
@@ -20,3 +20,22 @@ body {
 	margin:20px;
 }
 
+#comic {
+	text-align:center;
+}
+
+#comicimage {
+	border:3px solid #000000;
+}
+
+#comicnavigation {
+	text-align:center;
+}
+
+#comicnavigation a {
+	text-decoration:none;
+}
+
+#footer img {
+	width:100%;
+}
