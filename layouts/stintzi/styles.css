@@ -9,6 +9,7 @@ body {
 	background-size:100% auto;
 	background-repeat:repeat-x;
 	background-attachment:top middle;
+	font-family:"Trebuchet MS", Arial, Sans-serif;
 }
 
 #header {
@@ -34,6 +35,34 @@ body {
 
 #comicnavigation a {
 	text-decoration:none;
+}
+
+.commentsheading {
+	text-align:center;
+}
+
+.comment {
+	max-width:650px;
+	padding:12px 0 25px 150px;
+	margin:10px auto;
+	position:relative;
+	border-top:1px solid #AAAAAA;
+}
+
+.commentinfo {
+	position:absolute;
+	left:0;
+	top:0;
+	text-align:center;
+	padding-top:12px;
+	width:150px;
+	font-weight:bold;
+}
+
+.commentinteract {
+	position:absolute;
+	bottom:2px;
+	right:12px;
 }
 
 #footer img {
