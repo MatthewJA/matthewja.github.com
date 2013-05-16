@@ -4,9 +4,8 @@
 }
 
 body {
-	background-color:#DDF2FF;
+	background-color:#EBF7FF;
 	background-image:url("files/topimage.jpg");
-	background-size:100% auto;
 	background-repeat:repeat-x;
 	background-attachment:top middle;
 	font-family:"Trebuchet MS", Arial, Sans-serif;
@@ -40,6 +39,13 @@ a:hover {
 	text-align:center;
 }
 
+#comments {
+	width:600px;
+	padding-right:200px;
+	margin:0 auto;
+	position:relative;
+}
+
 .commentsheading {
 	text-align:center;
 }
@@ -66,6 +72,22 @@ a:hover {
 	position:absolute;
 	bottom:2px;
 	right:12px;
+}
+
+#rocket {
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+
+.leftcloud {
+	display:block;
+	margin-right:20px;
+}
+
+.rightcloud {
+	display:block;
+	margin-left:40px;
 }
 
 #footer img {
