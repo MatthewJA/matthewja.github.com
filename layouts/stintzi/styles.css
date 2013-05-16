@@ -12,12 +12,19 @@ body {
 	font-family:"Trebuchet MS", Arial, Sans-serif;
 }
 
+a:link {
+	text-decoration:none;
+	color:#3333AA;
+}
+a:hover {
+	color:#6666DD;
+}
+
 #header {
 	text-align:center;
 }
 
-#navigation a {
-	text-decoration:none;
+#navigation a, #comicnavigation a {
 	margin:20px;
 }
 
@@ -31,10 +38,6 @@ body {
 
 #comicnavigation {
 	text-align:center;
-}
-
-#comicnavigation a {
-	text-decoration:none;
 }
 
 .commentsheading {
