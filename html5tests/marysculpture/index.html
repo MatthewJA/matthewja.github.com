@@ -15,14 +15,17 @@
 				overflow:auto;
 				background-color:#222222;
 			}
+			#canvas {
+				position:absolute;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var canvas = $("#canvas");
 				var context = canvas.get(0).getContext("2d");
-				context.canvas.width = 800;
-				context.canvas.height = 800;
+				context.canvas.width = 600;
+				context.canvas.height = 600;
 				draw(context);
 			});
 		</script>
