@@ -20,12 +20,49 @@
 			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 		<script type="text/javascript">
+			var width = 600;
+			var height = 600;
+			var context = null;
+
+			function drawRandomisedCircleyShape(context, radius, steps, bx, by, randomness) {
+				points = [];
+				var last = 0;
+				var sinOffset = Math.random()*randomness*2-randomness
+				var xOffset = Math.random()*randomness*2*radius/10-randomness*radius/10
+				var yOffset = Math.random()*randomness*2*radius/10-randomness*radius/10
+				for (var i = 0; i < steps; i++) {
+					var angle = 2*Math.PI/steps*i+sinOffset;
+					last += Math.random()*2*randomness-randomness;
+					var dist = radius + Math.sin(angle*sinOffset)*radius/10 + last;
+					var x = Math.cos(angle)*dist+bx+xOffset;
+					var y = Math.sin(angle)*dist+by+yOffset;
+					points.push([x, y]);
+				};
+				context.beginPath();
+					context.moveTo(points[0][0], points[0][1]);
+					for (var i = 1; i < points.length; i++) {
+						context.lineTo(points[i][0], points[i][1]);
+					};
+				context.closePath();
+				context.stroke();
+			};
+
+			function draw(context) {
+				drawRandomisedCircleyShape(context, 10, 100, 200, 200, 5);
+				drawRandomisedCircleyShape(context, 50, 100, 200, 200, 5);
+				drawRandomisedCircleyShape(context, 100, 100, 200, 200, 5);
+				// draw back shape
+				// cut it to within next shape's borders (destination-atop)
+				// fill next shape in transparent areas only
+			};
+
 			$(document).ready(function() {
 				var canvas = $("#canvas");
-				var context = canvas.get(0).getContext("2d");
-				context.canvas.width = 600;
-				context.canvas.height = 600;
+				context = canvas.get(0).getContext("2d");
+				context.canvas.width = width;
+				context.canvas.height = height;
 				draw(context);
 			});
 		</script>
