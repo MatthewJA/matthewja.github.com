@@ -1,2 +1,4 @@
 Probably need to compress some images.
 Resized layout to 960px wide.
+
+Need to add blogs. Media queries for the rocket and FB link. Comment link.
