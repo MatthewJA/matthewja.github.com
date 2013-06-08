@@ -46,7 +46,8 @@
 						context.lineTo(points[i][0], points[i][1]);
 					};
 				context.closePath();
-				context.stroke();
+				context.fillStyle = "rgb(" + Math.floor(Math.random()*255) + ", " + Math.floor(Math.random()*255) + ", " + Math.floor(Math.random()*255) + ")";
+				context.fill();
 			};
 
 			function draw(context) {
@@ -56,6 +57,8 @@
 				// draw back shape
 				// cut it to within next shape's borders (destination-atop)
 				// fill next shape in transparent areas only
+
+				// http://www.tutorialspoint.com/html5/canvas_composition.htm
 			};
 
 			$(document).ready(function() {
