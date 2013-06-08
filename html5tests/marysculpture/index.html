@@ -40,19 +40,19 @@
 					var y = Math.sin(angle)*dist+by+yOffset;
 					points.push([x, y]);
 				};
+				context.globalCompositeOperation = "destination-atop";
 				context.beginPath();
 					context.moveTo(points[0][0], points[0][1]);
 					for (var i = 1; i < points.length; i++) {
 						context.lineTo(points[i][0], points[i][1]);
 					};
 				context.closePath();
-				context.fillStyle = "rgb(" + Math.floor(Math.random()*255) + ", " + Math.floor(Math.random()*255) + ", " + Math.floor(Math.random()*255) + ")";
+				context.fillStyle = "rgb(" +  Math.floor(Math.random()*255) + ", " + Math.floor(Math.random()*255) + "," + Math.floor(Math.random()*255) + ")";
 				context.fill();
 			};
 
 			function draw(context) {
-				context.globalCompositeOperation = "destination-atop";
-				var numberOfCircles = Math.floor(Math.random()*5)+40
+				var numberOfCircles = Math.floor(Math.random()*40)+5
 				for (var i = 0; i < numberOfCircles; i++) {
 					drawRandomisedCircleyShape(context, i/(numberOfCircles+2) * height, 100, width/2, height/2, 5);
 				};
