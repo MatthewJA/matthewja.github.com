@@ -22,8 +22,8 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 		<script type="text/javascript">
-			var width = 600;
-			var height = 600;
+			var width = window.innerWidth;
+			var height = window.innerHeight;
 			var context = null;
 
 			function drawRandomisedCircleyShape(context, radius, steps, bx, by, randomness) {
@@ -51,9 +51,12 @@
 			};
 
 			function draw(context) {
-				drawRandomisedCircleyShape(context, 10, 100, 200, 200, 5);
-				drawRandomisedCircleyShape(context, 50, 100, 200, 200, 5);
-				drawRandomisedCircleyShape(context, 100, 100, 200, 200, 5);
+				context.globalCompositeOperation = "destination-atop";
+				var numberOfCircles = Math.floor(Math.random()*5)+40
+				for (var i = 0; i < numberOfCircles; i++) {
+					drawRandomisedCircleyShape(context, i/(numberOfCircles+2) * height, 100, width/2, height/2, 5);
+				};
+				context.fillRect(0, 0, width, height)
 				// draw back shape
 				// cut it to within next shape's borders (destination-atop)
 				// fill next shape in transparent areas only
@@ -71,11 +74,10 @@
 		</script>
 	</head>
 	<body>
-		<h1 style="position:absolute; left:10px;">Mary's Sculpture Project</h1>
-		<h2 style="position:absolute; top:35px; left:30px;">by Mary and Matthew</h2>
-
 		<canvas id="canvas">
 			&#35;whatwhat
 		</canvas>
+		<h1 style="position:absolute; left:10px;">Mary's Sculpture Project</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by Mary and Matthew</h2>
 	</body>
 </html>
