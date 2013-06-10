@@ -1,0 +1,94 @@
+<!DOCTYPE HTML> <!-- hello world -->
+<html>
+	<head>
+		<title>Ripples</title>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+		<style>
+			* {
+				padding:0;
+				margin:0;
+				font-family:'Merriweather Sans', Tahoma, sans-serif;
+				color:#EFEFEF;
+			}
+			body, html {
+				min-height:100%;
+				overflow:hidden;
+				background-color:#222222;
+				text-align:center;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			var size = 0;
+			var cells = 10;
+			var grid = [];
+			var context = null;
+
+			Object.prototype.clone = function() {
+				var newObj = (this instanceof Array) ? [] : {};
+				for (i in this) {
+					if (i == 'clone') continue;
+					if (this[i] && typeof this[i] == "object") {
+						newObj[i] = this[i].clone();
+					} else newObj[i] = this[i]
+				} return newObj;
+			};
+
+			function init() {
+				var row = [];
+				for (var i = 0; i < cells; i++) {
+					row.push({'d':0, 'm':0});
+				};
+				for (var i = 0; i < cells; i++) {
+					grid.push(row.clone());
+				};
+				console.log(grid);
+
+				context.canvas.addEventListener("mousedown", mouseDownEvent, false);
+				context.canvas.onselectstart = function () { return false; }
+				
+				setInterval(update, 1)
+			};
+
+			function update() {
+				context.clearRect(0, 0, size, size);
+				for (var y = 0; y < cells; y++) {
+					for (var x = 0; x < cells; x++) {
+						context.fillStyle = "rgb(" + grid[x][y].m + ", 0, 0)";
+						context.fillRect(x*size/cells, y*size/cells, size/cells, size/cells);
+					};
+				};
+			};
+
+			function mouseDownEvent(e) {
+				var position = $(context.canvas).position();
+				var mx = e.pageX-position.left;
+				var my = e.pageY-position.top;
+				var gx = Math.floor(mx/size * cells);
+				var gy = Math.floor(my/size * cells);
+				grid[gx][gy].m += 125;
+			};
+
+			
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				context = canvas.get(0).getContext("2d");
+				size = Math.min(window.innerWidth, window.innerHeight)
+				context.canvas.width = size;
+				context.canvas.height = size;
+				init();	
+			});
+
+		</script>
+	</head>
+	<body>
+		<h1 style="position:absolute; left:10px;">Ripples</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
+		<canvas id="canvas">
+			&#35;what
+		</canvas>
+	</body>
+</html>
