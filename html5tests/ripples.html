@@ -22,6 +22,7 @@
 		<script type="text/javascript">
 			var size = 0;
 			var cells = 10;
+			var damping = 1;
 			var grid = [];
 			var context = null;
 
@@ -47,8 +48,8 @@
 
 				context.canvas.addEventListener("mousedown", mouseDownEvent, false);
 				context.canvas.onselectstart = function () { return false; }
-				
-				setInterval(update, 1)
+
+				setInterval(update, 100)
 			};
 
 			function update() {
@@ -59,7 +60,60 @@
 						context.fillRect(x*size/cells, y*size/cells, size/cells, size/cells);
 					};
 				};
+
+				var newGrid = [];
+				var row = [];
+				for (var i = 0; i < cells; i++) {
+					row.push({'d':0, 'm':0});
+				};
+				for (var i = 0; i < cells; i++) {
+					newGrid.push(row.clone());
+				};
+
+				for (var y = 0; y < cells; y++) {
+					for (var x = 0; x < cells; x++) {
+						newGrid[x][y].m = 0;//grid[x][y];
+						if (grid[x][y].d == null) {
+
+						} else {
+							// // split into x and y components
+							// var comp = gridSplit(x, y);
+							// if (comp[0] > 0) {
+							// 	if (x + 1 < cells) {
+							// 		var compnext = gridSplit(x+1, y);
+							// 		newGrid[x+1][y].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
+							// 		newGrid[x+1][y].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
+							// 	}
+							// } else {
+							// 	if (x - 1 >= 0) {
+							// 		var compnext = gridSplit(x-1, y);
+							// 		newGrid[x-1][y].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
+							// 		newGrid[x-1][y].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
+							// 	}
+							// }
+							// if (comp[1] > 0) {
+							// 	if (y + 1 < cells) {
+							// 		var compnext = gridSplit(x, y+1);
+							// 		newGrid[x][y+1].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
+							// 		newGrid[x][y+1].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
+							// 	}
+							// } else {
+							// 	if (y - 1 > 0) {
+							// 		var compnext = gridSplit(x, y-1);
+							// 		newGrid[x][y-1].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
+							// 		newGrid[x][y-1].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
+							// 	}
+							// }
+						}
+					};
+				};
+
+				grid = newGrid;
 			};
+
+			function gridSplit(x, y) {
+				return [grid[x][y].m*Math.cos(grid[x][y].d), grid[x][y].m*Math.sin(grid[x][y].d)]
+			}
 
 			function mouseDownEvent(e) {
 				var position = $(context.canvas).position();
@@ -68,6 +122,7 @@
 				var gx = Math.floor(mx/size * cells);
 				var gy = Math.floor(my/size * cells);
 				grid[gx][gy].m += 125;
+				grid[gx][gy].d = 0; // null for all directions
 			};
 
 			
@@ -78,7 +133,7 @@
 				size = Math.min(window.innerWidth, window.innerHeight)
 				context.canvas.width = size;
 				context.canvas.height = size;
-				init();	
+				init();
 			});
 
 		</script>
