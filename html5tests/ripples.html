@@ -72,10 +72,13 @@
 
 				for (var y = 0; y < cells; y++) {
 					for (var x = 0; x < cells; x++) {
-						newGrid[x][y].m = 0;//grid[x][y];
+						newGrid[x][y].m = 0;
 						if (grid[x][y].d == null) {
 
 						} else {
+							if (x < cells - 1) {
+								newGrid[x][y].m = grid[x+1][y].m;
+							}
 							// // split into x and y components
 							// var comp = gridSplit(x, y);
 							// if (comp[0] > 0) {
