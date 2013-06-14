@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			var size = 0;
 			var cells = 10;
-			var damping = 1;
+			var damping = 0.9;
 			var grid = [];
 			var context = null;
 
@@ -72,12 +72,12 @@
 
 				for (var y = 0; y < cells; y++) {
 					for (var x = 0; x < cells; x++) {
-						newGrid[x][y].m = 0;
+						newGrid[x][y].m = Math.floor(grid[x][y].m*damping);
 						if (grid[x][y].d == null) {
 
 						} else {
 							if (x < cells - 1) {
-								newGrid[x][y].m = grid[x+1][y].m;
+								//newGrid[x][y].m = grid[x+1][y].m;
 							}
 							// // split into x and y components
 							// var comp = gridSplit(x, y);
