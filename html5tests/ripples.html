@@ -16,6 +16,11 @@
 				background-color:#222222;
 				text-align:center;
 			}
+			#details {
+				position:absolute;
+				top:100px;
+				left:20px;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -53,6 +58,7 @@
 			};
 
 			function update() {
+				// draw
 				context.clearRect(0, 0, size, size);
 				for (var y = 0; y < cells; y++) {
 					for (var x = 0; x < cells; x++) {
@@ -61,6 +67,7 @@
 					};
 				};
 
+				// update grid
 				var newGrid = [];
 				var row = [];
 				for (var i = 0; i < cells; i++) {
@@ -72,46 +79,24 @@
 
 				for (var y = 0; y < cells; y++) {
 					for (var x = 0; x < cells; x++) {
-						newGrid[x][y].m = Math.floor(grid[x][y].m*damping);
-						if (grid[x][y].d == null) {
-
-						} else {
-							if (x < cells - 1) {
-								//newGrid[x][y].m = grid[x+1][y].m;
-							}
-							// // split into x and y components
-							// var comp = gridSplit(x, y);
-							// if (comp[0] > 0) {
-							// 	if (x + 1 < cells) {
-							// 		var compnext = gridSplit(x+1, y);
-							// 		newGrid[x+1][y].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
-							// 		newGrid[x+1][y].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
-							// 	}
-							// } else {
-							// 	if (x - 1 >= 0) {
-							// 		var compnext = gridSplit(x-1, y);
-							// 		newGrid[x-1][y].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
-							// 		newGrid[x-1][y].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
-							// 	}
-							// }
-							// if (comp[1] > 0) {
-							// 	if (y + 1 < cells) {
-							// 		var compnext = gridSplit(x, y+1);
-							// 		newGrid[x][y+1].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
-							// 		newGrid[x][y+1].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
-							// 	}
-							// } else {
-							// 	if (y - 1 > 0) {
-							// 		var compnext = gridSplit(x, y-1);
-							// 		newGrid[x][y-1].m = Math.sqrt(Math.pow(comp[0]+compnext[0], 2) + Math.pow(comp[1]+compnext[1], 2));
-							// 		newGrid[x][y-1].d = Math.atan2(comp[1]+compnext[1], comp[0]+compnext[0]);
-							// 	}
-							// }
+						newGrid[x][y].m = Math.floor(grid[x][y].m*4/5);
+						if (y + 1 < cells) {
+							newGrid[x][y].m += Math.floor(grid[x][y+1].m/5);
 						}
 					};
 				};
 
 				grid = newGrid;
+
+				// update stats
+				var energy = 0;
+				for (var i = 0; i < grid.length; i++) {
+					for (var j = 0; j < grid[i].length; j++) {
+						energy += grid[i][j].m;
+					};
+				};
+
+				$("#energy").html(""+energy);
 			};
 
 			function gridSplit(x, y) {
@@ -144,6 +129,11 @@
 	<body>
 		<h1 style="position:absolute; left:10px;">Ripples</h1>
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
+		<div id="details">
+			Energy: <span id="energy">
+			<div id="hidden">wat</div>
+		</div>
 
 		<canvas id="canvas">
 			&#35;what
