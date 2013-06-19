@@ -27,7 +27,7 @@
 		<script type="text/javascript">
 			var size = 0;
 			var cells = 10;
-			var damping = 0.9;
+			var damping = 0.5;
 			var grid = [];
 			var context = null;
 
@@ -79,9 +79,23 @@
 
 				for (var y = 0; y < cells; y++) {
 					for (var x = 0; x < cells; x++) {
-						newGrid[x][y].m = Math.floor(grid[x][y].m*4/5);
+						newGrid[x][y].m = Math.floor(grid[x][y].m*damping);
+						newGrid[x][y].d = grid[x][y].d;
+						// split m into 4 m's and d's
+						var magnitudes = splitGrid(grid[x][y].m*(1-damping), grid[x][y].d);
+						// propogate
+						if (x + 1 < cells) {
+							grid[x+1][y] = vectorSum(grid[x+1][y], {'d':0, 'm':magnitudes[0]});
+							if (grid[x][y].m == 125) console.log(grid[x+1][y]);
+						}
+						if (y - 1 > 0) {
+							grid[x][y-1] = vectorSum(grid[x][y-1], {'d':Math.PI/2, 'm':magnitudes[1]});
+						}
+						if (x - 1 > 0) {
+							grid[x-1][y] = vectorSum(grid[x-1][y], {'d':Math.PI, 'm':magnitudes[2]});
+						}
 						if (y + 1 < cells) {
-							newGrid[x][y].m += Math.floor(grid[x][y+1].m/5);
+							grid[x][y+1] = vectorSum(grid[x][y+1], {'d':3*Math.PI/2, 'm':magnitudes[3]});
 						}
 					};
 				};
@@ -99,9 +113,31 @@
 				$("#energy").html(""+energy);
 			};
 
-			function gridSplit(x, y) {
-				return [grid[x][y].m*Math.cos(grid[x][y].d), grid[x][y].m*Math.sin(grid[x][y].d)]
-			}
+			function vectorSum(a, b) {
+				var ax = Math.cos(a.d)*a.m;
+				var ay = Math.sin(a.d)*a.m;
+				var bx = Math.cos(b.d)*b.m;
+				var by = Math.sin(b.d)*b.m;
+				var cx = ax + bx;
+				var cy = ay + by;
+				var cm = Math.sqrt(cx*cx + cy*cy);
+				var cd = Math.atan2(cy, cx);
+				return {'d':cd, 'm':Math.abs(Math.floor(cm))}
+			};
+
+			function splitGrid(m, d) {
+				var principleArg = d%(2 * Math.PI);
+				if (Math.PI/2 > principleArg && principleArg >= 0) {
+					console.log("going right");
+					return [Math.cos(principleArg)*m, Math.sin(principleArg)*m, 0, 0];
+				} else if (Math.PI > principleArg && principleArg >= Math.PI/2) {
+					return [0, Math.sin(principleArg)*m, -Math.cos(principleArg)*m, 0];
+				} else if (3*Math.PI/2 > principleArg && principleArg >= Math.PI) {
+					return [0, 0, -Math.cos(principleArg)*m, -Math.sin(principleArg)*m];
+				} else {
+					return [Math.cos(principleArg)*m, 0, 0, -Math.sin(principleArg)*m]
+				}
+			};
 
 			function mouseDownEvent(e) {
 				var position = $(context.canvas).position();
@@ -110,7 +146,7 @@
 				var gx = Math.floor(mx/size * cells);
 				var gy = Math.floor(my/size * cells);
 				grid[gx][gy].m += 125;
-				grid[gx][gy].d = 0; // null for all directions
+				grid[gx][gy].d = 2; // null for all directions
 			};
 
 			
