@@ -60,15 +60,12 @@
 			var ffddd = 0;
 			var flippingddd = false;
 			var flipCounterddd = 0;
-			var sidesCounter = 0;
-			var sides = 1;
 
 			var bounce = false;
 
 			function update() {
 				flipCounter += 1;
 				flipCounterddd += 1;
-				sidesCounter += 1;
 
 				context.beginPath();
 				context.arc(x, y, 2, 0, 2 * Math.PI, false);
@@ -77,16 +74,13 @@
 
 				x = x + s * Math.cos(d);
 				y = y + s * Math.sin(d);
-				if(sidesCounter >= sides) {
-					d += dd;
-					sidesCounter = 0;
-				}
+				d += dd;
 
 				dd += ddd;
-				if(dd > Math.PI/6) {
-					dd = -Math.PI/6;
-				} else if(dd < -Math.PI/6) {
-					dd = Math.PI/6;
+				if(dd > Math.PI/12) {
+					dd = -Math.PI/12;
+				} else if(dd < -Math.PI/12) {
+					dd = Math.PI/12;
 				}
 
 				// update sliders
@@ -159,11 +153,6 @@
 					flippingddd = (ffddd != 0);
 				});
 				$('#ffddd').change();
-
-				$('#sides').change(function() {
-					sides = this.value;
-				});
-				$('#sides').change();
 			});
 		</script>
 	</head>
@@ -177,15 +166,13 @@
 
 		<div id="controls">
 			<label>&#916;Direction</label>
-			<input id="dd" type="range" min="-800" max="800" value="50"><br>
+			<input id="dd" type="range" min="-400" max="400" value="50"><br>
 			<label>&#916;&#916;Direction</label>
 			<input id="ddd" type="range" min="-90" max="90" value="0"><br>
 			<label>&#916;D Frequency</label>
 			<input id="ff" type="range" min="0" max="999" value="0"><br>
 			<label>&#916;&#916;D Frequency</label>
 			<input id="ffddd" type="range" min="0" max="999" value="0"><br>
-			<label>Sides</label>
-			<input id="sides" type="range" min="1" max="100" value="1"><br>
 
 			<button id="bounce">Bounce</button>
 		</div>
