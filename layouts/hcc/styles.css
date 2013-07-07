@@ -1,0 +1,43 @@
+* {
+	margin: 0;
+}
+
+html, body {
+	font-family:"Trebuchet MS", Arial, sans-serif;
+}
+
+/* overall */
+#wrapper {
+	max-width:800px;
+}
+
+/* header */
+#header {
+}
+
+.bannerimage {
+	width:100%;
+}
+
+/* footer */
+#footer {
+	text-align:center;
+	font-size:75%;
+}
+
+/* sticky footer */
+
+html, body {
+	height: 100%;
+}
+
+#wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+}
+
+#footer, #push {
+	height: 4em;
+}
