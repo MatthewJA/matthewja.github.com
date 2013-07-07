@@ -1,7 +1,7 @@
 <!DOCTYPE HTML> <!-- hello world -->
 <html>
 	<head>
-		<title>Treecursion</title>
+		<title>Patterns</title>
 		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
 		<style>
 			* {
@@ -25,17 +25,15 @@
 				background-color:#FFFFFF;
 				color:#000000;
 				padding:10px;
+				width:60%;
 			}
 			#controls label {
 				display:inline-block;
-				width:100px;
+				width:100%;
 				color:#000000;
 			}
-			#colours label{
-				width:auto;
-			}
-			#colours input {
-				width:50px;
+			#controls input {
+				width:100%;
 			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -80,10 +78,10 @@
 			});
 
 			$(function() {
-				$('#lengthslider').change(function(){
-					changed = true;
+				$('#dd').change(function(){
+					dd = this.value/1500;
 				});
-				$('#lengthslider').change();
+				$('#dd').change();
 			});
 		</script>
 	</head>
@@ -96,8 +94,8 @@
 		</canvas>
 
 		<div id="controls">
-			<label>Length</label>
-			<input id="lengthslider" type="range" min="0" max="100" value="50"><br>
+			<label>&#916;Direction</label>
+			<input id="dd" type="range" min="-800" max="800" value="50"><br>
 		</div>
 
 	</body>
