@@ -177,6 +177,27 @@
 						$('#bounce').html('Bounce');
 					}
 				});
+
+				$('#reset').click(function(e) {
+					x = width/2;
+					y = height/2;
+					d = 0;
+					dd = 50/1528;
+					ddd = 0;
+					ff = 0;
+					flipping = false;
+					flipCounter = 0;
+					ffddd = 0;
+					flippingddd = false;
+					flipCounterddd = 0;
+					bounce = false;
+					context.clearRect(0, 0, width, height);
+					$("#dd").val(dd*1528);
+					$("#ddd").val(ddd*1528);
+					$("#ff").val(0);
+					$("#ffddd").val(0);
+					$('#bounce').html('Loop');
+				});
 			});
 		</script>
 	</head>
@@ -198,6 +219,7 @@
 			<label>&#916;&#916;D Frequency</label>
 			<input id="ffddd" type="range" min="0" max="999" value="0"><br>
 			Edge behaviour: <button id="bounce">Loop</button>
+			Reset? <button id="reset">Yes please</button>
 		</div>
 
 	</body>
