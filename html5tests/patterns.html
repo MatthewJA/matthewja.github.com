@@ -87,6 +87,20 @@
 				$("#dd").val(dd*1528);
 
 				if(bounce) {
+					if(x >= width) {
+						x = width-1;
+						d = -d;
+					} else if(x < 0) {
+						x = 0;
+						d = -d;
+					}
+					if(y >= height) {
+						y = height-1;
+						d = -d;
+					} else if(y < 0) {
+						y = 0;
+						d = -d;
+					}
 				} else {
 					if(x >= width && x < width + 1) {
 						x = 0; // otherwise it glitches on shallow approach of the wall
@@ -153,6 +167,16 @@
 					flippingddd = (ffddd != 1000);
 				});
 				$('#ffddd').change();
+
+				$('#bounce').click(function(e) {
+					if(bounce) {
+						bounce = false;
+						$('#bounce').html('Loop');
+					} else {
+						bounce = true;
+						$('#bounce').html('Bounce');
+					}
+				});
 			});
 		</script>
 	</head>
@@ -173,8 +197,7 @@
 			<input id="ff" type="range" min="0" max="999" value="0"><br>
 			<label>&#916;&#916;D Frequency</label>
 			<input id="ffddd" type="range" min="0" max="999" value="0"><br>
-
-			<button id="bounce">Bounce</button>
+			Edge behaviour: <button id="bounce">Loop</button>
 		</div>
 
 	</body>
