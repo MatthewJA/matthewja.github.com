@@ -1,0 +1,117 @@
+<!DOCTYPE HTML> <!-- hello world -->
+<html>
+	<head>
+		<title>Circle Snake</title>
+		<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+		<style>
+			* {
+				padding:0;
+				margin:0;
+				font-family:'Merriweather Sans', Tahoma, sans-serif;
+				color:#EFEFEF;
+			}
+			body, html {
+				min-height:100%;
+				overflow:auto;
+				background-color:#222222;
+			}
+			#canvas {
+				position:absolute;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript" src="./jquery.hotkeys.js"></script>
+		<script type="text/javascript">
+			var width = 0;
+			var height = 0;
+			var context = null;
+
+			var s = 2;
+			var x = 0;
+			var y = 0;
+			var d = 0;
+			var dd = 0.07;
+
+			var tail = [];
+
+			var colliding = false;
+
+			var leftDown = false;
+			var rightDown = false;
+
+			function setNormalFill() {context.fillStyle = "rgb(239, 239, 239)"; context.strokeStyle = "rgb(239, 239, 239)"; context.lineWidth = 4;};
+			function setDarkerFill() {context.fillStyle = "rgb(200, 200, 200)"; context.strokeStyle = "rgb(239, 239, 239)"};
+
+			function update() {
+				context.clearRect(0, 0, width, height);
+
+				// draw the tail
+				context.beginPath();
+				context.moveTo(tail[0][0], tail[0][1]);
+				for (var i = 0; i < tail.length; i++) {
+					context.lineTo(tail[i][0], tail[i][1]);
+				};
+				context.stroke();
+
+				// if the coordinates are non-background-coloured, we've crashed
+				var nx = x + s * Math.cos(d);
+				var ny = y + s * Math.sin(d);
+
+				var pixels = context.getImageData(Math.round(nx), Math.round(ny), 1, 1).data;
+				
+				colliding = pixels[0] != 0;
+
+				context.beginPath();
+				context.arc(x, y, 4, 0, 2 * Math.PI, false);
+				context.closePath();
+				context.fill();
+
+				x = nx;
+				y = ny;
+
+				if(leftDown) dd -= 0.05;
+				if(rightDown) dd += 0.05;
+				d += dd;
+
+				if(colliding);
+
+				tail.push([x, y]);
+
+				leftDown = false;
+				rightDown = false;
+			};
+
+			$(document).ready(function() {
+				var canvas = $("#canvas");
+				context = canvas.get(0).getContext("2d");
+
+				width = window.innerWidth;
+				height = window.innerHeight;
+				context.canvas.width = width;
+				context.canvas.height = height;
+
+				x = width/2;
+				y = height/2;
+				tail.push([x, y]);
+
+				setNormalFill();
+
+				setInterval(update, 30);
+
+				$('#canvas').bind('keydown.left', function() {leftDown = true;});
+				$('#canvas').bind('keydown.right', function() {rightDown = true;});
+				$('#canvas').focus()
+			});
+
+			
+		</script>
+	</head>
+	<body>
+		<h1 style="position:absolute; left:10px;">Circle Snake</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
+		<canvas id="canvas" tabindex="1">
+			&#35;turtlesnake
+		</canvas>
+	</body>
+</html>
