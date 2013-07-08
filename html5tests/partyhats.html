@@ -28,6 +28,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
 			var size = 300;
+			var counter = 0;
 			var context = null;
 
 			function setPixel(d, x, y, c) {
@@ -59,6 +60,8 @@
 				context.fillRect(0, 0, size, size);
 				$("#generate").click(function() {
 					generate();
+					counter += 1;
+					$("#count").html(counter);
 				});
 			});
 		</script>
@@ -69,9 +72,8 @@
 		<canvas id="canvas">
 			&#35;wat
 		</canvas>
-
 		<br>
-
-		<button id="generate">Generate</button>
+		<button id="generate">Generate</button><br>
+		(<span id="count">0</span> generations)
 	</body>
 </html>
