@@ -53,12 +53,15 @@
 
 			var gameOver = false;
 
+			var foodAnimationStep = 0;
+
 			function setNormalFill() {context.fillStyle = "rgb(239, 239, 239)"; context.strokeStyle = "rgb(239, 239, 239)"; context.lineWidth = 4;};
 			function setDarkerFill() {context.fillStyle = "rgb(101, 101, 101)"; context.strokeStyle = "rgb(101, 101, 101)"; context.lineWidth = 4;};
 			function setGreenFill() {context.fillStyle = "rgb(100, 255, 100)"; context.strokeStyle = "rgb(100, 255, 100)"; context.lineWidth = 4;};
 			function randomiseFood() {
 				foodX = Math.random() * width;
 				foodY = Math.random() * height;
+				foodAnimationStep = 40;
 			};
 
 			function update() {
@@ -66,6 +69,10 @@
 				document.getElementById('sound').playbackRate = Math.max(0.5, 5 * (score / 40));
 
 				context.clearRect(0, 0, width, height);
+
+				if(foodAnimationStep > 0) {
+					foodAnimationStep -= 1;
+				}
 
 				if(s < 10) {
 					s = 2 + score/5;
@@ -83,7 +90,7 @@
 				// draw food
 				context.beginPath();
 				setGreenFill();
-				context.arc(foodX, foodY, 10*Math.cos(tailBoostTimeout/(40/Math.PI)), 0, 2 * Math.PI, false);
+				context.arc(foodX, foodY, 10*Math.cos(foodAnimationStep/(80/Math.PI)), 0, 2 * Math.PI, false);
 				context.closePath();
 				context.fill();
 
