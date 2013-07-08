@@ -220,6 +220,10 @@
 					}
 					$('#canvas').focus();
 				});
+				document.getElementById('sound').addEventListener('ended', function() {
+					this.currentTime = 0;
+					this.play();
+				}, false);
 			});
 
 			function restart() {
@@ -241,7 +245,7 @@
 		<canvas id="canvas" tabindex="1">
 			&#35;turtlesnake
 		</canvas>
-		
+
 		<h1 style="position:absolute; left:10px;">Circle Snake</h1>
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 
