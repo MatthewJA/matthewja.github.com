@@ -37,7 +37,7 @@
 
 			var tail = [];
 			var score = 0;
-			var tailBoostTimeout = 10;
+			var tailBoostTimeout = 5;
 
 			var colliding = false;
 
@@ -59,7 +59,9 @@
 			function update() {
 				context.clearRect(0, 0, width, height);
 
-				s = 2 + score/5;
+				if(s < 10) {
+					s = 2 + score/5;
+				}
 
 				// draw the tail
 				setNormalFill();
