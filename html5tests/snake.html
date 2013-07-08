@@ -18,6 +18,11 @@
 			#canvas {
 				position:absolute;
 			}
+			#mute {
+				position:absolute;
+				top:10px;
+				right:10px;
+			}
 		</style>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript" src="./jquery.hotkeys.js"></script>
@@ -58,7 +63,7 @@
 
 			function update() {
 
-				document.getElementById('sound').playbackRate = 5 * ((score + 3) / 30);
+				document.getElementById('sound').playbackRate = Math.max(0.5, 5 * (score / 40));
 
 				context.clearRect(0, 0, width, height);
 
@@ -204,6 +209,17 @@
 				$('#canvas').bind('keydown.right', function() {rightDown = true;});
 				$('#canvas').bind('keydown.return', restart);
 				$('#canvas').focus()
+				$('#mute').click(function() {
+					var audio = document.getElementById('sound');
+					if(audio.muted) {
+						$('#mute').attr('src', './mute.png');
+						audio.muted = false;
+					} else {
+						$('#mute').attr('src', './unmute.png');
+						audio.muted = true;
+					}
+					$('#canvas').focus();
+				});
 			});
 
 			function restart() {
@@ -218,18 +234,20 @@
 				d = 0;
 				dd = 0.07;
 				tailBoostTimeout = 20;
-			};		
+			};
 		</script>
 	</head>
 	<body>
-		<h1 style="position:absolute; left:10px;">Circle Snake</h1>
-		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
-
 		<canvas id="canvas" tabindex="1">
 			&#35;turtlesnake
 		</canvas>
+		
+		<h1 style="position:absolute; left:10px;">Circle Snake</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
+
 		<audio id="sound" autoplay loop>
-			<source src="snake.mp3" type="audio/mp3">
+			<source src="./snake.mp3" type="audio/mp3">
 		</audio>
+		<img src="./mute.png" id="mute">
 	</body>
 </html>
