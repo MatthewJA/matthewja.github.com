@@ -137,7 +137,7 @@
 				// left
 
 				context.beginPath();
-				context.moveTo(10, height-25);
+				context.moveTo(5, height-25);
 				context.lineTo(20, height-10);
 				context.lineTo(20, height-20);
 				context.lineTo(40, height-20);
@@ -151,12 +151,12 @@
 
 				context.beginPath();
 				context.moveTo(width-10, height-25);
-				context.lineTo(width-20, height-10);
-				context.lineTo(width-20, height-20);
-				context.lineTo(width-40, height-20);
-				context.lineTo(width-40, height-30);
-				context.lineTo(width-20, height-30);
-				context.lineTo(width-20, height-40);
+				context.lineTo(width-20, height-15);
+				context.lineTo(width-20, height-22);
+				context.lineTo(width-40, height-22);
+				context.lineTo(width-40, height-28);
+				context.lineTo(width-20, height-28);
+				context.lineTo(width-20, height-35);
 				context.closePath();
 				context.fill();
 
@@ -191,6 +191,13 @@
 
 				leftDown = false;
 				rightDown = false;
+
+				// show the score
+				setDarkerFill();
+				context.font = "bold 25px sans-serif";
+				context.textBaseline = "bottom";
+				context.textAlign = "right";
+				context.fillText(score, width-10, height-50);
 			};
 
 			$(document).ready(function() {
@@ -257,7 +264,7 @@
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 
 		<audio id="sound" autoplay loop>
-			<source src="./snake.mp3" type="audio/mp3">
+			<source src="./snake.mp3" preload="auto" type="audio/mp3">
 		</audio>
 		<img src="./mute.png" id="mute">
 	</body>
