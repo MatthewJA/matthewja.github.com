@@ -58,7 +58,7 @@
 
 			function update() {
 
-				document.getElementById('sound').playbackRate = 1 + score / 20;
+				document.getElementById('sound').playbackRate = 5 * ((score + 2) / 20);
 
 				context.clearRect(0, 0, width, height);
 
