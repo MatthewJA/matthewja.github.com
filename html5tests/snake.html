@@ -37,7 +37,7 @@
 
 			var tail = [];
 			var score = 0;
-			var tailBoostTimeout = 20;
+			var tailBoostTimeout = 10;
 
 			var colliding = false;
 
@@ -85,7 +85,7 @@
 				
 				if(pixels[0] == 100) {
 					score += 1;
-					tailBoostTimeout += 20;
+					tailBoostTimeout += 10;
 					randomiseFood();
 				} else if(pixels[0] == 239 || x < 0 || y < 0 || x >= width || y >= height) {
 					gameOver = true;
