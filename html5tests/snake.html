@@ -57,6 +57,9 @@
 			};
 
 			function update() {
+
+				document.getElementById('sound').playbackRate = 1 + score / 20;
+
 				context.clearRect(0, 0, width, height);
 
 				if(s < 10) {
@@ -225,5 +228,8 @@
 		<canvas id="canvas" tabindex="1">
 			&#35;turtlesnake
 		</canvas>
+		<audio id="sound" autoplay loop>
+			<source src="snake.mp3" type="audio/mp3">
+		</audio>
 	</body>
 </html>
