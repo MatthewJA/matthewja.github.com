@@ -59,6 +59,8 @@
 			function update() {
 				context.clearRect(0, 0, width, height);
 
+				s = 2 + score/5;
+
 				// draw the tail
 				setNormalFill();
 				context.beginPath();
@@ -166,6 +168,8 @@
 					context.textBaseline = "middle";
 					context.textAlign = "center";
 					context.fillText("Game over! You scored: "+score, width/2, height/2);
+					context.font = "bold 12px sans-serif";
+					context.fillText("<Enter> to restart", width/2, height/2+25);
 				}
 
 				leftDown = false;
@@ -193,10 +197,23 @@
 
 				$('#canvas').bind('keydown.left', function() {leftDown = true;});
 				$('#canvas').bind('keydown.right', function() {rightDown = true;});
+				$('#canvas').bind('keydown.return', restart);
 				$('#canvas').focus()
 			});
 
-			
+			function restart() {
+				x = width/2;
+				y = height/2;
+				score = 0;
+				gameOver = false;
+				angleSliderPosition = width/2;
+				tail = [[x, y]];
+				randomiseFood();
+				setNormalFill();
+				d = 0;
+				dd = 0.07;
+				tailBoostTimeout = 20;
+			};		
 		</script>
 	</head>
 	<body>
