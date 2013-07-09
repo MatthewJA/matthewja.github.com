@@ -88,30 +88,30 @@ a:link, a:visited, a:active, a:hover {
 	background-image:url("./static/snake.png");
 }
 
-#screen1, #screen2, #screen3 {
+#top, #goodsiricannotdraw, #codingandprogramming {
 	width:100%;
 	min-height:100%;
 }
 
-#screen1 {
+#top {
 	top:0;
 }
 
-#screen2 {
+#goodsiricannotdraw {
 	background-color:#EE8877;
 	top:100%;
 }
 
-#screen3 {
+#codingandprogramming {
 	background-color:#88EE77;
 	top:200%;
 }
 
-#screen2 .box {
+#goodsiricannotdraw .box {
 	background-color:#FF9988;
 }
 
-#screen3 .box {
+#codingandprogramming .box {
 	background-color:#99FF88;
 }
 

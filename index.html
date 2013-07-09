@@ -6,23 +6,24 @@
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript">
+			var screens = ["top", "goodsiricannotdraw", "codingandprogramming"];
 			function goToScreen(a) {
 						$('html, body').stop().animate({
-							scrollTop: $("#screen"+a).position().top
+							scrollTop: $("#" + screens[a]).position().top
 						}, 400);
 			};
 		</script>
 	</head>
 	<body>
-		<div id="screen1">
+		<div id="top">
 			<h1>Hello, world! :D</h1>
 			<h2>I am Matthew Alger and I make things sometimes</h2>
 
-			<a class="box" id="gsicd" onclick="goToScreen(2); return false;" href="#screen2">
+			<a class="box" id="gsicd" onclick="goToScreen(1); return false;" href="#goodsiricannotdraw">
 				Good Sir, I Cannot Draw
 			</a>
 
-			<a class="box" id="codingprogramming" onclick="goToScreen(3); return false;" href="#screen3">
+			<a class="box" id="codingprogramming" onclick="goToScreen(2); return false;" href="#codingandprogramming">
 				Coding and Programming
 			</a>
 
@@ -36,7 +37,7 @@
 			</div>
 		</div>
 
-		<div id="screen2">
+		<div id="goodsiricannotdraw">
 			<h1>Good Sir, I Cannot Draw</h1>
 			<h2>A webcomic about things, since 2010!</h2>
 
@@ -44,10 +45,10 @@
 				Get on it!
 			</a>
 
-			<a class="back" onclick="goToScreen(1); return false;" href="#">&lt;BACK&gt;</a>
+			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
 		</div>
 
-		<div id="screen3">
+		<div id="codingandprogramming">
 			<h1>Coding and Programming</h1>
 			<h2>Here's some stuff I've done recently:</h2>
 
@@ -63,7 +64,7 @@
 				Circle Snake
 			</a>
 
-			<a class="back" onclick="goToScreen(1); return false;" href="#">&lt;BACK&gt;</a>
+			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
 		</div>
 	</body>
 </html>
