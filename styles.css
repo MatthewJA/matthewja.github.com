@@ -84,6 +84,10 @@ a:link, a:visited, a:active, a:hover {
 	background-image:url("./static/patterns.png");
 }
 
+#snake {
+	background-image:url("./static/snake.png");
+}
+
 #screen1, #screen2, #screen3 {
 	width:100%;
 	min-height:100%;
