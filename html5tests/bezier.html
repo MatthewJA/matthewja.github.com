@@ -17,7 +17,6 @@
 				text-align:center;
 			}
 			#canvas {
-				width:300px;
 				margin-top:100px;
 			}
 			#generate {
@@ -30,6 +29,10 @@
 			var size = 150;
 			var counter = 0;
 			var context = null;
+			var holderContext = null;
+
+			var drawings = [[[], [], []], [[], [], []], [[], [], []]];
+			var bestDrawing = [];
 
 			function setPixel(d, x, y, c) {
 				var i = (x + y * d.width) * 4;
@@ -40,15 +43,31 @@
 			};
 
 			function generate() {
-				imageData = context.createImageData(size, size);
+				drawings = [[], [], []];
 				for (var yy = 0; yy < 3; yy++) {
 					for (var xx = 0; xx < 3; xx++) {
-						for (var y = 0; y < size; y++) {
-							for (var x = 0; x < size; x++) {
-								setPixel(imageData, x, y, Math.random() * 256 | 0);
+						// clear the space
+						context.fillRect(xx*size, yy*size, (xx+1)*size, (yy+1)*size);
+
+						// generate five bezier coordinate hexlets
+						var coordinates = [[Math.random() * size | 0, Math.random() * size | 0]];
+						for (var i = 0; i < 5; i++) {
+							var hexlets = [];
+							for (var j = 0; j < 6; j++) {
+								hexlets.push(Math.random() * size | 0);
 							};
+							coordinates.push(hexlets);
 						};
-						context.putImageData(imageData, xx*size+xx, yy*size+yy);
+						drawings[yy].push(coordinates);
+						
+						// draw the curves
+
+						context.beginPath();
+						context.moveTo(coordinates[0][0]+(xx*size+xx), coordinates[0][1]+(yy*size+yy));
+						for (var i = 1; i < 6; i++) {
+							context.bezierCurveTo(coordinates[i][0]+(xx*size+xx), coordinates[i][1]+(yy*size+yy), coordinates[i][2]+(xx*size+xx), coordinates[i][3]+(yy*size+yy), coordinates[i][4]+(xx*size+xx), coordinates[i][5]+(yy*size+yy));
+						};
+						context.stroke();
 					};
 				};
 			};
@@ -56,16 +75,53 @@
 			$(document).ready(function() {
 				var canvas = $("#canvas");
 				context = canvas.get(0).getContext("2d");
-
+				holderContext = $("#drawingholder").get(0).getContext("2d");
 				var wWidth = window.innerWidth;
 				var wHeight = window.innerHeight;
 				context.canvas.width = size*3+2;
 				context.canvas.height = size*3+2;
+				holderContext.canvas.width = size;
+				holderContext.canvas.height = size;
+				context.fillStyle = "rgb(255, 255, 255)";
 				context.fillRect(0, 0, size*3+2, size*3+2);
+				$("#canvas").click(function(e) {
+					var x = e.pageX - this.offsetLeft;
+					var y = e.pageY - this.offsetTop;
+					handleCanvasClick(x, y);
+				})
 				$("#generate").click(function() {
 					generate();
 				});
 			});
+
+			function handleCanvasClick(x, y) {
+				// box x -> corner x is the transformation x*size + x
+
+				if (0 <= x && x < size) {
+					var xx = 0;
+				} else if (size+1 <= x && x < 2*size+1) {
+					var xx = 1;
+				} else {
+					var xx = 2;
+				}
+
+				if (0 <= y && y < size) {
+					var yy = 0;
+				} else if (size+1 <= y && y < 2*size+1) {
+					var yy = 1;
+				} else {
+					var yy = 2;
+				}
+				console.log(xx, yy, x, y);
+				bestDrawing = drawings[yy][xx];
+				var image = context.getImageData(xx*size+xx, yy*size+yy, (xx+1)*size+xx, (yy+1)*size+yy);
+				holderContext.putImageData(image, 0, 0);
+				var img = $('<img class="output">');
+				img.attr('src', holderContext.canvas.toDataURL());
+				$("#output").append(img);
+				generate();
+			}
+
 		</script>
 	</head>
 	<body>
@@ -74,8 +130,9 @@
 		<canvas id="canvas">
 			&#35;wat
 		</canvas>
+		<canvas id="drawingholder" style="display:none;"></canvas>
 		<br>
 		<button id="generate">Generate</button><br>
-		(<span id="count">0</span> generations)
+		<div id="output"></div>
 	</body>
 </html>
