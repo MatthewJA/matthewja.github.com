@@ -59,8 +59,8 @@
 			function setDarkerFill() {context.fillStyle = "rgb(101, 101, 101)"; context.strokeStyle = "rgb(101, 101, 101)"; context.lineWidth = 4;};
 			function setGreenFill() {context.fillStyle = "rgb(100, 255, 100)"; context.strokeStyle = "rgb(100, 255, 100)"; context.lineWidth = 4;};
 			function randomiseFood() {
-				foodX = Math.random() * width;
-				foodY = Math.random() * height;
+				foodX = Math.random() * (width-60) + 30;
+				foodY = Math.random() * (height-60) + 30;
 				foodAnimationStep = 40;
 			};
 
