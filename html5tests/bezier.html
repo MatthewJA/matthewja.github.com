@@ -31,6 +31,8 @@
 			var context = null;
 			var holderContext = null;
 
+			var deviance = 10;
+
 			var drawings = [[[], [], []], [[], [], []], [[], [], []]];
 			var bestDrawing = [];
 
@@ -49,19 +51,41 @@
 						// clear the space
 						context.fillRect(xx*size, yy*size, (xx+1)*size, (yy+1)*size);
 
-						// generate five bezier coordinate hexlets
-						var coordinates = [[Math.random() * size | 0, Math.random() * size | 0]];
-						for (var i = 0; i < 5; i++) {
-							var hexlets = [];
-							for (var j = 0; j < 6; j++) {
-								hexlets.push(Math.random() * size | 0);
-							};
-							coordinates.push(hexlets);
-						};
-						drawings[yy].push(coordinates);
-						
-						// draw the curves
+						if (bestDrawing.length == 0) {
+							// generate random drawings
 
+							// generate five bezier coordinate hexlets
+							var coordinates = [[Math.random() * size | 0, Math.random() * size | 0]];
+							for (var i = 0; i < 5; i++) {
+								var hexlets = [];
+								for (var j = 0; j < 6; j++) {
+									hexlets.push(Math.random() * size | 0);
+								};
+								coordinates.push(hexlets);
+							};
+							
+						} else {
+							// modify existing drawing
+
+							if (yy == 1 && xx == 1) {
+								drawings[yy].push(bestDrawing);
+								coordinates = bestDrawing;
+							} else {
+								var coordinates = [[Math.max(0, Math.min(size, (bestDrawing[0][0] + Math.random() * deviance * 2 - deviance))),
+																					Math.max(0, Math.min(size, (bestDrawing[0][1] + Math.random() * deviance * 2 - deviance)))]];
+								for (var i = 1; i < 6; i++) {
+									var hexlets = [];
+									for (var j = 0; j < 6; j++) {
+										hexlets.push(Math.max(0, Math.min(size, (bestDrawing[i][j] + Math.random() * deviance * 2 - deviance))));
+									};
+									coordinates.push(hexlets);
+								};
+							}
+						}
+
+						drawings[yy].push(coordinates);
+
+						// draw the curves
 						context.beginPath();
 						context.moveTo(coordinates[0][0]+(xx*size+xx), coordinates[0][1]+(yy*size+yy));
 						for (var i = 1; i < 6; i++) {
