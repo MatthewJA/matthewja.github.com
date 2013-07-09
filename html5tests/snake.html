@@ -66,7 +66,7 @@
 
 			function update() {
 
-				document.getElementById('sound').playbackRate = Math.max(0.5, 5 * (score / 40));
+				document.getElementById('sound').playbackRate = Math.min(4, Math.max(0.5, 5 * (score / 40))+0.5);
 
 				context.clearRect(0, 0, width, height);
 
@@ -264,7 +264,7 @@
 		<h2 style="position:absolute; top:35px; left:30px;">by MatthewJA</h2>
 
 		<audio id="sound" autoplay loop>
-			<source src="./snake.mp3" preload="auto" type="audio/mp3">
+			<source src="./snake2.mp3" preload="auto" type="audio/mp3">
 		</audio>
 		<img src="./mute.png" id="mute">
 	</body>
