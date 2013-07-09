@@ -120,29 +120,30 @@
 
 			function handleCanvasClick(x, y) {
 				// box x -> corner x is the transformation x*size + x
+				if (drawings[0][0].length != 0) {
+					if (0 <= x && x < size) {
+						var xx = 0;
+					} else if (size+1 <= x && x < 2*size+1) {
+						var xx = 1;
+					} else {
+						var xx = 2;
+					}
 
-				if (0 <= x && x < size) {
-					var xx = 0;
-				} else if (size+1 <= x && x < 2*size+1) {
-					var xx = 1;
-				} else {
-					var xx = 2;
+					if (0 <= y && y < size) {
+						var yy = 0;
+					} else if (size+1 <= y && y < 2*size+1) {
+						var yy = 1;
+					} else {
+						var yy = 2;
+					}
+					console.log(xx, yy, x, y);
+					bestDrawing = drawings[yy][xx];
+					var image = context.getImageData(xx*size+xx, yy*size+yy, (xx+1)*size+xx, (yy+1)*size+yy);
+					holderContext.putImageData(image, 0, 0);
+					var img = $('<img class="output">');
+					img.attr('src', holderContext.canvas.toDataURL());
+					$("#output").append(img);
 				}
-
-				if (0 <= y && y < size) {
-					var yy = 0;
-				} else if (size+1 <= y && y < 2*size+1) {
-					var yy = 1;
-				} else {
-					var yy = 2;
-				}
-				console.log(xx, yy, x, y);
-				bestDrawing = drawings[yy][xx];
-				var image = context.getImageData(xx*size+xx, yy*size+yy, (xx+1)*size+xx, (yy+1)*size+yy);
-				holderContext.putImageData(image, 0, 0);
-				var img = $('<img class="output">');
-				img.attr('src', holderContext.canvas.toDataURL());
-				$("#output").append(img);
 				generate();
 			}
 
@@ -156,7 +157,7 @@
 		</canvas>
 		<canvas id="drawingholder" style="display:none;"></canvas>
 		<br>
-		<button id="generate">Generate</button><br>
+		<!-- <button id="generate">Generate</button><br> -->
 		<div id="output"></div>
 	</body>
 </html>
