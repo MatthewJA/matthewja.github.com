@@ -116,6 +116,7 @@
 				$("#generate").click(function() {
 					generate();
 				});
+				document.getElementById('canvas').onselectstart = function () { return false; }
 			});
 
 			function handleCanvasClick(x, y) {
