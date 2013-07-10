@@ -40,7 +40,7 @@ html, body {
 
 .footerbox {
 	position:absolute;
-	bottom:0;
+	bottom:0pt;
 	font-family: 'Muli', sans-serif;
 	width:100%;
 }
@@ -51,6 +51,7 @@ html, body {
 	border-radius:10pt 10pt 0 0;
 	margin:0 auto;
 	display:inline-block;
+	font-size:125%;
 }
 
 #nav {
