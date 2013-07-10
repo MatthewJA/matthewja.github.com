@@ -1,30 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Hastings Carpet Cleaning</title>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-	</head>
-	<body>
-		<div id="wrapper">
-			<div id="header">
-				<div id="banner">
-					<img src="static/townbeach.jpg" class="bannerimage">
-				</div>
+<head>
+	<title>Hastings Carpet Cleaning</title>
 
-				<div id="navigation">
-				
-				</div>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<!-- [if lt IE 9]
+		<style type="text/css">
+			.box {
+				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='static/townbeach_large.jpg', sizingMethod='scale');
+				-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='static/townbeach_large.jpg', sizingMethod='scale')";
+			}
+		</style>
+	<![endif] -->
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript">
+		// TODO: phpify the random image
+		$(document).ready(function() {
+			// display a random image
+			var images = ["townbeach", "flynnsbeach"];
+			var im = images[Math.floor(Math.random()*images.length)];
+			$("#top").css("background-image", 'url("static/' + im + '_large.jpg")');
+
+			$(".aboutlink").click(function() {
+				goToScreen("about");
+				return false;
+			});
+		});
+
+		function goToScreen(screen) {
+			$('html, body').stop().animate({
+				scrollTop: $("#" + screen).position().top
+			}, 400);
+		};
+	</script>
+</head>
+<body>
+	<div class="box" id="top">
+		<div class="whitebox">
+			<img src="static/hcctitle.png" class="titleimage">
+			<div id="nav">
+				<a href="#about" class="headinglink aboutlink">About</a> - Prices - Services - Contact
 			</div>
-
-			<div id="content">
-			
-			</div>
-
-			<div id="push"></div>
 		</div>
+	</div>
 
-		<div id="footer">
-			Hastings Carpet Cleaning
-		</div>
-	</body>
+	<div class="box" id="about">
+		<div class="bigheading">Looking for a carpet cleaner in Port Macquarie?</div>
+		<h4>Hastings Carpet Cleaning: Your qualified carpet cleaner in the Port Macquarie area.</h4>
+	</div>
+</body>
 </html>
