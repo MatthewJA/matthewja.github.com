@@ -21,9 +21,10 @@
 		$(document).ready(function() {
 			// display a random image
 			var images = ["townbeach", "flynnsbeach"];
-			var im = images[Math.floor(Math.random()*images.length)];
-			$("#top").css("background-image", 'url("static/' + im + '_large.jpg")');
-
+			var alignments = ["center", "right"]
+			var index = Math.floor(Math.random()*images.length);
+			$("#top").css("background-image", 'url("static/' + images[index] + '_large.jpg")');
+			$("#top").css("background-position", alignments[index]);
 			$(".aboutlink").click(function() {
 				goToScreen("about");
 				return false;
@@ -49,7 +50,15 @@
 
 	<div class="box" id="about">
 		<div class="bigheading">Looking for a carpet cleaner in Port Macquarie?</div>
-		<h4>Hastings Carpet Cleaning: Your qualified carpet cleaner in the Port Macquarie area.</h4>
+		<div class="smallheading">You're looking for Hastings Carpet Cleaning.</div>
+		<div class="iconbox">
+			<img src="./static/lighthouseicon.png"><br>
+			<span>Locally owned and operated.</span>
+		</div>
+		<div class="iconbox">
+			<img src="./static/efficiencyicon.png"><br>
+			<span>Prompt and efficient.</span>
+		</div>
 	</div>
 </body>
 </html>
