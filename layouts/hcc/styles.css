@@ -46,7 +46,7 @@ html, body {
 }
 
 .footerinner {
-	padding:10pt;
+	padding:10pt 20pt;
 	background-color:#FFFFFF;
 	border-radius:10pt 10pt 0 0;
 	margin:0 auto;
