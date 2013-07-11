@@ -32,7 +32,7 @@ html, body {
 
 .whitebox {
 	padding:10pt 20pt 20pt 20pt;
-	background-color:white;
+	background-color:#020249;
 	border-radius:0 0 10pt 10pt;
 	display:inline-block;
 	max-height:100%;
@@ -55,7 +55,7 @@ html, body {
 }
 
 #nav {
-	color:#020249;
+	color:white;
 	font-family: 'Muli', sans-serif;
 	font-size:2em;
 }
