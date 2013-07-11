@@ -28,6 +28,7 @@ html, body {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	background-size:cover;
+	min-height:80% !important;
 }
 
 .whitebox {
