@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tim Simulator</title>
+		<style type="text/css">
+			* {
+				margin:0;
+				padding:0;
+			}
+
+			body, html {
+				height:100%;
+				width:100%;
+				display:table;
+
+				background: #c8ad7f; /* Old browsers */
+				background: -moz-radial-gradient(center, ellipse cover,  #c8ad7f 0%, #a8916b 55%, #876c4e 100%); /* FF3.6+ */
+				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#c8ad7f), color-stop(55%,#a8916b), color-stop(100%,#876c4e)); /* Chrome,Safari4+ */
+				background: -webkit-radial-gradient(center, ellipse cover,  #c8ad7f 0%,#a8916b 55%,#876c4e 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-radial-gradient(center, ellipse cover,  #c8ad7f 0%,#a8916b 55%,#876c4e 100%); /* Opera 12+ */
+				background: -ms-radial-gradient(center, ellipse cover,  #c8ad7f 0%,#a8916b 55%,#876c4e 100%); /* IE10+ */
+				background: radial-gradient(ellipse at center,  #c8ad7f 0%,#a8916b 55%,#876c4e 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c8ad7f', endColorstr='#876c4e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			}
+
+			#maintext {
+				text-shadow:3px 3px 5px #000000;
+				font-family:Sans-serif;
+				font-size:25pt;
+				color:#FFFFFF;
+
+				text-align:center;
+
+				width:100%;
+				display:table-cell;
+				vertical-align:middle;
+			}
+
+			#question {
+				text-shadow:3px 3px 5px #000000;
+				color:#FFFFFF;
+
+				text-align:center;
+
+				width:100%;
+				display:table-cell;
+				vertical-align:middle;
+			}
+
+			#aside {
+				font-size:75%;
+			}
+
+			.button {
+				-moz-box-shadow:inset 0px 0px 0px 0px #d6c7af;
+				-webkit-box-shadow:inset 0px 0px 0px 0px #d6c7af;
+				box-shadow:inset 0px 0px 0px 0px #d6c7af;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e7dbc6), color-stop(1, #d4bf9b) );
+				background:-moz-linear-gradient( center top, #e7dbc6 5%, #d4bf9b 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7dbc6', endColorstr='#d4bf9b');
+				background-color:#e7dbc6;
+				-webkit-border-top-left-radius:0px;
+				-moz-border-radius-topleft:0px;
+				border-top-left-radius:0px;
+				-webkit-border-top-right-radius:0px;
+				-moz-border-radius-topright:0px;
+				border-top-right-radius:0px;
+				-webkit-border-bottom-right-radius:0px;
+				-moz-border-radius-bottomright:0px;
+				border-bottom-right-radius:0px;
+				-webkit-border-bottom-left-radius:0px;
+				-moz-border-radius-bottomleft:0px;
+				border-bottom-left-radius:0px;
+				text-indent:0px;
+				border:1px solid #ab8749;
+				display:inline-block;
+				color:#ffffff;
+				font-family:Arial;
+				font-size:15px;
+				font-weight:bold;
+				font-style:normal;
+				height:40px;
+				line-height:40px;
+				width:200px;
+				text-decoration:none;
+				text-align:center;
+				text-shadow:1px 1px 0px #8f7c5e;
+			}
+			.button:hover {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d4bf9b), color-stop(1, #e7dbc6) );
+				background:-moz-linear-gradient( center top, #d4bf9b 5%, #e7dbc6 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d4bf9b', endColorstr='#e7dbc6');
+				background-color:#d4bf9b;
+			}.button:active {
+				position:relative;
+				top:1px;
+			}
+
+			#questionbox {
+				font-size:18pt;
+				padding:10pt;
+			}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			var responses = [
+				"You can use the classic schoolboy trick of adding 0.",
+				"Remember that differentiability implies continuity - but not the inverse!",
+				"Don't divide by 0. It is literally illegal to divide by 0.",
+				"Derive your answer from the generalised mean value theorum.",
+				"Don't forget that differentiation is a limiting process.",
+				'You can- Excuse me one second...<br><span id="aside">Why would they design a pocket like that...?</span>',
+				"Try finding the upper and lower bounds.",
+				"There are infinitely many solutions to this question.",
+				"Use the special case from the notes.",
+				"Try limiting x to infinity.",
+				"Unless you use a limit, you may as well sit at home playing two-up or something."
+			];
+
+			function getResponse() {
+				var index = Math.floor(Math.random() * responses.length);
+				return responses[index];
+			}
+
+			function showResponse() {
+				var response = getResponse();
+				$("#actualtext").html(response);
+				$("#another").show();
+				$("#another").css({opacity: 0.0});
+				$("#maintext").fadeIn("slow", function() {
+					$("#another").fadeTo("slow", 1.0);
+				});
+			}
+
+			function hideResponse() {
+				$("#questionbox").val("");
+				$("#question").fadeIn("slow");
+			}
+
+			$(document).ready(function() {
+				$("#maintext").hide();
+				$("#question").hide();
+				$("#another").hide();
+				$("#question").fadeIn("slow");
+
+				$("#button").click(function() {
+					$("#question").fadeOut("fast", showResponse);
+				});
+
+				$("#another").click(function() {
+					$("#maintext").fadeOut("fast", hideResponse);
+				});
+			});
+
+
+		</script>
+	</head>
+	<body>
+		<div id="question">
+			<input type="text" id="questionbox"><br>
+			<input type="submit" class="button" id="button" value="Ask Tim a maths question">
+		</div>
+		<div id="maintext">
+			<div id="actualtext"></div>
+			<input type="submit" class="button" id="another" value="Ask another question">
+		</div>
+		
+	</body>
+</html>
