@@ -17,6 +17,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript">
+		var topLinkHidden = true;
+
 		// TODO: phpify the random image
 		$(document).ready(function() {
 			// display a random image
@@ -25,16 +27,49 @@
 			var index = Math.floor(Math.random()*images.length);
 			$("#top").css("background-image", 'url("static/' + images[index] + '_large.jpg")');
 			$("#top").css("background-position", alignments[index]);
+
+			// click handlers for delightful scrolly things
 			$(".aboutlink").click(function() {
 				goToScreen("about");
 				return false;
 			});
+			$(".priceslink").click(function() {
+				goToScreen("prices");
+				return false;
+			});
+			$("#toplink").click(function() {
+				goToScreen("top");
+				return false;
+			});
+
+			// need to hide toplink if the user scrolls up too far
+			var scrollCheck = setInterval(function() {
+				var scrollTop = $(window).scrollTop();
+				var triggerHeight = $("#top").position().top + $('#top').outerHeight(true);
+				if (!topLinkHidden) {
+					if (scrollTop < triggerHeight) {
+						$("#toplink").fadeOut("fast");
+						console.log("yup");
+						topLinkHidden = true;
+					}
+				} else {
+					if (scrollTop >= triggerHeight) {
+						$('#toplink').fadeIn('fast', function() {
+							topLinkHidden = false;
+						});
+					}
+				}
+			}, 250);
 		});
 
 		function goToScreen(screen) {
 			$('html, body').stop().animate({
 				scrollTop: $("#" + screen).position().top
 			}, 400);
+
+			// $('#toplink').fadeIn('slow', function() {
+			// 	topLinkHidden = false;
+			// });
 		};
 	</script>
 </head>
@@ -43,7 +78,7 @@
 		<div class="whitebox">
 			<img src="static/white_fontside.png" class="titleimage">
 			<div id="nav">
-				<a href="#about" class="headinglink aboutlink">About</a> - Prices - Services - Contact
+				<a href="#about" class="headinglink aboutlink">About</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - Services - Contact
 			</div>
 		</div>
 	</div>
@@ -64,5 +99,26 @@
 			<span>Family run business.</span>
 		</div>
 	</div>
+
+	<div class="box" id="prices">
+		<div class="bigheading">Get your carpets cleaned properly.</div>
+		<div class="smallheading">The only qualified carpet cleaners in Port Macquarie.</div>
+		<div class="iconbox">
+			<img src="./static/lighthouseicon.png"><br>
+			<span>Locally owned and operated.</span>
+		</div>
+		<div class="iconbox">
+			<img src="./static/efficiencyicon.png"><br>
+			<span>Prompt and efficient.</span>
+		</div>
+		<div class="iconbox">
+			<img src="./static/teamicon.png"><br>
+			<span>Family run business.</span>
+		</div>
+	</div>
+
+	<a id="toplink" href="#">
+		Top
+	</a>
 </body>
 </html>

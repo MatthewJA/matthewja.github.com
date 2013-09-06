@@ -70,6 +70,10 @@ html, body {
 	background-color:#DFDFFF;
 }
 
+#prices {
+	background-color:#4A7BA1;
+}
+
 .bigheading {
 	width:100%;
 	min-height:100pt;
@@ -78,7 +82,7 @@ html, body {
 	font-family: 'Muli', sans-serif;
 	color:#FFFFFF;
 	font-size:2.5em;
-	background-image:url("./static/bannergradient.png");
+	/*background-image:url("./static/bannergradient.png");*/
 	background-position:top;
 	background-repeat:repeat-x;
 }
@@ -94,4 +98,23 @@ html, body {
 	font-family: 'Muli', sans-serif;
 	display:inline-block;
 	margin:15px;
+}
+
+#toplink {
+	width:50pt;
+	height:50pt;
+	background-color:#2C2CA4;
+	position:fixed;
+	bottom:0;
+	display:none;
+	color:#DFDFFF;
+	text-align:center;
+	line-height:50pt;
+	text-decoration:none;
+	font-family: 'Muli', sans-serif;
+	border-radius:0 5pt 0 0;
+}
+
+#toplink:hover {
+	background-color:#6EAE33;
 }

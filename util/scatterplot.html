@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scatterplot</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> <!-- drop the "http:"" for production -->
+	<script src="jquery-csv.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+	<style type="text/css">
+		* {
+			margin:0;
+			padding:0;
+		}
+
+		html, body {
+			width:100%;
+			height:100%;
+
+			min-height:300pt;
+
+			font-family:"Valera Round", sans-serif;
+			text-align:center;
+
+			background: #ffffff; /* Old browsers */
+			background: -moz-linear-gradient(top,  #ffffff 0%, #eaeaea 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  #ffffff 0%,#eaeaea 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			font-weight:normal;
+		}
+
+		#titleblock {
+			padding-top:5%;
+			height:10%;
+		}
+
+		#plotsettings {
+			width:100%;
+			height:70%;
+		}
+
+		#datainput {
+			width:100%;
+
+			border:0;
+			min-height:100pt;
+
+			padding:5pt 0;
+		}
+
+		.axislabelinput {
+			width:49%;
+			border:0;
+			padding:5pt 0;
+		}
+
+		.submitbutton {
+			width:100%;
+			background-color:#dadada;
+			padding:10pt 0;
+		}
+
+		#plotsettingswrap {
+			background-color:#ffffff;
+			width:50%;
+			padding:10pt;
+			margin:0 auto;
+		}
+	</style>
+
+	<script type="text/javascript">
+		// $.csv.function(csv, {options}, callback);
+
+		$(document).ready(function() {
+
+		})
+	</script>
+</head>
+<body>
+	<div id="titleblock">
+		<h1>Basic scatter plots made simple.</h1><br>
+	</div>
+	<div id="plotsettings">
+		<h3>Enter your data below.</h3>
+		<div id="plotsettingswrap">
+			<textarea id="datainput" placeholder="x value, x uncertainty, y value, y uncertainty"></textarea><br>
+			<input type="text" placeholder="x axis label" class="axislabelinput">
+			<input type="text" placeholder="y axis label" class="axislabelinput"><br>
+			<input type="submit" value="Plot it" class="submitbutton">
+		</div>
+	</div>
+</body>
+</html>
