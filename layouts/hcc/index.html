@@ -41,6 +41,10 @@
 				goToScreen("top");
 				return false;
 			});
+			$(".contactlink").click(function() {
+				goToScreen("contact");
+				return false;
+			});
 
 			// need to hide toplink if the user scrolls up too far
 			var scrollCheck = setInterval(function() {
@@ -78,7 +82,7 @@
 		<div class="whitebox">
 			<img src="static/white_fontside.png" class="titleimage">
 			<div id="nav">
-				<a href="#about" class="headinglink aboutlink">About</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - Services - Contact
+				<a href="#about" class="headinglink aboutlink">About</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - <a href="#contact" class="headinglink contactlink">Contact</a>
 			</div>
 		</div>
 	</div>
@@ -102,19 +106,18 @@
 
 	<div class="box" id="prices">
 		<div class="bigheading">Get your carpets cleaned properly.</div>
-		<div class="smallheading">The only qualified carpet cleaners in Port Macquarie.</div>
+		<div class="smallheading">10% discount for more than five rooms.</div>
 		<div class="iconbox">
-			<img src="./static/lighthouseicon.png"><br>
-			<span>Locally owned and operated.</span>
+			<img src="./static/emptyroomsicon.png"><br>
 		</div>
 		<div class="iconbox">
-			<img src="./static/efficiencyicon.png"><br>
-			<span>Prompt and efficient.</span>
+			<img src="./static/stairsicon.png"><br>
 		</div>
-		<div class="iconbox">
-			<img src="./static/teamicon.png"><br>
-			<span>Family run business.</span>
-		</div>
+	</div>
+
+	<div class="box" id="contact">
+		<div class="bigheading">Call now for a free quote.</div>
+		<div class="smallheading">Or request a quote online.</div>
 	</div>
 
 	<a id="toplink" href="#">

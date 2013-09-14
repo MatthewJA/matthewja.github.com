@@ -66,12 +66,13 @@ html, body {
 	max-width:100%;
 }
 
-#about {
+#about, #contact {
 	background-color:#DFDFFF;
 }
 
 #prices {
-	background-color:#4A7BA1;
+	/*background-color:#4A7BA18;*/
+	background-color:#DFDFFF;
 }
 
 .bigheading {
