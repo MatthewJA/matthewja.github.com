@@ -95,14 +95,26 @@ html, body {
 	line-height:100pt;
 }
 
+.smallerheading {
+	font-family: 'Muli', sans-serif;
+	color:#000000;
+	font-size:1.5em;
+}
+
+.smallestheading {
+	font-family: 'Muli', sans-serif;
+	color:#000000;
+	font-size:1em;
+}
+
 .iconbox {
 	font-family: 'Muli', sans-serif;
 	display:inline-block;
 	margin:15px;
 }
 
-#toplink {
-	width:50pt;
+#floatingnav {
+	/*width:50pt;*/
 	height:50pt;
 	background-color:#2C2CA4;
 	position:fixed;
@@ -114,8 +126,17 @@ html, body {
 	text-decoration:none;
 	font-family: 'Muli', sans-serif;
 	border-radius:0 5pt 0 0;
+	padding:0 10pt;
 }
 
 #toplink:hover {
 	background-color:#6EAE33;
+}
+
+#floatingnav a:visited, a:link {
+	color:inherit;
+}
+
+#floatingnav a:hover {
+	color:#6EAE33;
 }

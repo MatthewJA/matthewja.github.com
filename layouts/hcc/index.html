@@ -17,7 +17,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript">
-		var topLinkHidden = true;
+		var navigationHidden = true;
 
 		// TODO: phpify the random image
 		$(document).ready(function() {
@@ -50,16 +50,16 @@
 			var scrollCheck = setInterval(function() {
 				var scrollTop = $(window).scrollTop();
 				var triggerHeight = $("#top").position().top + $('#top').outerHeight(true);
-				if (!topLinkHidden) {
+				if (!navigationHidden) {
 					if (scrollTop < triggerHeight) {
-						$("#toplink").fadeOut("fast");
+						$("#floatingnav").fadeOut("fast");
 						console.log("yup");
-						topLinkHidden = true;
+						navigationHidden = true;
 					}
 				} else {
 					if (scrollTop >= triggerHeight) {
-						$('#toplink').fadeIn('fast', function() {
-							topLinkHidden = false;
+						$('#floatingnav').fadeIn('fast', function() {
+							navigationHidden = false;
 						});
 					}
 				}
@@ -72,7 +72,7 @@
 			}, 400);
 
 			// $('#toplink').fadeIn('slow', function() {
-			// 	topLinkHidden = false;
+			// 	navigationHidden = false;
 			// });
 		};
 	</script>
@@ -106,13 +106,18 @@
 
 	<div class="box" id="prices">
 		<div class="bigheading">Get your carpets cleaned properly.</div>
-		<div class="smallheading">10% discount for more than five rooms.</div>
+		<div class="smallheading"></div>
 		<div class="iconbox">
 			<img src="./static/emptyroomsicon.png"><br>
 		</div>
 		<div class="iconbox">
+			<img src="./static/furnishedroomsicon.png"><br>
+		</div>
+		<div class="iconbox">
 			<img src="./static/stairsicon.png"><br>
 		</div>
+		<div class="smallerheading">10% discount for more than five rooms.</div>
+		<div class="smallestheading">Minimum charge $85.</div>
 	</div>
 
 	<div class="box" id="contact">
@@ -120,8 +125,8 @@
 		<div class="smallheading">Or request a quote online.</div>
 	</div>
 
-	<a id="toplink" href="#">
-		Top
-	</a>
+	<div id="floatingnav">
+		<a href="#top">Top</a> - <a href="#about">About</a> - <a href="#prices">Prices</a> - <a href="#contact">Contact</a>
+	</div>
 </body>
 </html>
