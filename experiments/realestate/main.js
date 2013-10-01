@@ -8,6 +8,9 @@ var gridAppearance = { // Background colour for grid squares depending on their 
 	"road": "444444"
 };
 
+// Arrays of things we have already, for later reference.
+var roads = [];
+
 var grid = []; // Actual grid definition.
 for (var y = 0; y < height/gridSize; y++) {
 	var p = [];
@@ -36,6 +39,12 @@ function updateGridDisplay(x, y) {
 	}
 }
 
+function addRoad(x, y) {
+	grid[y][x].contents = "road";
+	roads.push(grid[y][x]);
+	updateGridDisplay(x, y);
+}
+
 function initialise() {
 	// Set the road.
 	// Road runs from a random x value less than 6, to a random length up to 10.
@@ -46,10 +55,22 @@ function initialise() {
 	var roadYPos = randomInteger(4, 8);
 
 	for (var x = roadMin; x <= roadMax; x++) {
-		grid[roadYPos][x].contents = "road";
-		updateGridDisplay(x, roadYPos);
-		console.log("ok");
+		addRoad(x, roadYPos);
 	};
+
+	// Pick a random road square and branch the road.
+	// We can branch in any direction and we'll keep going until we hit the edge of the view.
+	var branchNum = randomInteger(0, roads.length);
+	var branchX = roads[branchNum].x;
+	if (randomInteger(0, 2) == 1) {
+		for (var y = roads[branchNum].y; y < height/gridSize; y++) {
+			addRoad(branchX, y);
+		};
+	} else {
+		for (var y = roads[branchNum].y; y >= 0; y--) {
+			addRoad(branchX, y);
+		};
+	}
 };
 
 $(document).ready(function() {
