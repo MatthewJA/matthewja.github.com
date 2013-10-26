@@ -124,6 +124,10 @@ html, body {
 	margin:15px;
 }
 
+.phonenumbers {
+	font-size:60%;
+}
+
 #floatingnav {
 	/*width:50pt;*/
 	height:50pt;
