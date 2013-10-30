@@ -65,4 +65,4 @@ function createDivs() {
 
 //// MAIN ////
 
-document.onload = main();
+window.onload = main();
