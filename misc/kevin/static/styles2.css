@@ -1,0 +1,11 @@
+#map {
+	width:600px;
+}
+
+#map-image {
+	width: 100%;
+}
+
+.circle {
+	background-color:red;
+}

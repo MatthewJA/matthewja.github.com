@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kevin's Awesome Virginia Map with Data and Stuff</title>
+	<title>Kevin's Map Thing</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
 
-	<link rel="stylesheet" type="text/css" href="./static/styles.css">
+		#map {
+			width: 600pt;
+
+			background-image: url("./static/maps/Blank.jpg");
+		}
+
+		#map img {
+			width: 100%;
+
+			display: block;
+		}
+
+		.button {
+			width: 50px;
+			height: 50px;
+
+			display: inline-block;
+			vertical-align: middle;
+
+			background-image: url("./static/Button.jpg");
+		}
+
+		.button:hover {
+			background-image: url("./static/Button_Green.jpg");
+		}
+	</style>
 </head>
 <body>
 	<div id="map">
-		<img src="./static/virginia.gif" id="map-image">
+		<img src="./static/maps/Blank.jpg">
 	</div>
-	
-	<script type="text/javascript" src="./static/circles.js"></script>
+
+	<ul id="buttons">
+		<li>
+			<div class="button" id="button-graduation-rate"></div>
+			Graduation Rate
+		</li>
+		
+		<li>
+			<div class="button" id="button-graduation-rate-economically-disadvantaged"></div>
+			Graduation Rate (Economically Disadvantaged)
+		</li>
+		
+		<li>
+			<div class="button" id="button-median-income"></div>
+			Median Income
+		</li>
+		
+		<li>
+			<div class="button" id="button-student-population"></div>
+			Student Population
+		</li>
+
+		<li>
+			<div class="button" id="button-budget-per-student"></div>
+			Budget per Student
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+
+	</script>
 </body>
 </html>
