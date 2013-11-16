@@ -96,3 +96,26 @@ body #gem-window {
   margin: 0 auto;
   background-color: #272822;
 }
+body #gem-window #whiteboard-panel {
+  width: 600px;
+  height: 600px;
+  float: left;
+}
+body #gem-window #search-panel {
+  width: 250px;
+  height: 600px;
+  float: left;
+  background-color: #404238;
+}
+
+.equation {
+  font-family: monospace;
+  font-size: 30px;
+  color: #a6e22e;
+}
+
+.expression {
+  font-family: monospace;
+  font-size: 30px;
+  color: #66d9ef;
+}
