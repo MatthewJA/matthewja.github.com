@@ -122,13 +122,23 @@ body #gem-window #search-panel #search-box {
 }
 
 .equation {
+  display: inline-block;
   font-family: monospace;
   font-size: 30px;
+  color: #ecece9;
+  cursor: default;
+}
+.equation .variable {
   color: #a6e22e;
 }
 
 .expression {
+  display: inline-block;
   font-family: monospace;
   font-size: 30px;
+  color: #ecece9;
+  cursor: default;
+}
+.expression .variable {
   color: #66d9ef;
 }

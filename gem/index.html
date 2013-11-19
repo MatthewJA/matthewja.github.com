@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Meta -->
 	<title>Graphical Equation Manipulator</title>
+
+	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./static/styles.min.css">
+
+	<!-- Dependency Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+	<script src="./src/JS-Algebra/src/algebra.js"></script>
 </head>
 <body>
 	<h1>
@@ -12,11 +21,11 @@
 	<div id="gem-window">
 		<div id="whiteboard-panel">
 			<div class="equation">
-				Ek = 1/2 * m * v**2
+				<span class="variable">Ek</span> = 1/2 * <span class="variable">m</span> * <span class="variable">v**2</span>
 			</div>
 
 			<div class="expression">
-				v = &radic;(2 Ek / m)
+				<span class="variable">v</span> = &radic;(2 <span class="variable">Ek</span> / <span class="variable">m</span>)
 			</div>
 		</div>
 
@@ -24,5 +33,9 @@
 			<input type="text" id="search-box" placeholder="Search for equation">
 		</div>
 	</div>
+
+	<!-- Application Scripts -->
+	<script src="./src/Graphical-Equation-Manipulator/gem.js"></script>
+	<script src="./src/Graphical-Equation-Manipulator/frontend.js"></script>
 </body>
 </html>
