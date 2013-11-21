@@ -120,6 +120,14 @@ body #gem-window #search-panel #search-box {
   color: #ecece9;
   background-color: #404238;
 }
+body #gem-window #search-panel #search-results ul {
+  padding-top: 10px;
+  padding-left: 10px;
+  color: #ecece9;
+  font-size: 20px;
+  font-family: monospace;
+  list-style-type: none;
+}
 
 .equation {
   display: inline-block;

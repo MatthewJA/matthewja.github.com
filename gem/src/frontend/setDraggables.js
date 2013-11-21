@@ -10,7 +10,6 @@
         cancel: ".variable"
       };
       if (element != null) {
-        console.log("setting draggable " + element);
         return element.draggable(draggableProperties);
       } else {
         $(".equation").draggable(draggableProperties);

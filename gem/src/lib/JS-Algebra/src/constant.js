@@ -6,6 +6,8 @@
       function Constant(numerator, denominator) {
         this.numerator = numerator;
         this.denominator = denominator != null ? denominator : 1;
+        this.isTerm = true;
+        this.isConstant = true;
       }
 
       Constant.prototype.pow = function(power) {

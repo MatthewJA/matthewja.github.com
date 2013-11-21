@@ -6,6 +6,8 @@
       function Variable(label, power) {
         this.label = label;
         this.power = power != null ? power : 1;
+        this.isTerm = true;
+        this.isVariable = true;
       }
 
       Variable.prototype.pow = function(power) {
