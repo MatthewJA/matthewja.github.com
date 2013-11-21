@@ -20,10 +20,10 @@
       Equation.handleInputTerm = function(term) {
         var constant, d, fractional, n, p, power, v, variable, _ref, _ref1;
         if (typeof term === 'string' || (term instanceof String)) {
-          constant = /^\d+(\.\d+)?$/;
+          constant = /^-?\d+(\.\d+)?$/;
           variable = /^[A-Za-z_]+$/;
-          fractional = /^\d+(\.\d+)?\/\d+(\.\d+)?$/;
-          power = /^[A-Za-z_]+\*\*\d+(\.\d+)?$/;
+          fractional = /^-?\d+(\.\d+)?\/\d+(\.\d+)?$/;
+          power = /^[A-Za-z_]+\*\*-?\d+(\.\d+)?$/;
           if (term.match(constant) != null) {
             return new Constant(parseFloat(term));
           } else if (term.match(variable) != null) {
