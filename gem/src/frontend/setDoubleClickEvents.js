@@ -16,8 +16,11 @@
         _ref = formulaID.split("-"), formulaType = _ref[0], formulaNumber = _ref[1];
         console.log("Double-clicked " + variable + " in " + formulaType + " " + formulaNumber);
         if (formulaType === "equation") {
-          return require(["frontend/solveEquation"], function(solveEquation) {
-            return solveEquation(formulaNumber, variable);
+          return require(["backend/solveEquation", "frontend/addExpressionToWhiteboard", "backend/addExpressionToIndex"], function(solveEquation, addExpressionToWhiteboard, addExpressionToIndex) {
+            var expression;
+            expression = solveEquation(formulaNumber, variable);
+            addExpressionToWhiteboard(expression);
+            return addExpressionToIndex(expression);
           });
         }
       });

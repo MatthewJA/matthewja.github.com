@@ -118,14 +118,27 @@
         return leftHandSide + " = " + rightHandSide;
       };
 
-      Equation.prototype.toGEMHTML = function(equationID) {
-        var divID, html, leftTerms, power, rightTerms, term, _i, _j, _len, _len1, _ref, _ref1;
-        if (equationID != null) {
-          divID = "equation-" + equationID;
-        } else {
-          divID = "equation";
+      Equation.prototype.toGEMHTML = function(equationID, expression) {
+        var divClass, divID, html, leftTerms, power, rightTerms, term, _i, _j, _len, _len1, _ref, _ref1;
+        if (expression == null) {
+          expression = false;
         }
-        html = '<div id="' + divID + '" class="equation">';
+        if (!expression) {
+          divClass = "equation";
+          if (equationID != null) {
+            divID = "equation-" + equationID;
+          } else {
+            divID = "equation";
+          }
+        } else {
+          divClass = "expression";
+          if (equationID != null) {
+            divID = "expression-" + equationID;
+          } else {
+            divID = "expression";
+          }
+        }
+        html = '<div id="' + divID + '" class="' + divClass + '">';
         leftTerms = [];
         _ref = this.leftTerms;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
