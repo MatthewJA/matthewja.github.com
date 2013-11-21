@@ -88,6 +88,11 @@ a:link, a:visited, a:active, a:hover {
 	background-image:url("./static/snake.png");
 }
 
+#gem {
+	background-image:url("./static/gem.png");
+	font-size:inherit;
+}
+
 #top, #goodsiricannotdraw, #codingandprogramming {
 	width:100%;
 	min-height:100%;
