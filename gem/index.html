@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Meta -->
 	<title>Graphical Equation Manipulator</title>
 
-	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./static/styles.min.css">
-	<style type="text/css">.expression { user-select: none; -moz-user-select: none; -webkit-user-select: none; }</style>
-
-	<!-- Dependency Scripts -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-	<script src="./src/JS-Algebra/src/algebra.js"></script>
 </head>
 <body>
 	<h1>
@@ -21,11 +12,11 @@
 
 	<div id="gem-window">
 		<div id="whiteboard-panel">
-			<div class="equation">
-				<span class="variable">Ek</span> = 1/2 * <span class="variable">m</span> * <span class="variable">v**2</span>
+			<div class="equation" id="equation-1">
+				<span class="variable">Ek</span> = 1/2 * <span class="variable">m</span> * <span class="variable">v</span>**2
 			</div>
 
-			<div class="expression">
+			<div class="expression" id="expression-1">
 				<span class="variable">v</span> = &radic;(2 <span class="variable">Ek</span> / <span class="variable">m</span>)
 			</div>
 		</div>
@@ -35,8 +26,6 @@
 		</div>
 	</div>
 
-	<!-- Application Scripts -->
-	<script src="./src/Graphical-Equation-Manipulator/gem.js"></script>
-	<script src="./src/Graphical-Equation-Manipulator/frontend.js"></script>
+	<script data-main="./src/gem.js" src="./src/require.js"></script>
 </body>
 </html>
