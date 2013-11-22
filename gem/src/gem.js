@@ -11,9 +11,10 @@
     }
   });
 
-  require(["jquery", "jqueryui", "frontend/setupFrontend"], function($, ui, setupFrontend) {
+  require(["jquery", "jqueryui", "frontend/setupFrontend", "frontend/finishLoading"], function($, ui, setupFrontend, finishLoading) {
     return $(function() {
-      return setupFrontend();
+      setupFrontend();
+      return finishLoading();
     });
   });
 

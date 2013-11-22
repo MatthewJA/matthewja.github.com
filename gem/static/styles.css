@@ -90,11 +90,21 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 body h1 {
   font-size: 30px;
 }
+body #loader {
+  display: block;
+  width: 850px;
+  height: 600px;
+  margin: 0 auto;
+  text-align: center;
+  color: #ecece9;
+  background-color: #272822;
+}
 body #gem-window {
   width: 850px;
   height: 600px;
   margin: 0 auto;
   background-color: #272822;
+  display: none;
 }
 body #gem-window #whiteboard-panel {
   width: 600px;
