@@ -404,28 +404,28 @@
         }
         leftSide = [];
         if (leftTermsLeft.length > 0) {
-          leftSide.push(leftTermsLeft.join("<mo>&times;</mo>"));
+          leftSide.push(leftTermsLeft.join("<mo>&middot;</mo>"));
         }
         if (leftTermsTop.length > 0 && leftTermsBottom.length > 0) {
-          leftSide.push("<mfrac><mrow>" + leftTermsTop.join("<mo>&times;</mo>") + "</mrow><mrow>" + leftTermsBottom.join("<mo>&times;</mo>") + "</mrow></mfrac>");
+          leftSide.push("<mfrac><mrow>" + leftTermsTop.join("<mo>&middot;</mo>") + "</mrow><mrow>" + leftTermsBottom.join("<mo>&middot;</mo>") + "</mrow></mfrac>");
         } else if (leftTermsTop.length > 0) {
-          leftSide.push(leftTermsTop.join("<mo>&times;</mo>"));
+          leftSide.push(leftTermsTop.join("<mo>&middot;</mo>"));
         } else if (leftTermsBottom.length > 0) {
-          leftSide.push("<mfrac><mrow>1</mrow><mrow>" + leftTermsBottom.join("<mo>&times;</mo>") + "</mrow></mfrac>");
+          leftSide.push("<mfrac><mrow><mn>1</mn></mrow><mrow>" + leftTermsBottom.join("<mo>&middot;</mo>") + "</mrow></mfrac>");
         }
-        html += leftSide.join("<mo>&times;</mo>") + "<mo>=</mo>";
+        html += leftSide.join("<mo>&middot;</mo>") + "<mo>=</mo>";
         rightSide = [];
         if (rightTermsLeft.length > 0) {
-          rightSide.push(rightTermsLeft.join("<mo>&times;</mo>"));
+          rightSide.push(rightTermsLeft.join("<mo>&middot;</mo>"));
         }
         if (rightTermsTop.length > 0 && rightTermsBottom.length > 0) {
-          rightSide.push("<mfrac><mrow>" + rightTermsTop.join("<mo>&times;</mo>") + "</mrow><mrow>" + rightTermsBottom.join("<mo>&times;</mo>") + "</mrow></mfrac>");
+          rightSide.push("<mfrac><mrow>" + rightTermsTop.join("<mo>&middot;</mo>") + "</mrow><mrow>" + rightTermsBottom.join("<mo>&middot;</mo>") + "</mrow></mfrac>");
         } else if (rightTermsTop.length > 0) {
-          rightSide.push(rightTermsTop.join("<mo>&times;</mo>"));
+          rightSide.push(rightTermsTop.join("<mo>&middot;</mo>"));
         } else if (rightTermsBottom.length > 0) {
-          rightSide.push("<mfrac><mrow>1</mrow><mrow>" + rightTermsBottom.join("<mo>&times;</mo>") + "</mrow></mfrac>");
+          rightSide.push("<mfrac><mrow><mn>1</mn></mrow><mrow>" + rightTermsBottom.join("<mo>&middot;</mo>") + "</mrow></mfrac>");
         }
-        html += rightSide.join("<mo>&times;</mo>") + "</math>";
+        html += rightSide.join("<mo>&middot;</mo>") + "</math>";
         return html;
       };
 
