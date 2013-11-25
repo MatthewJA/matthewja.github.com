@@ -5,11 +5,15 @@
     return addEquation = function(equation) {
       var equationDiv, equationID, html;
       equationID = nextEquationID();
-      html = equation.toGEMHTML(equationID);
+      html = equation.toMathML(equationID);
       equationDiv = $(html);
       $("#whiteboard-panel").append(equationDiv);
-      setDraggables(equationDiv);
-      return setDoubleClickEvents(equationDiv);
+      console.log(MathJax);
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      return MathJax.Hub.Queue(function() {
+        setDraggables(equationDiv);
+        return setDoubleClickEvents(equationDiv);
+      });
     };
   });
 

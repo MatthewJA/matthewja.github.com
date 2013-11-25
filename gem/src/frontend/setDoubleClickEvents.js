@@ -5,14 +5,15 @@
     return setDoubleClickEvents = function(element) {
       var target;
       if (element != null) {
-        target = $(element).children(".variable");
+        target = $(element).find(".variable");
       } else {
         target = $(".variable");
       }
       target.dblclick(function() {
         var formulaID, formulaNumber, formulaType, variable, _ref;
+        console.log("clicked " + $(this).toString());
         variable = $(this).text();
-        formulaID = $(this).parent().attr("id");
+        formulaID = $(this).parents("div").attr("id");
         _ref = formulaID.split("-"), formulaType = _ref[0], formulaNumber = _ref[1];
         console.log("Double-clicked " + variable + " in " + formulaType + " " + formulaNumber);
         if (formulaType === "equation") {

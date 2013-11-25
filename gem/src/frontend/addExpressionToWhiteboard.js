@@ -5,11 +5,15 @@
     return addExpression = function(expression) {
       var expressionDiv, expressionID, html;
       expressionID = nextExpressionID();
-      html = expression.toGEMHTML(expressionID, true);
+      html = expression.toMathML(expressionID, true);
       expressionDiv = $(html);
       $("#whiteboard-panel").append(expressionDiv);
-      setDraggables(expressionDiv);
-      return setDoubleClickEvents(expressionDiv);
+      console.log(MathJax);
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      return MathJax.Hub.Queue(function() {
+        setDraggables(expressionDiv);
+        return setDoubleClickEvents(expressionDiv);
+      });
     };
   });
 

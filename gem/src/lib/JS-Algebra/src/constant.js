@@ -20,8 +20,35 @@
         return this.denominator = Math.pow(this.denominator, power);
       };
 
+      Constant.prototype.multiply = function(constant) {
+        return new Constant(this.numerator * constant.numerator, this.denominator * constant.denominator);
+      };
+
+      Constant.prototype.simplify = function() {
+        var a, b, gcd, _ref;
+        a = this.numerator;
+        b = this.denominator;
+        while (b !== 0) {
+          _ref = [b, a % b], a = _ref[0], b = _ref[1];
+        }
+        gcd = a;
+        this.numerator /= gcd;
+        return this.denominator /= gcd;
+      };
+
+      Constant.prototype.evaluate = function() {
+        return this.numerator / this.denominator;
+      };
+
       Constant.prototype.copy = function() {
         return new Constant(this.numerator, this.denominator);
+      };
+
+      Constant.prototype.toMathML = function() {
+        if (this.denominator === 1) {
+          return "<mn>" + this.numerator + "</mn>";
+        }
+        return "<mfrac><mrow><mn>" + this.numerator + "</mn></mrow><mrow><mn>" + this.denominator + "</mn></mrow></mfrac>";
       };
 
       Constant.prototype.toString = function() {
