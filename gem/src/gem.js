@@ -22,9 +22,10 @@
     }
   });
 
-  require(["jquery", "jqueryui", "TouchPunch", "frontend/setupFrontend", "frontend/finishLoading"], function($, ui, tp, setupFrontend, finishLoading) {
+  require(["jquery", "jqueryui", "frontend/setupFrontend", "frontend/finishLoading"], function($, ui, setupFrontend, finishLoading) {
     return $(function() {
       setupFrontend();
+      require(["TouchPunch"]);
       return finishLoading();
     });
   });
