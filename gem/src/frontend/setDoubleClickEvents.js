@@ -3,7 +3,7 @@
   define(["jquery", "require"], function($, require) {
     var setDoubleClickEvents;
     return setDoubleClickEvents = function(element) {
-      var target;
+      var doDoubleClick, target;
       if (element == null) {
         element = null;
       }
@@ -12,7 +12,7 @@
       } else {
         target = $(".variable");
       }
-      target.dblclick(function() {
+      doDoubleClick = function() {
         var formulaID, formulaNumber, formulaType, variable, _ref;
         variable = $(this).text();
         formulaID = $(this).parents("div").attr("id");
@@ -26,7 +26,8 @@
             return addExpressionToIndex(expression);
           });
         }
-      });
+      };
+      target.doubletap(doDoubleClick);
       return target.disableSelection();
     };
   });
