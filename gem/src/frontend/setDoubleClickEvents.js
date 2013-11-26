@@ -4,6 +4,9 @@
     var setDoubleClickEvents;
     return setDoubleClickEvents = function(element) {
       var target;
+      if (element == null) {
+        element = null;
+      }
       if (element != null) {
         target = $(element).find(".variable");
       } else {
@@ -11,7 +14,6 @@
       }
       target.dblclick(function() {
         var formulaID, formulaNumber, formulaType, variable, _ref;
-        console.log("clicked " + $(this).toString());
         variable = $(this).text();
         formulaID = $(this).parents("div").attr("id");
         _ref = formulaID.split("-"), formulaType = _ref[0], formulaNumber = _ref[1];
