@@ -12,8 +12,10 @@ CLASSES
       this.x = x;
       this.y = y;
       this.d = 0;
-      this.v = 0.001;
-      this.r = 15;
+      this.v = 0.00025;
+      this.targetR = 11;
+      this.r = this.targetR;
+      this.dr = 2;
       this.x0 = this.x - this.radius();
       this.y0 = this.y;
       this.colour = {
@@ -24,13 +26,39 @@ CLASSES
     }
 
     Snake.prototype.radius = function() {
-      return 1 / this.r;
+      return Math.abs(1 / this.r);
     };
 
     Snake.prototype.move = function(dt) {
-      this.d += this.v * dt;
+      this.updateRadius(dt);
+      this.d = (this.d + this.v / this.radius() * dt) % (2 * Math.PI);
       this.x = this.radius() * Math.cos(this.d) + this.x0;
       return this.y = this.radius() * Math.sin(this.d) + this.y0;
+    };
+
+    Snake.prototype.updateRadius = function(dt) {
+      var k, r, x1, y1;
+      r = (this.r * 4 + this.targetR) / 5;
+      if (this.r < 0 && r > 0) {
+        k = this.r / Math.abs(r);
+      } else if (this.r > 0 && r < 0) {
+        k = Math.abs(this.r) / r;
+      } else {
+        k = this.r / r;
+      }
+      x1 = k * (this.x0 - this.x) + this.x;
+      y1 = k * (this.y0 - this.y) + this.y;
+      if ((r < 0 && this.r > 0) || (r > 0 && this.r < 0)) {
+        this.d = (this.d + Math.PI) % (2 * Math.PI);
+        this.v = -this.v;
+      }
+      this.r = r;
+      this.x0 = x1;
+      return this.y0 = y1;
+    };
+
+    Snake.prototype.turn = function(direction) {
+      return this.targetR = this.r - this.dr * direction;
     };
 
     Snake.prototype.draw = function(context) {
@@ -52,6 +80,17 @@ CLASSES
       context.arc(this.x * size, this.y * size, this.width * size, 0, 2 * Math.PI);
       context.closePath();
       return context.fill();
+    };
+
+    Snake.prototype.handleKeyPress = function(key) {
+      switch (key) {
+        case 37:
+        case 65:
+          return this.turn(1);
+        case 39:
+        case 68:
+          return this.turn(-1);
+      }
     };
 
     return Snake;
@@ -132,7 +171,6 @@ CLASSES
     entities.push(new Snake(0.5, 0.5));
     handleKeyPress = function(e) {
       var entity, _i, _len, _results;
-      console.log(e.keyCode);
       _results = [];
       for (_i = 0, _len = entities.length; _i < _len; _i++) {
         entity = entities[_i];
@@ -141,8 +179,9 @@ CLASSES
       return _results;
     };
     return start = function() {
-      window.addEventListener("keydown", handleKeyPress, false);
-      return getMainLoop(canvas, entities)(60);
+      canvas.addEventListener("keydown", handleKeyPress, false);
+      canvas.focus();
+      return getMainLoop(canvas, entities)(1);
     };
   }).call(this);
 
