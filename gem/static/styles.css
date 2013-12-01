@@ -181,3 +181,7 @@ body #footer a:hover {
 .expression .variable {
   color: #66d9ef;
 }
+
+.equationVariableHelper {
+  color: #a6e22e;
+}

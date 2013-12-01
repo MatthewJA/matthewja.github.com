@@ -8,8 +8,12 @@
       "gravity": new Equation(["F"], ["G", "m", "M", "r**-2"]),
       "gravitational-potential-energy": new Equation(["Ep"], ["-1", "G", "m", "M", "r**-1"])
     };
-    return function() {
-      return formulae;
+    return function(name) {
+      if (name in formulae) {
+        return formulae[name];
+      } else {
+        throw new Error("No formula called " + name + " exists.");
+      }
     };
   });
 

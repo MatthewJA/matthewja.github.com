@@ -21,9 +21,9 @@
         var c, constant, d, fractional, n, p, power, v, variable, _ref, _ref1;
         if (typeof term === 'string' || (term instanceof String)) {
           constant = /^-?\d+(\.\d+)?$/;
-          variable = /^[A-Za-z_]+$/;
+          variable = /^[A-Za-z_]+([0-9]+)?$/;
           fractional = /^-?\d+(\.\d+)?\/\d+(\.\d+)?$/;
-          power = /^[A-Za-z_]+\*\*-?\d+(\.\d+)?$/;
+          power = /^[A-Za-z_]+([0-9]+)?\*\*-?\d+(\.\d+)?$/;
           if (term.match(constant) != null) {
             c = new Constant(parseFloat(term));
             c.simplify();
@@ -320,7 +320,7 @@
       };
 
       Equation.prototype.toMathML = function(equationID, expression) {
-        var html, leftSide, leftTermsBottom, leftTermsLeft, leftTermsTop, mathClass, mathID, p, rightSide, rightTermsBottom, rightTermsLeft, rightTermsTop, term, varOutput, _i, _j, _len, _len1, _ref, _ref1;
+        var html, leftSide, leftTermsBottom, leftTermsLeft, leftTermsTop, mathClass, mathID, rightSide, rightTermsBottom, rightTermsLeft, rightTermsTop, t, term, _i, _j, _len, _len1, _ref, _ref1;
         if (expression == null) {
           expression = false;
         }
@@ -351,20 +351,11 @@
 
             } else {
               if (term.power > 0) {
-                if (term.power === 1) {
-                  varOutput = '<mi class="variable">' + term.label + "</mi>";
-                } else if (term.power > 0) {
-                  varOutput = '<msup><mi class="variable">' + term.label + "</mi><mn>" + term.power + "</mn></msup>";
-                }
-                leftTermsTop.push(varOutput);
+                leftTermsTop.push(term.toMathML());
               } else {
-                p = -term.power;
-                if (p === 1) {
-                  varOutput = '<mi class="variable">' + term.label + "</mi>";
-                } else if (p > 0) {
-                  varOutput = '<msup><mi class="variable">' + term.label + "</mi><mn>" + p + "</mn></msup>";
-                }
-                leftTermsBottom.push(varOutput);
+                t = term.copy();
+                t.pow(-1);
+                leftTermsBottom.push(t.toMathML());
               }
             }
           } else {
@@ -382,20 +373,11 @@
 
             } else {
               if (term.power > 0) {
-                if (term.power === 1) {
-                  varOutput = '<mi class="variable">' + term.label + "</mi>";
-                } else if (term.power > 0) {
-                  varOutput = '<msup><mi class="variable">' + term.label + "</mi><mn>" + term.power + "</mn></msup>";
-                }
-                rightTermsTop.push(varOutput);
+                rightTermsTop.push(term.toMathML());
               } else {
-                p = -term.power;
-                if (p === 1) {
-                  varOutput = '<mi class="variable">' + term.label + "</mi>";
-                } else if (p > 0) {
-                  varOutput = '<msup><mi class="variable">' + term.label + "</mi><mn>" + p + "</mn></msup>";
-                }
-                rightTermsBottom.push(varOutput);
+                t = term.copy();
+                t.pow(-1);
+                rightTermsBottom.push(t.toMathML());
               }
             }
           } else {
