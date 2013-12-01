@@ -4,7 +4,7 @@
     var addExpressionToWhiteboard;
     addExpressionToWhiteboard = function(expression, expressionID) {
       var expressionDiv, html;
-      if (settings.mathJaxEnabled) {
+      if (settings.get("mathJaxEnabled")) {
         html = expression.toMathML(expressionID, true);
         expressionDiv = $(html);
         $("#whiteboard-panel").append(expressionDiv);

@@ -169,6 +169,7 @@ body #footer a:hover {
 }
 .equation .variable {
   color: #a6e22e;
+  outline: 1px solid transparent;
 }
 
 .expression {
@@ -184,4 +185,8 @@ body #footer a:hover {
 
 .equationVariableHelper {
   color: #a6e22e;
+}
+
+.expressionVariableHelper {
+  color: #66d9ef;
 }

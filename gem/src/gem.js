@@ -2,7 +2,7 @@
 (function() {
   var VERSION;
 
-  VERSION = "0.0.1";
+  VERSION = "0.0.2";
 
   MathJax.Hub.Config({
     config: ["MMLorHTML.js"],
@@ -13,7 +13,7 @@
   });
 
   require.config({
-    urlArgs: "v={#VERSION}",
+    urlArgs: "v=" + VERSION,
     paths: {
       "jquery": "lib/jquery.min",
       "jqueryui": "lib/jquery-ui.min",
@@ -29,8 +29,9 @@
     }
   });
 
-  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading"], function($, ui, me, setupFrontend, finishLoading) {
+  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings"], function($, ui, me, setupFrontend, finishLoading, setupSettings) {
     return $(function() {
+      setupSettings();
       setupFrontend();
       require(["TouchPunch"]);
       return finishLoading();

@@ -57,7 +57,11 @@
       }
       return target.draggable({
         start: function(event, ui) {
-          $(ui.helper).addClass("equationVariableHelper");
+          if ($(event.target).parents(".equation").length !== 0) {
+            $(ui.helper).addClass("equationVariableHelper");
+          } else if ($(event.target).parents(".expression").length !== 0) {
+            $(ui.helper).addClass("expressionVariableHelper");
+          }
           $(ui.helper).css("font-size", $(event.target).css("font-size"));
           return $(event.target).fadeTo(0, 0);
         },

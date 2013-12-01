@@ -4,7 +4,7 @@
     var addEquationToWhiteboard;
     addEquationToWhiteboard = function(equation, equationID) {
       var equationDiv, html;
-      if (settings.mathJaxEnabled) {
+      if (settings.get("mathJaxEnabled")) {
         html = equation.toMathML(equationID);
         equationDiv = $(html);
         $("#whiteboard-panel").append(equationDiv);
