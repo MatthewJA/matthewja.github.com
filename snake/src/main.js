@@ -15,30 +15,104 @@ CLASSES
       this.v = 0.00025;
       this.targetR = 11;
       this.r = this.targetR;
-      this.dr = 2;
+      this.dr = 4;
       this.x0 = this.x - this.radius();
       this.y0 = this.y;
       this.colour = {
         snake: "#EFEFEF",
-        debug: "#444444"
+        debug: "#444444",
+        debugHighlight: "#884444"
       };
-      this.width = 0.015;
+      this.showDebugLines = true;
+      this.width = 0.01;
+      this.headRatio = 1.5;
+      /*
+      			Tails are confusing, so I will explain my logic.
+      			I will draw circular arcs, seeing as the snake is circular, right?
+      			To draw an arc, we need to store the start angle, the end angle, and the @r value (from which
+      			we can get the radius).
+      			So inside the tail array, we'll store objects with properties start, end, and @r.
+      */
+
+      this.tail = [];
+      this.maxTailLength = 0.1;
+      this.currentTailLength = 0;
     }
 
-    Snake.prototype.radius = function() {
-      return Math.abs(1 / this.r);
+    Snake.prototype.radius = function(r) {
+      if (r == null) {
+        r = null;
+      }
+      if (r != null) {
+        return Math.abs(1 / r);
+      } else {
+        return Math.abs(1 / this.r);
+      }
     };
 
     Snake.prototype.move = function(dt) {
-      this.updateRadius(dt);
-      this.d = (this.d + this.v / this.radius() * dt) % (2 * Math.PI);
-      this.x = this.radius() * Math.cos(this.d) + this.x0;
-      return this.y = this.radius() * Math.sin(this.d) + this.y0;
+      var d, entryLength, overflow, solveTheHaltingProblem;
+      if (dt > 0) {
+        this.updateRadius(dt);
+        d = this.d + this.v / this.radius() * dt;
+        if (this.tail.length > 0 && this.tail[this.tail.length - 1].r === this.r) {
+          this.tail[this.tail.length - 1].end += d - this.d;
+        } else {
+          this.tail.push({
+            start: this.d,
+            end: d,
+            r: this.r,
+            x0: this.x0,
+            y0: this.y0,
+            cc: d < this.d
+          });
+        }
+        solveTheHaltingProblem = 0;
+        while ((this.tailLength() > this.maxTailLength) && (this.tail.length > 0)) {
+          overflow = this.tailLength() - this.maxTailLength;
+          entryLength = this.radius(this.tail[0].r) * Math.abs(this.tail[0].start - this.tail[0].end);
+          if (entryLength > overflow) {
+            if (!this.tail[0].cc) {
+              this.tail[0].start += overflow / this.radius(this.tail[0].r);
+            } else {
+              this.tail[0].start -= overflow / this.radius(this.tail[0].r);
+            }
+            break;
+          } else {
+            this.tail.shift();
+            console.log(this.tail.length);
+          }
+        }
+        console.log(this.tailLength() + "/" + this.maxTailLength);
+        this.d = d;
+        this.x = this.radius() * Math.cos(this.d) + this.x0;
+        return this.y = this.radius() * Math.sin(this.d) + this.y0;
+      }
+    };
+
+    Snake.prototype.tailLength = function() {
+      var entry, length, _i, _len, _ref;
+      length = 0;
+      _ref = this.tail;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        entry = _ref[_i];
+        length += this.radius(entry.r) * Math.abs(entry.start - entry.end);
+      }
+      return length;
     };
 
     Snake.prototype.updateRadius = function(dt) {
-      var k, r, x1, y1;
-      r = (this.r * 4 + this.targetR) / 5;
+      var cs, k, r, x1, y1;
+      if (this.r === this.targetR || Math.abs(this.r - this.targetR) < 0.001) {
+        this.r = this.targetR;
+        return;
+      }
+      if (dt > 0) {
+        cs = dt / 4;
+        r = (this.r * (cs - 1) + this.targetR) / cs;
+      } else {
+        r = this.r;
+      }
       if (this.r < 0 && r > 0) {
         k = this.r / Math.abs(r);
       } else if (this.r > 0 && r < 0) {
@@ -49,7 +123,7 @@ CLASSES
       x1 = k * (this.x0 - this.x) + this.x;
       y1 = k * (this.y0 - this.y) + this.y;
       if ((r < 0 && this.r > 0) || (r > 0 && this.r < 0)) {
-        this.d = (this.d + Math.PI) % (2 * Math.PI);
+        this.d = this.d + Math.PI;
         this.v = -this.v;
       }
       this.r = r;
@@ -62,22 +136,33 @@ CLASSES
     };
 
     Snake.prototype.draw = function(context) {
-      var size;
+      var entry, size, _i, _len, _ref;
       size = context.canvas.width;
-      context.lineWidth = this.width / 10 * size;
-      context.strokeStyle = this.colour.debug;
-      context.fillStyle = this.colour.debug;
+      if (this.showDebugLines) {
+        context.lineWidth = this.width / 10 * size;
+        context.strokeStyle = this.colour.debug;
+        context.fillStyle = this.colour.debug;
+        context.beginPath();
+        context.arc(this.x0 * size, this.y0 * size, this.width * size / 4, 0, 2 * Math.PI);
+        context.closePath();
+        context.fill();
+        context.beginPath();
+        context.arc(this.x0 * size, this.y0 * size, this.radius() * size, 0, 2 * Math.PI);
+        context.closePath();
+        context.stroke();
+      }
+      context.lineWidth = this.width * size / 2;
+      context.strokeStyle = this.colour.snake;
       context.beginPath();
-      context.arc(this.x0 * size, this.y0 * size, this.width * size / 4, 0, 2 * Math.PI);
-      context.closePath();
-      context.fill();
-      context.beginPath();
-      context.arc(this.x0 * size, this.y0 * size, this.radius() * size, 0, 2 * Math.PI);
-      context.closePath();
+      _ref = this.tail;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        entry = _ref[_i];
+        context.arc(entry.x0 * size, entry.y0 * size, this.radius(entry.r) * size, entry.start, entry.end, entry.cc);
+      }
       context.stroke();
       context.fillStyle = this.colour.snake;
       context.beginPath();
-      context.arc(this.x * size, this.y * size, this.width * size, 0, 2 * Math.PI);
+      context.arc(this.x * size, this.y * size, this.width / 2 * this.headRatio * size, 0, 2 * Math.PI);
       context.closePath();
       return context.fill();
     };
@@ -160,7 +245,10 @@ CLASSES
       updateCanvasSize(canvas, context);
       update(dt, entities);
       draw(context, entities);
-      return setTimeout(mainLoop, 1 / fps);
+      if (dt !== 0) {
+        document.title = 1000 / dt + " fps";
+      }
+      return setTimeout(mainLoop, 1 / fps * 1000);
     };
   });
 
@@ -181,7 +269,7 @@ CLASSES
     return start = function() {
       canvas.addEventListener("keydown", handleKeyPress, false);
       canvas.focus();
-      return getMainLoop(canvas, entities)(1);
+      return getMainLoop(canvas, entities)(60);
     };
   }).call(this);
 
