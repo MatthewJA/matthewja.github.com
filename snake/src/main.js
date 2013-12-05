@@ -5,21 +5,23 @@ CLASSES
 
 
 (function() {
-  var Snake, draw, getMainLoop, start, update, updateCanvasSize;
+  var Food, Snake, circleCollision, distanceSquared, draw, getMainLoop, start, update, updateCanvasSize;
 
   Snake = (function() {
-    function Snake(x, y) {
+    function Snake(x, y, scoreDiv) {
       this.x = x;
       this.y = y;
+      this.scoreDiv = scoreDiv != null ? scoreDiv : null;
       this.d = 0;
       this.v = 0.00025;
-      this.targetR = 11;
+      this.targetR = 10.5;
       this.r = this.targetR;
-      this.dr = 4;
+      this.dr = 3;
       this.x0 = this.x - this.radius();
       this.y0 = this.y;
       this.colour = {
         snake: "#EFEFEF",
+        headsup: "#454545",
         debug: "#444444",
         debugHighlight: "#884444"
       };
@@ -36,7 +38,8 @@ CLASSES
 
       this.tail = [];
       this.maxTailLength = 0.1;
-      this.currentTailLength = 0;
+      this.growthAmount = 0.1;
+      this.score = 0;
     }
 
     Snake.prototype.radius = function(r) {
@@ -50,8 +53,8 @@ CLASSES
       }
     };
 
-    Snake.prototype.move = function(dt) {
-      var d, entryLength, overflow, solveTheHaltingProblem;
+    Snake.prototype.update = function(dt, entities) {
+      var d, entity, entryLength, overflow, _i, _len, _ref, _results;
       if (dt > 0) {
         this.updateRadius(dt);
         d = this.d + this.v / this.radius() * dt;
@@ -67,7 +70,6 @@ CLASSES
             cc: d < this.d
           });
         }
-        solveTheHaltingProblem = 0;
         while ((this.tailLength() > this.maxTailLength) && (this.tail.length > 0)) {
           overflow = this.tailLength() - this.maxTailLength;
           entryLength = this.radius(this.tail[0].r) * Math.abs(this.tail[0].start - this.tail[0].end);
@@ -80,13 +82,24 @@ CLASSES
             break;
           } else {
             this.tail.shift();
-            console.log(this.tail.length);
           }
         }
-        console.log(this.tailLength() + "/" + this.maxTailLength);
         this.d = d;
         this.x = this.radius() * Math.cos(this.d) + this.x0;
-        return this.y = this.radius() * Math.sin(this.d) + this.y0;
+        this.y = this.radius() * Math.sin(this.d) + this.y0;
+        _results = [];
+        for (_i = 0, _len = entities.length; _i < _len; _i++) {
+          entity = entities[_i];
+          if (entity instanceof Food && !entity.eaten && circleCollision(entity.x, entity.y, entity.radius, this.x, this.y, this.headRatio * this.width / 2)) {
+            entity.eaten = true;
+            this.score += 1;
+            this.maxTailLength += this.growthAmount;
+            _results.push((_ref = this.scoreDiv) != null ? _ref.innerHTML = this.score.toString() : void 0);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       }
     };
 
@@ -103,10 +116,11 @@ CLASSES
 
     Snake.prototype.updateRadius = function(dt) {
       var cs, k, r, x1, y1;
-      if (this.r === this.targetR || Math.abs(this.r - this.targetR) < 0.001) {
+      if (this.r === this.targetR || Math.abs(this.r - this.targetR) < 0.00001) {
         this.r = this.targetR;
         return;
       }
+      console.log(this.r);
       if (dt > 0) {
         cs = dt / 4;
         r = (this.r * (cs - 1) + this.targetR) / cs;
@@ -138,6 +152,12 @@ CLASSES
     Snake.prototype.draw = function(context) {
       var entry, size, _i, _len, _ref;
       size = context.canvas.width;
+      context.fillStyle = this.colour.headsup;
+      context.fillRect(size * 0.025, size * 0.95, size * 0.95, size * this.width);
+      context.beginPath();
+      context.arc(size * (0.9 * (Math.atan(this.r / 10) / Math.PI + 0.5) + 0.05), size * (0.95 + this.width / 2), size * this.width * 1.5, 0, 2 * Math.PI);
+      context.closePath();
+      context.fill();
       if (this.showDebugLines) {
         context.lineWidth = this.width / 10 * size;
         context.strokeStyle = this.colour.debug;
@@ -182,10 +202,41 @@ CLASSES
 
   })();
 
+  Food = (function() {
+    function Food(x, y) {
+      this.x = x;
+      this.y = y;
+      this.colour = "#64FF64";
+      this.radius = 0.015;
+      this.eaten = false;
+    }
+
+    Food.prototype.draw = function(context) {
+      var size;
+      size = context.canvas.width;
+      context.fillStyle = this.colour;
+      context.beginPath();
+      context.arc(this.x * size, this.y * size, this.radius * size, 0, 2 * Math.PI);
+      context.closePath();
+      return context.fill();
+    };
+
+    return Food;
+
+  })();
+
   /*
   HELPER FUNCTIONS
   */
 
+
+  distanceSquared = function(x0, y0, x1, y1) {
+    return Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2);
+  };
+
+  circleCollision = function(x0, y0, r0, x1, y1, r1) {
+    return distanceSquared(x0, y0, x1, y1) < Math.pow(r0 + r1, 2);
+  };
 
   /*
   MAIN FUNCTIONS
@@ -199,18 +250,38 @@ CLASSES
     canvas.style.width = "" + width + "px";
     canvas.style.height = "" + height + "px";
     context.canvas.width = width;
-    return context.canvas.height = height;
+    context.canvas.height = height;
+    return document.getElementById("score").style.left = canvas.offsetLeft + "px";
   };
 
   update = (function() {
     return update = function(dt, entities) {
-      var entity, _i, _len, _results;
-      _results = [];
+      var entity, food, hasFood, i, _i, _j, _len, _ref, _results;
+      hasFood = false;
       for (_i = 0, _len = entities.length; _i < _len; _i++) {
         entity = entities[_i];
-        _results.push(typeof entity.move === "function" ? entity.move(dt) : void 0);
+        if (typeof entity.update === "function") {
+          entity.update(dt, entities);
+        }
+        if (entity instanceof Food) {
+          hasFood = true;
+        }
       }
-      return _results;
+      if (!hasFood) {
+        food = new Food(Math.random() * 0.9 + 0.05, Math.random() * 0.9 + 0.05);
+        entities.push(food);
+      }
+      if (hasFood) {
+        _results = [];
+        for (i = _j = _ref = entities.length - 1; _j >= 0; i = _j += -1) {
+          if (entities[i].eaten) {
+            _results.push(entities.splice(i, 1));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      }
     };
   }).call(this);
 
@@ -246,7 +317,7 @@ CLASSES
       update(dt, entities);
       draw(context, entities);
       if (dt !== 0) {
-        document.title = 1000 / dt + " fps";
+        document.title = "Circle Snake 2 - " + Math.round(1000 / dt) + " fps";
       }
       return setTimeout(mainLoop, 1 / fps * 1000);
     };
@@ -256,7 +327,7 @@ CLASSES
     var canvas, entities, handleKeyPress;
     canvas = document.getElementById("canvas");
     entities = [];
-    entities.push(new Snake(0.5, 0.5));
+    entities.push(new Snake(0.5, 0.5, document.getElementById("score")));
     handleKeyPress = function(e) {
       var entity, _i, _len, _results;
       _results = [];

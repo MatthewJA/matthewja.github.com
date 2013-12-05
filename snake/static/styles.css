@@ -8,6 +8,7 @@ html, body {
 	height: 100%;
 
 	text-align: center;
+	font-family: "Noto Sans", "Trebuchet MS", Tahoma, Arial, sans-serif;
 
 	background-color: #F0FF8F;
 }
@@ -20,3 +21,27 @@ html, body {
 
 	background-color: #FFFFFF;
 }
+
+#score {
+	padding: 20pt;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	font-size: 20pt;
+	color: #EFEFEF;
+}
+
+/*
+#title {
+	padding: 20pt;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	font-size: 20pt;
+	color: #EFEFEF;
+}
+*/
