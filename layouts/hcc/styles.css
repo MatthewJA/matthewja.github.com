@@ -1,4 +1,4 @@
-* {
+html, body {
 	margin:0;
 	padding:0;
 }
@@ -159,9 +159,62 @@ html, body {
 	color:#6EAE33;
 }
 
+.contactentry {
+	text-align:center;
+
+	margin:10pt auto;
+}
+
+.contactentry img {
+	vertical-align:middle;
+	margin-right:10pt;
+}
+
+.contactentry span {
+	vertical-align:middle;
+	font-family: 'Muli', sans-serif;
+	font-size:1.5em;
+}
+
+#contact .smallheading {
+	padding:10pt 0;
+}
+
+#quoteform {
+	margin:0 auto;
+	background-color:#FFFFFF;
+	width:500pt;
+	padding:10pt 0;
+}
+
+#quoteform input, #quoteform textarea {
+	display:block;
+	border:0;
+	margin:10pt;
+	padding:10pt;
+	width:460pt;
+}
+
+.clear {
+	height:60pt;
+	clear:both;
+}
+
 @media only screen and (max-width: 915px) {
 	.bigheading {
 		line-height:inherit;
+	}
+}
+
+@media only screen and (max-width: 510pt) {
+	#quoteform {
+		width:100%;
+	}
+
+	#quoteform input, #quoteform textarea {
+		margin:10pt 0;
+		padding:10pt 0;
+		width:100%;
 	}
 }
 
