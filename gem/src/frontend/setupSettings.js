@@ -14,6 +14,8 @@
             g = false;
           } else if (g === "true") {
             g = true;
+          } else if (g.match(/^\d+$/)) {
+            g = parseInt(g);
           }
           settings.set(key, g);
         }

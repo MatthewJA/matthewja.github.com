@@ -30,11 +30,14 @@
       };
 
       Variable.prototype.toMathML = function() {
-        var labelOutput;
-        if (this.label.length > 1) {
-          labelOutput = '<msub class="variable"><mi>' + this.label[0] + '</mi><mi>' + this.label.slice(1) + "</mi></msub>";
+        var label, labelArray, labelID, labelOutput;
+        labelArray = this.label.split("-");
+        label = labelArray[0];
+        labelID = labelArray[1] != null ? 'id="variable-' + this.label + '"' : "";
+        if (label.length > 1) {
+          labelOutput = '<msub class="variable"' + labelID + '><mi>' + label[0] + '</mi><mi>' + label.slice(1) + "</mi></msub>";
         } else {
-          labelOutput = '<mi class="variable">' + this.label + '</mi>';
+          labelOutput = '<mi class="variable"' + labelID + '>' + label + '</mi>';
         }
         if (this.power === 1) {
           return labelOutput;

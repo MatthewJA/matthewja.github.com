@@ -3,7 +3,8 @@
   define(function() {
     var settings;
     settings = {
-      mathJaxEnabled: true
+      mathJaxEnabled: true,
+      connectionWidth: 3
     };
     return {
       get: function(name) {

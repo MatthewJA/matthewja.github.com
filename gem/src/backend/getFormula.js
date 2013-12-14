@@ -3,14 +3,22 @@
   define(["JSAlgebra/equation"], function(Equation) {
     var formulae;
     formulae = {
-      "kinetic-energy": new Equation(["Ek"], ["1/2", "m", "v**2"]),
-      "momentum": new Equation(["p"], ["m", "v"]),
-      "gravity": new Equation(["F"], ["G", "m", "M", "r**-2"]),
-      "gravitational-potential-energy": new Equation(["Ep"], ["-1", "G", "m", "M", "r**-1"])
+      "kinetic-energy": function() {
+        return new Equation(["Ek"], ["1/2", "m", "v**2"]);
+      },
+      "momentum": function() {
+        return new Equation(["p"], ["m", "v"]);
+      },
+      "gravity": function() {
+        return new Equation(["F"], ["G", "m", "M", "r**-2"]);
+      },
+      "gravitational-potential-energy": function() {
+        return new Equation(["Ep"], ["-1", "G", "m", "M", "r**-1"]);
+      }
     };
     return function(name) {
       if (name in formulae) {
-        return formulae[name];
+        return formulae[name]();
       } else {
         throw new Error("No formula called " + name + " exists.");
       }

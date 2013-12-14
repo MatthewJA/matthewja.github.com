@@ -2,7 +2,7 @@
 (function() {
   var VERSION;
 
-  VERSION = "0.0.2";
+  VERSION = "0.0.4";
 
   MathJax.Hub.Config({
     config: ["MMLorHTML.js"],
@@ -15,25 +15,30 @@
   require.config({
     urlArgs: "v=" + VERSION,
     paths: {
-      "jquery": "lib/jquery.min",
-      "jqueryui": "lib/jquery-ui.min",
+      "jquery": "lib/jQuery/jquery.min",
+      "jqueryui": "lib/jQuery/jquery-ui.min",
       "JSAlgebra": "lib/JS-Algebra/src/",
-      "MathJax": "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML",
+      "MathJax": "lib/MathJax/MathJax",
       "TouchPunch": "lib/Touch-Punch/jquery.ui.touch-punch.min",
-      "MobileEvents": "lib/jquery.mobile-events.min"
+      "MobileEvents": "lib/jQuery/jquery.mobile-events.min",
+      "jsPlumb": "lib/jsPlumb/jquery.jsPlumb.min"
     },
     shim: {
       "jqueryui": ["jquery"],
       "TouchPunch": ["jquery"],
-      "MobileEvents": ["jquery"]
+      "MobileEvents": ["jquery"],
+      "jsPlumb": {
+        deps: ["jquery"],
+        exports: "jsPlumb"
+      }
     }
   });
 
-  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings"], function($, ui, me, setupFrontend, finishLoading, setupSettings) {
+  require(["jquery", "jqueryui", "MobileEvents", "jsPlumb", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/connectionHelpers"], function($, ui, me, jsPlumb, setupFrontend, finishLoading, setupSettings, connectionHelpers) {
     return $(function() {
       setupSettings();
-      setupFrontend();
       require(["TouchPunch"]);
+      setupFrontend();
       return finishLoading();
     });
   });

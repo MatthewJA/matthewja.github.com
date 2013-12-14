@@ -21,7 +21,7 @@
         }
         if ((aStored != null) && (bStored != null)) {
           if (aStored === bStored) {
-            return;
+            return equivalencies[aStored];
           }
           newEquivalency = [];
           _ref = equivalencies[aStored];
@@ -45,13 +45,17 @@
             equivalencies.splice(bStored, 1);
             equivalencies.splice(aStored, 1);
           }
-          return equivalencies.push(newEquivalency);
+          equivalencies.push(newEquivalency);
+          return equivalencies[equivalencies.length - 1];
         } else if (aStored != null) {
-          return equivalencies[aStored].push(b);
+          equivalencies[aStored].push(b);
+          return equivalencies[aStored];
         } else if (bStored != null) {
-          return equivalencies[bStored].push(a);
+          equivalencies[bStored].push(a);
+          return equivalencies[bStored];
         } else {
-          return equivalencies.push([a, b]);
+          equivalencies.push([a, b]);
+          return equivalencies[equivalencies.length - 1];
         }
       },
       get: function(variable) {

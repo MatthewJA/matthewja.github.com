@@ -21,9 +21,9 @@
         var c, constant, d, fractional, n, p, power, v, variable, _ref, _ref1;
         if (typeof term === 'string' || (term instanceof String)) {
           constant = /^-?\d+(\.\d+)?$/;
-          variable = /^[A-Za-z_]+([0-9]+)?$/;
+          variable = /^[A-Za-z_]+([0-9]+)?(-\d+)?$/;
           fractional = /^-?\d+(\.\d+)?\/\d+(\.\d+)?$/;
-          power = /^[A-Za-z_]+([0-9]+)?\*\*-?\d+(\.\d+)?$/;
+          power = /^[A-Za-z_]+([0-9]+)?(-\d+)?\*\*-?\d+(\.\d+)?$/;
           if (term.match(constant) != null) {
             c = new Constant(parseFloat(term));
             c.simplify();
@@ -136,6 +136,48 @@
           rightTerms.push(new Constant(1));
         }
         return new Equation(leftTerms, rightTerms);
+      };
+
+      Equation.prototype.replaceVariables = function(replacements) {
+        var term, _i, _j, _len, _len1, _ref, _ref1, _results;
+        _ref = this.leftTerms;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          term = _ref[_i];
+          if ((term.isVariable != null) && term.label in replacements) {
+            term.label = replacements[term.label];
+          }
+        }
+        _ref1 = this.rightTerms;
+        _results = [];
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          term = _ref1[_j];
+          if ((term.isVariable != null) && term.label in replacements) {
+            _results.push(term.label = replacements[term.label]);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      };
+
+      Equation.prototype.getAllVariables = function() {
+        var term, variableLabels, _i, _j, _len, _len1, _ref, _ref1;
+        variableLabels = [];
+        _ref = this.leftTerms;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          term = _ref[_i];
+          if (term.isVariable != null) {
+            variableLabels.push(term.label);
+          }
+        }
+        _ref1 = this.rightTerms;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          term = _ref1[_j];
+          if (term.isVariable != null) {
+            variableLabels.push(term.label);
+          }
+        }
+        return variableLabels;
       };
 
       Equation.prototype.sub = function(values) {
@@ -257,7 +299,7 @@
       };
 
       Equation.prototype.toHTML = function(equationID, expression) {
-        var divClass, divID, html, leftTerms, power, rightTerms, term, _i, _j, _len, _len1, _ref, _ref1;
+        var divClass, divID, html, label, labelArray, labelID, leftTerms, power, rightTerms, term, _i, _j, _len, _len1, _ref, _ref1;
         if (expression == null) {
           expression = false;
         }
@@ -290,7 +332,10 @@
               } else {
                 power = "**" + term.power;
               }
-              leftTerms.push('<span class="variable">' + term.label + '</span>' + power);
+              labelArray = term.label.split("-");
+              label = labelArray[0];
+              labelID = labelArray[1] != null ? 'id="variable-' + term.label + '"' : "";
+              leftTerms.push('<span class="variable"' + labelID + '>' + labelArray[0] + '</span>' + power);
             }
           } else {
             leftTerms.push(term);
@@ -309,7 +354,10 @@
               } else {
                 power = "**" + term.power;
               }
-              rightTerms.push('<span class="variable">' + term.label + '</span>' + power);
+              labelArray = term.label.split("-");
+              label = labelArray[0];
+              labelID = labelArray[1] != null ? 'id="variable-' + term.label + '"' : "";
+              rightTerms.push('<span class="variable"' + labelID + '>' + labelArray[0] + '</span>' + power);
             }
           } else {
             rightTerms.push(term);
