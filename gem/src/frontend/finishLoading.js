@@ -3,7 +3,8 @@
   define(["jquery"], function($) {
     return function() {
       $("#gem-window").show();
-      return $("#loader").hide();
+      $("#loader").hide();
+      return window.loadedGEM = true;
     };
   });
 

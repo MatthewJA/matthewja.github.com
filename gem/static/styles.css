@@ -105,10 +105,21 @@ body #loader {
   text-align: center;
   color: #ecece9;
   background-color: #272822;
+  position: relative;
 }
 body #loader p {
-  display: table-cell;
-  vertical-align: middle;
+  padding-top: 20pt;
+}
+body #loader #preloader {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 175px;
+  margin: 0 auto;
+}
+body #loader #preloader img {
+  position: absolute;
 }
 body #gem-window {
   width: 850px;

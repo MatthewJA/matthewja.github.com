@@ -20,21 +20,16 @@
       "JSAlgebra": "lib/JS-Algebra/src/",
       "MathJax": "lib/MathJax/MathJax",
       "TouchPunch": "lib/Touch-Punch/jquery.ui.touch-punch.min",
-      "MobileEvents": "lib/jQuery/jquery.mobile-events.min",
-      "jsPlumb": "lib/jsPlumb/jquery.jsPlumb.min"
+      "MobileEvents": "lib/jQuery/jquery.mobile-events.min"
     },
     shim: {
       "jqueryui": ["jquery"],
       "TouchPunch": ["jquery"],
-      "MobileEvents": ["jquery"],
-      "jsPlumb": {
-        deps: ["jquery"],
-        exports: "jsPlumb"
-      }
+      "MobileEvents": ["jquery"]
     }
   });
 
-  require(["jquery", "jqueryui", "MobileEvents", "jsPlumb", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/connectionHelpers"], function($, ui, me, jsPlumb, setupFrontend, finishLoading, setupSettings, connectionHelpers) {
+  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings"], function($, ui, me, setupFrontend, finishLoading, setupSettings) {
     return $(function() {
       setupSettings();
       require(["TouchPunch"]);
