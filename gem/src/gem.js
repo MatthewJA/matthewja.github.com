@@ -2,7 +2,7 @@
 (function() {
   var VERSION;
 
-  VERSION = "0.0.4";
+  VERSION = "0.0.5";
 
   MathJax.Hub.Config({
     config: ["MMLorHTML.js"],
@@ -29,12 +29,14 @@
     }
   });
 
-  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings"], function($, ui, me, setupFrontend, finishLoading, setupSettings) {
+  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/settings"], function($, ui, me, setupFrontend, finishLoading, setupSettings, settings) {
     return $(function() {
       setupSettings();
       require(["TouchPunch"]);
       setupFrontend();
-      return finishLoading();
+      if (!settings.get("loadForever")) {
+        return finishLoading();
+      }
     });
   });
 

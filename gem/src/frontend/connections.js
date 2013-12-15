@@ -54,7 +54,7 @@
     };
     return {
       repaintVariables: function(element) {
-        var connection, variable, variables, _i, _len, _ref, _ref1, _results;
+        var connection, variable, variables, _i, _j, _len, _len1, _ref, _ref1, _results, _results1;
         if (element == null) {
           element = null;
         }
@@ -80,7 +80,12 @@
           }
           return _results;
         } else {
-          throw new Exception("repaintVariables not implemented");
+          _results1 = [];
+          for (_j = 0, _len1 = connections.length; _j < _len1; _j++) {
+            connection = connections[_j];
+            _results1.push(repaint(connection));
+          }
+          return _results1;
         }
       },
       connect: function(source, target) {
