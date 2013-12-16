@@ -1,0 +1,228 @@
+html, body {
+	margin:0;
+	padding:0;
+}
+
+html, body {
+	width:100%;
+	height:100%;
+}
+
+.headinglink:link, .headinglink:visited {
+	color:inherit;
+	text-decoration:none;
+}
+
+.headinglink:hover {
+	color:#6EAE33;
+}
+
+.box {
+	width:100%;
+	min-height:100%;
+	text-align:center;
+}
+
+#top {
+	background: url("static/townbeach_large.jpg") no-repeat bottom right;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+}
+
+.whitebox {
+	padding:10pt 20pt 20pt 20pt;
+	background-color:#020249;
+	display:inline-block;
+	max-height:100%;
+	background-position:top;
+	background-repeat:repeat-x;
+}
+
+.footerbox {
+	position:absolute;
+	bottom:0pt;
+	font-family: 'Muli', sans-serif;
+	width:100%;
+}
+
+.footerinner {
+	padding:10pt 20pt;
+	background-color:#FFFFFF;
+	border-radius:10pt 10pt 0 0;
+	margin:0 auto;
+	display:inline-block;
+	font-size:125%;
+}
+
+#nav {
+	color:white;
+	font-family: 'Muli', sans-serif;
+	font-size:2em;
+}
+
+.titleimage {
+	max-width:100%;
+}
+
+#about, #contact {
+	background-color:#DFDFFF;
+}
+
+#prices {
+	/*background-color:#4A7BA18;*/
+	background-color:#DFDFFF;
+}
+
+.bigheading {
+	width:100%;
+	min-height:100pt;
+	/*line-height:100pt;*/
+	background-color:#020249;
+	font-family: 'Muli', sans-serif;
+	color:#FFFFFF;
+	font-size:2.5em;
+	/*background-image:url("./static/bannergradient.png");*/
+	background-position:top;
+	background-repeat:repeat-x;
+
+	display:table;
+}
+
+.verticalaligner {
+	display:table-cell;
+	height:100%;
+	vertical-align:middle;
+}
+
+.smallheading {
+	font-family: 'Muli', sans-serif;
+	color:#000000;
+	font-size:2em;
+	width:100%;
+	padding:25pt 0;
+
+	display:table;
+}
+
+.smallerheading {
+	font-family: 'Muli', sans-serif;
+	color:#000000;
+	font-size:1.5em;
+}
+
+.smallestheading {
+	font-family: 'Muli', sans-serif;
+	color:#000000;
+	font-size:1em;
+}
+
+.iconbox {
+	font-family: 'Muli', sans-serif;
+	display:inline-block;
+	margin:15px;
+}
+
+.phonenumbers {
+	font-size:60%;
+}
+
+#floatingnav {
+	/*width:50pt;*/
+	height:50pt;
+	width:200pt;
+	background-color:#2C2CA4;
+	position:fixed;
+	bottom:0;
+	margin-left:-100pt;
+	left:50%;
+	display:none;
+	color:#DFDFFF;
+	text-align:center;
+	line-height:50pt;
+	text-decoration:none;
+	font-family: 'Muli', sans-serif;
+	border-radius:5pt 5pt 0 0;
+	padding:0 10pt;
+}
+
+#toplink:hover {
+	background-color:#6EAE33;
+}
+
+#floatingnav a:visited, a:link {
+	color:inherit;
+}
+
+#floatingnav a:hover {
+	color:#6EAE33;
+}
+
+.contactentry {
+	text-align:center;
+
+	margin:10pt auto;
+}
+
+.contactentry img {
+	vertical-align:middle;
+	margin-right:10pt;
+}
+
+.contactentry span {
+	vertical-align:middle;
+	font-family: 'Muli', sans-serif;
+	font-size:1.5em;
+}
+
+#contact .smallheading {
+	padding:10pt 0;
+}
+
+#quoteform {
+	margin:0 auto;
+	background-color:#FFFFFF;
+	width:500pt;
+	padding:10pt 0;
+}
+
+#quoteform input, #quoteform textarea {
+	display:block;
+	border:0;
+	margin:10pt;
+	padding:10pt;
+	width:460pt;
+}
+
+#quoteform textarea {
+	width:480pt;
+}
+
+.clear {
+	height:60pt;
+	clear:both;
+}
+
+@media only screen and (max-width: 915px) {
+	.bigheading {
+		line-height:inherit;
+	}
+}
+
+@media only screen and (max-width: 510pt) {
+	#quoteform {
+		width:100%;
+	}
+
+	#quoteform input, #quoteform textarea {
+		margin:10pt 0;
+		padding:10pt 0;
+		width:100%;
+	}
+}
+
+@-ms-viewport{
+    zoom: 1.0;
+    width: extend-to-zoom;
+}

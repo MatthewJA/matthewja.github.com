@@ -5,7 +5,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./static/styles.css">
 	<!-- [if lt IE 9]
 		<style type="text/css">
 			.box {
@@ -30,24 +30,6 @@
 			$("#top").css("background-image", 'url("static/' + images[index] + '_large.jpg")');
 			$("#top").css("background-position", alignments[index]);
 
-			// click handlers for delightful scrolly things
-			// $(".aboutlink").click(function() {
-			// 	goToScreen("about");
-			// 	return false;
-			// });
-			// $(".priceslink").click(function() {
-			// 	goToScreen("prices");
-			// 	return false;
-			// });
-			// $("#toplink").click(function() {
-			// 	goToScreen("top");
-			// 	return false;
-			// });
-			// $(".contactlink").click(function() {
-			// 	goToScreen("contact");
-			// 	return false;
-			// });
-
 			// need to hide toplink if the user scrolls up too far
 			var scrollCheck = setInterval(function() {
 				var scrollTop = $(window).scrollTop();
@@ -66,16 +48,6 @@
 				}
 			}, 250);
 		});
-
-		function goToScreen(screen) {
-			$('html, body').stop().animate({
-				scrollTop: $("#" + screen).position().top
-			}, 400);
-
-			// $('#toplink').fadeIn('slow', function() {
-			// 	navigationHidden = false;
-			// });
-		};
 	</script>
 </head>
 <body>
@@ -143,7 +115,7 @@
 			<input type="text" name="suburb" placeholder="Suburb">
 			<input type="email" name="email" placeholder="Email address">
 			<textarea name="details" placeholder="Details..."></textarea>
-			<input type="submit" value="Request a quote">
+			<input type="submit" id="submitbutton" value="Request a quote">
 		</form>
 
 	<div class="clear"></div>
