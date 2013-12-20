@@ -113,25 +113,25 @@
         _results = [];
         for (_i = 0, _len = equivalency.length; _i < _len; _i++) {
           c = equivalency[_i];
-          cID = "variable-" + c;
+          cID = new RegExp("^variable-equation-\\d+-" + c + "$");
           _results.push((function() {
             var _j, _k, _len1, _len2, _results1;
             _results1 = [];
             for (_j = 0, _len1 = equivalency.length; _j < _len1; _j++) {
               d = equivalency[_j];
-              dID = "variable-" + d;
+              dID = new RegExp("^variable-equation-\\d+-" + d + "$");
               exists = false;
               for (_k = 0, _len2 = connections.length; _k < _len2; _k++) {
                 connection = connections[_k];
                 sourceID = connection.source.attr("id");
                 targetID = connection.target.attr("id");
-                if ((sourceID === cID && targetID === dID) || (sourceID === dID && targetID === cID)) {
+                if ((sourceID.match(cID) && targetID.match(dID)) || (sourceID.match(dID) && targetID.match(cID))) {
                   exists = true;
                   break;
                 }
               }
               if (!exists) {
-                _results1.push(this.connect($("#variable-" + c), $("#variable-" + d)));
+                _results1.push(this.connect($('[id^="variable-equation"][id$="-' + c + '"]'), $('[id^="variable-equation"][id$="-' + d + '"]')));
               } else {
                 _results1.push(void 0);
               }

@@ -2,7 +2,7 @@
 (function() {
   var VERSION;
 
-  VERSION = "0.0.5";
+  VERSION = "0.0.6";
 
   MathJax.Hub.Config({
     config: ["MMLorHTML.js"],

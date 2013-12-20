@@ -16,6 +16,13 @@
       },
       size: function() {
         return equations.length;
+      },
+      set: function(equationID, equation) {
+        if (equationID >= equation.length || equationID < 0) {
+          throw new Error("No equation with ID " + equationID + " exists.");
+        }
+        equations[equationID] = equation;
+        return equations[equationID];
       }
     };
   });

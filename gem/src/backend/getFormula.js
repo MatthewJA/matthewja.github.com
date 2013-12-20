@@ -14,6 +14,21 @@
       },
       "gravitational-potential-energy": function() {
         return new Equation(["Ep"], ["-1", "G", "m", "M", "r**-1"]);
+      },
+      "gravitational-potential-energy-simple": function() {
+        return new Equation(["Ep"], ["m", "g", "h"]);
+      },
+      "force": function() {
+        return new Equation(["F"], ["m", "a"]);
+      },
+      "centripetal-force": function() {
+        return new Equation(["F"], ["m", "v**2", "r**-1"]);
+      },
+      "product": function() {
+        return new Equation(["a"], ["b", "c"]);
+      },
+      "contrived-example": function() {
+        return new Equation(["3", "z", "x"], ["y", "w**3"]);
       }
     };
     return function(name) {

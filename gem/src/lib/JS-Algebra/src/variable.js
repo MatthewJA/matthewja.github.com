@@ -3,49 +3,119 @@
   define([], function() {
     var Variable;
     return Variable = (function() {
-      function Variable(label, power) {
+      function Variable(label, power, roots) {
         this.label = label;
         this.power = power != null ? power : 1;
+        if (roots == null) {
+          roots = null;
+        }
         this.isTerm = true;
         this.isVariable = true;
+        if (roots != null) {
+          this.roots = roots;
+        } else {
+          this.roots = {};
+        }
       }
 
       Variable.prototype.pow = function(power) {
+        var den, i, num, _i, _ref, _ref1;
+        if (power in this.roots && this.roots[power] > 0) {
+          this.roots[power] -= 1;
+          return;
+        }
+        _ref = this.fractionSimplify(power), num = _ref[0], den = _ref[1];
+        console.log(den);
+        if (den !== 1) {
+          for (i = _i = 2; _i <= 9; i = ++_i) {
+            if ((-0.000001 <= (_ref1 = (!(power < 0) ? power : -power) - (1 / i)) && _ref1 < 0.000001)) {
+              power *= i;
+              den = i;
+              this.power *= power;
+              if (this.power % den === 0) {
+                this.power /= den;
+              } else {
+                if (den in this.roots) {
+                  this.roots[den] += 1;
+                } else {
+                  this.roots[den] = 1;
+                }
+              }
+              return;
+            }
+          }
+        }
+        console.log("power of " + power + " times " + this.power);
         return this.power *= power;
       };
 
       Variable.prototype.copy = function() {
-        return new Variable(this.label, this.power);
+        return new Variable(this.label, this.power, this.roots);
       };
 
       Variable.prototype.toString = function() {
+        var root, str;
         switch (this.power) {
           case 1:
-            return this.label;
+            str = this.label;
+            break;
           case 0:
             return "1";
           default:
-            return this.label + "**" + this.power;
+            str = this.label + "**" + this.power;
         }
+        for (root in this.roots) {
+          if (this.roots[root] > 0) {
+            str = "(" + str + ")**(1/" + root + ")";
+          }
+        }
+        return str;
       };
 
-      Variable.prototype.toMathML = function() {
-        var label, labelArray, labelID, labelOutput;
+      Variable.prototype.fractionSimplify = function(num, den) {
+        var a, b, gcd, _ref;
+        if (den == null) {
+          den = 1;
+        }
+        a = num;
+        b = den;
+        while (b !== 0) {
+          _ref = [b, a % b], a = _ref[0], b = _ref[1];
+        }
+        gcd = a;
+        num /= gcd;
+        den /= gcd;
+        return [num, den];
+      };
+
+      Variable.prototype.toMathML = function(mathID) {
+        var label, labelArray, labelID, labelOutput, root, str;
+        if (mathID == null) {
+          mathID = "";
+        } else {
+          mathID += "-";
+        }
         labelArray = this.label.split("-");
         label = labelArray[0];
-        labelID = labelArray[1] != null ? 'id="variable-' + this.label + '"' : "";
+        labelID = labelArray[1] != null ? 'id="variable-' + mathID + this.label + '"' : "";
         if (label.length > 1) {
           labelOutput = '<msub class="variable"' + labelID + '><mi>' + label[0] + '</mi><mi>' + label.slice(1) + "</mi></msub>";
         } else {
           labelOutput = '<mi class="variable"' + labelID + '>' + label + '</mi>';
         }
         if (this.power === 1) {
-          return labelOutput;
+          str = labelOutput;
         } else if (this.power > 0) {
-          return '<msup>' + labelOutput + '<mn>' + this.power + "</mn></msup>";
+          str = '<msup>' + labelOutput + '<mn>' + this.power + "</mn></msup>";
         } else {
           return "1";
         }
+        for (root in this.roots) {
+          if (this.roots[root] > 0) {
+            str = "<mroot><mrow>" + str + "</mrow><mn>" + root + "</mn></mroot>";
+          }
+        }
+        return str;
       };
 
       return Variable;

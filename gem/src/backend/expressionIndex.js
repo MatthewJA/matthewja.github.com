@@ -16,6 +16,13 @@
       },
       size: function() {
         return expressions.length;
+      },
+      set: function(expressionID, expression) {
+        if (expressionID >= expression.length || expressionID < 0) {
+          throw new Error("No expression with ID " + expressionID + " exists.");
+        }
+        expressions[expressionID] = expression;
+        return expressions[expressionID];
       }
     };
   });

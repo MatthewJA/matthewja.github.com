@@ -2,8 +2,11 @@
 (function() {
   define(["jquery", "frontend/setEventHandlers", "frontend/settings", "backend/equationIndex", "backend/variableIndex"], function($, setEventHandlers, settings, equationIndex, variableIndex) {
     var addEquationToWhiteboard;
-    addEquationToWhiteboard = function(equation, equationID) {
+    addEquationToWhiteboard = function(equation, equationID, position) {
       var equationDiv, html, replacements, variable, _i, _len, _ref;
+      if (position == null) {
+        position = null;
+      }
       replacements = {};
       _ref = equation.getAllVariables();
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -17,19 +20,36 @@
         $("#whiteboard-panel").append(equationDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         return MathJax.Hub.Queue(function() {
-          return setEventHandlers(equationDiv);
+          setEventHandlers(equationDiv);
+          if (position != null) {
+            return $("#equation-" + equationID).css({
+              top: "" + position.top + "px",
+              left: "" + position.left + "px",
+              position: "absolute"
+            });
+          }
         });
       } else {
         html = equation.toHTML(equationID);
         equationDiv = $(html);
+        if (position != null) {
+          equationDiv.css({
+            top: "" + position.top + "px",
+            left: "" + position.left + "px",
+            position: "absolute"
+          });
+        }
         $("#whiteboard-panel").append(equationDiv);
         return setEventHandlers(equationDiv);
       }
     };
-    return function(equation) {
+    return function(equation, position) {
       var equationID;
+      if (position == null) {
+        position = null;
+      }
       equationID = equationIndex.add(equation);
-      addEquationToWhiteboard(equation, equationID);
+      addEquationToWhiteboard(equation, equationID, position);
       return equationID;
     };
   });
