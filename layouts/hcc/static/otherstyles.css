@@ -1,0 +1,95 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+body, html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: #DFDFFF;
+	display: table;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Muli, Tahoma, Arial, sans-serif;
+	font-weight: bold;
+	padding: 10pt 0;
+}
+
+h1 {
+	font-size: 30pt;
+	text-align: center;
+}
+
+h2 {
+	font-size: 20pt;
+}
+
+h3 {
+	font-size: 18pt;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover {
+	color:#6EAE33;
+}
+
+
+#header {
+	background-color: #020249;
+	display: table-row;
+	width: 100%;
+	height: 100px;
+}
+
+#header img {
+	max-width: 100%;
+
+	margin-bottom: 20pt;
+	margin-left: 20pt;
+
+	vertical-align: middle;
+}
+
+#nav {
+	display: inline-block;
+	vertical-align: middle;
+
+	font-family: Muli, Tahoma, Arial, sans-serif;
+	font-size: 20pt;
+	color: #FFFFFF;
+	margin: 0 20pt;
+}
+
+#nav a {
+	text-decoration: none;
+}
+
+#wrapper {
+	display: table-row;
+}
+
+#context {
+	position: relative;
+	padding-left: 180pt;
+	height: 100%;
+}
+
+#sidebar {
+	width: 180pt;
+	background-color: red;
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-height: 200pt;
+	height: 100%;
+}
+
+#content {
+	min-height: 200pt;
+	padding: 20pt;
+	font-family: "Trebuchet MS", Arial, sans-serif;
+}
