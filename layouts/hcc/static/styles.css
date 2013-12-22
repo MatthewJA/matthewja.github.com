@@ -8,6 +8,14 @@ html, body {
 	height:100%;
 }
 
+a {
+	color:#000000;
+}
+
+a:hover {
+	color:#6EAE33;
+}
+
 .headinglink:link, .headinglink:visited {
 	color:inherit;
 	text-decoration:none;
@@ -32,12 +40,12 @@ html, body {
 }
 
 .whitebox {
-	padding:10pt 20pt 20pt 20pt;
+	padding:0 0 20px 0;
 	background-color:#020249;
-	display:inline-block;
 	max-height:100%;
 	background-position:top;
 	background-repeat:repeat-x;
+	width:100%;
 }
 
 .footerbox {
@@ -60,10 +68,15 @@ html, body {
 	color:white;
 	font-family: 'Muli', sans-serif;
 	font-size:2em;
+	display:inline-block;
+	vertical-align:middle;
+	padding:40px 20px 0 20px;
 }
 
 .titleimage {
 	max-width:100%;
+	display:inline-block;
+	vertical-align:middle;
 }
 
 #about, #contact {
@@ -159,7 +172,26 @@ html, body {
 	color:#6EAE33;
 }
 
-.contactentry {
+#contacts {
+	margin:10pt auto;
+	text-align:center;
+}
+
+#contacts .contactdetail {
+	vertical-align:middle;
+	font-family: 'Muli', sans-serif;
+	font-size:1.5em;
+}
+
+#contacts #fbcontactdetail {
+	font-size:1.25em;
+}
+
+#contacts a:hover {
+	color:#6EAE33;
+}
+
+/*.contactentry {
 	text-align:center;
 
 	margin:10pt auto;
@@ -174,7 +206,7 @@ html, body {
 	vertical-align:middle;
 	font-family: 'Muli', sans-serif;
 	font-size:1.5em;
-}
+}*/
 
 #contact .smallheading {
 	padding:10pt 0;
