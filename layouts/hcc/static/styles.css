@@ -90,6 +90,11 @@ a:hover {
 	background-color:#DFDFFF;
 }
 
+.bigheadingspacer { /* FIREFOX! */
+	height:100pt;
+	width: 0px;
+}
+
 .bigheading {
 	width:100%;
 	min-height:100pt;
