@@ -68,24 +68,11 @@ a:hover {
 	text-decoration: none;
 }
 
-#wrapper {
-	display: table-row;
-}
-
-#context {
-	position: relative;
-	padding-left: 180pt;
-	height: 100%;
-}
-
-#sidebar {
-	width: 180pt;
-	background-color: red;
-	position: absolute;
-	top: 0;
-	left: 0;
-	min-height: 200pt;
-	height: 100%;
+#topbar {
+	height: 20pt;
+	padding: 5pt;
+	line-height: 20pt;
+	background-color: #2C2CA4;
 }
 
 #content {
