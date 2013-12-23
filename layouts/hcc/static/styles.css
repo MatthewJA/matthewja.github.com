@@ -15,7 +15,7 @@ a {
 }
 
 a:hover {
-	color:#6EAE33;
+	color:#2C2CA4;
 }
 
 .headinglink:link, .headinglink:visited {
@@ -24,7 +24,7 @@ a:hover {
 }
 
 .headinglink:hover {
-	color:#6EAE33;
+	color:#2C2CA4;
 }
 
 .box {
@@ -163,7 +163,7 @@ a:hover {
 }
 
 #toplink:hover {
-	background-color:#6EAE33;
+	background-color:#020249;
 }
 
 #floatingnav a:visited, a:link {
@@ -171,7 +171,7 @@ a:hover {
 }
 
 #floatingnav a:hover {
-	color:#6EAE33;
+	color:#7C7CF4;
 }
 
 #contacts {
@@ -190,7 +190,7 @@ a:hover {
 }
 
 #contacts a:hover {
-	color:#6EAE33;
+	color:#2C2CA4;
 }
 
 /*.contactentry {
