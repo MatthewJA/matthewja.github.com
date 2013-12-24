@@ -78,5 +78,6 @@ a:hover {
 #content {
 	min-height: 200pt;
 	padding: 20pt;
+	margin: 10pt 10%;
 	font-family: "Trebuchet MS", Arial, sans-serif;
 }
