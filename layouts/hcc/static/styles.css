@@ -15,7 +15,7 @@ a {
 }
 
 a:hover {
-	color:#2C2CA4;
+	color:#7C7CF4;
 }
 
 .headinglink:link, .headinglink:visited {
@@ -24,7 +24,7 @@ a:hover {
 }
 
 .headinglink:hover {
-	color:#2C2CA4;
+	color:#7C7CF4;
 }
 
 .box {
@@ -146,6 +146,10 @@ a:hover {
 
 .phonenumbers {
 	font-size:60%;
+}
+
+.phonenumbers a:hover {
+	color: #7C7CF4;
 }
 
 #floatingnav {

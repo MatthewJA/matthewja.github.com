@@ -34,9 +34,13 @@ a {
 }
 
 a:hover {
-	color:#6EAE33;
+	color:#7C7CF4;
 }
 
+p {
+	line-height: 20pt;
+	margin-bottom: 1em;
+}
 
 #header {
 	background-color: #020249;
@@ -61,11 +65,20 @@ a:hover {
 	font-family: Muli, Tahoma, Arial, sans-serif;
 	font-size: 20pt;
 	color: #FFFFFF;
+	text-align: center;
 	margin: 0 20pt;
 }
 
 #nav a {
 	text-decoration: none;
+}
+
+.phonenumbers {
+	font-size:60%;
+}
+
+.phonenumbers a {
+	text-decoration: underline;
 }
 
 #topbar {
@@ -75,9 +88,24 @@ a:hover {
 	background-color: #2C2CA4;
 }
 
+#topbar a:hover {
+	color: #7C7CF4;
+}
+
 #content {
 	min-height: 200pt;
 	padding: 20pt;
 	margin: 10pt 10%;
 	font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+#topbar ul {
+	text-align: center;
+	color: #FFFFFF;
+	font-family: Muli, Tahoma, Arial, sans-serif;
+	font-size: 14pt;
+}
+
+#topbar li {
+	display: inline-block;
 }
