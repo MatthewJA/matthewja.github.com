@@ -73,11 +73,11 @@ p {
 	text-decoration: none;
 }
 
-.phonenumbers {
+#phonenumbers {
 	font-size:60%;
 }
 
-.phonenumbers a {
+#phonenumbers a {
 	text-decoration: underline;
 }
 
@@ -108,4 +108,8 @@ p {
 
 #topbar li {
 	display: inline-block;
+}
+
+#topbar a {
+	text-decoration: none;
 }

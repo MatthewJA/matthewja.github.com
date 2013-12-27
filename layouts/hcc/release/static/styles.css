@@ -86,7 +86,6 @@ a:hover {
 }
 
 #prices {
-	/*background-color:#4A7BA18;*/
 	background-color:#DFDFFF;
 }
 
@@ -98,12 +97,10 @@ a:hover {
 .bigheading {
 	width:100%;
 	min-height:100pt;
-	/*line-height:100pt;*/
 	background-color:#020249;
 	font-family: 'Muli', sans-serif;
 	color:#FFFFFF;
 	font-size:2.5em;
-	/*background-image:url("./static/bannergradient.png");*/
 	background-position:top;
 	background-repeat:repeat-x;
 
@@ -186,12 +183,33 @@ a:hover {
 #contacts {
 	margin:10pt auto;
 	text-align:center;
+	max-width:500pt;
+}
+
+#contactsrow {
+	display:inline-block;
+}
+
+.contact {
+	float:left;
+	width:250pt;
+	white-space:nowrap;
+	text-align:left;
+	margin-bottom:10pt;
+}
+
+#contacts .contacticon {
+	margin-right:10pt;
 }
 
 #contacts .contactdetail {
 	vertical-align:middle;
 	font-family: 'Muli', sans-serif;
 	font-size:1.5em;
+}
+
+#contacts .contacticon {
+	vertical-align:middle;
 }
 
 #contacts #fbcontactdetail {
@@ -201,23 +219,6 @@ a:hover {
 #contacts a:hover {
 	color:#2C2CA4;
 }
-
-/*.contactentry {
-	text-align:center;
-
-	margin:10pt auto;
-}
-
-.contactentry img {
-	vertical-align:middle;
-	margin-right:10pt;
-}
-
-.contactentry span {
-	vertical-align:middle;
-	font-family: 'Muli', sans-serif;
-	font-size:1.5em;
-}*/
 
 #contact .smallheading {
 	padding:10pt 0;
@@ -250,6 +251,17 @@ a:hover {
 @media only screen and (max-width: 915px) {
 	.bigheading {
 		line-height:inherit;
+	}
+}
+
+@media only screen and (max-width: 683px) {
+	.contact {
+		float:none;
+		margin:5pt auto;
+	}
+
+	.contactrow {
+		text-align:center;
 	}
 }
 
