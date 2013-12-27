@@ -143,6 +143,11 @@ a:hover {
 
 .phonenumbers {
 	font-size:60%;
+	color: #FFFFFF;
+}
+
+.phonenumbers a:link {
+	color: #FFFFFF;
 }
 
 .phonenumbers a:hover {
@@ -158,7 +163,7 @@ a:hover {
 	bottom:0;
 	margin-left:-100pt;
 	left:50%;
-	display:none;
+	/*display:none;*/
 	color:#DFDFFF;
 	text-align:center;
 	line-height:50pt;
@@ -172,7 +177,7 @@ a:hover {
 	background-color:#020249;
 }
 
-#floatingnav a:visited, a:link {
+#floatingnav a:visited, #floatingnav a:link {
 	color:inherit;
 }
 
@@ -237,6 +242,11 @@ a:hover {
 	margin:10pt;
 	padding:10pt;
 	width:460pt;
+	font-family:Muli, sans-serif;
+}
+
+#quoteform input[type="submit"] {
+	width:480pt;
 }
 
 #quoteform #submit-button {

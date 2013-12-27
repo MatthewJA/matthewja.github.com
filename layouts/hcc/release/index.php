@@ -18,17 +18,25 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
+		<style type="text/css">
+			#top {
+				<?php 
+					$images = array("townbeach", "flynnsbeach");
+					$alignments = array("center", "right");
+					$index = rand(0, 1);
+					$backgroundimage = $images[$index];
+					$backgroundalignment = $alignments[$index];
+				?>
+				background-image: url("./static/<?php echo $backgroundimage;?>_large.jpg");
+				background-position: <?php echo $backgroundalignment;?>;
+			}
+		</style>
+
 		<script type="text/javascript">
 			var navigationHidden = true;
 
-			// TODO: phpify the random image
 			$(document).ready(function() {
-				// display a random image
-				var images = ["townbeach", "flynnsbeach"];
-				var alignments = ["center", "right"]
-				var index = Math.floor(Math.random()*images.length);
-				$("#top").css("background-image", 'url("static/' + images[index] + '_large.jpg")');
-				$("#top").css("background-position", alignments[index]);
+				$("#floatingnav").fadeOut(0);
 
 				// need to hide toplink if the user scrolls up too far
 				var scrollCheck = setInterval(function() {
@@ -76,6 +84,7 @@
 				<img src="./static/teamicon.png"><br>
 				<span>Family run business.</span>
 			</div>
+			<div class="smallerheading"><a href="./about.php">Click here</a> to learn more about us.</div>
 		</div>
 
 		<div class="box" id="prices">
@@ -123,15 +132,9 @@
 
 			<div class="smallheading"><div class="verticalaligner">Or request a quote online.</div></div>
 
-			<form id="quoteform">
-				<input type="text" name="name" placeholder="Name">
-				<input type="text" name="suburb" placeholder="Suburb">
-				<input type="email" name="email" placeholder="Email address">
-				<textarea name="details" placeholder="Details..."></textarea>
-				<input type="submit" id="submitbutton" value="Request a quote">
-			</form>
+			<?php include "quoteform.php"; ?>
 
-		<div class="clear"></div>
+			<div class="clear"></div>
 
 		</div>
 
