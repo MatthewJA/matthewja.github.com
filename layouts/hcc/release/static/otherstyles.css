@@ -144,3 +144,31 @@ p {
 	text-align: center;
 	padding: 20pt;
 }
+
+.testimonial {
+	font-size: 20pt;
+	font-style: italic;
+	font-family: "Times New Roman", Times, serif;
+	vertical-align: middle;
+	margin-bottom: 10pt;
+	clear: both;
+}
+
+.testimonialcontent:before {
+	content: "\201C";
+}
+
+.testimonialcontent:after {
+	content: "\201D";
+}
+
+.testimonialauthor {
+	color: #777777;
+	font-size: 75%;
+	float: right;
+	vertical-align: middle;
+}
+
+.testimonialauthor:before {
+	content: "\2015  ";
+}

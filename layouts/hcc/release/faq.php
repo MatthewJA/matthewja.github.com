@@ -1,5 +1,5 @@
 <?php
-	$title = "About Us";
+	$title = "Frequently Asked Questions";
 	include "header.php";
 ?>
 
