@@ -9,7 +9,7 @@
     baseUrl: "./src",
     catchError: true,
     paths: {
-      "coffeequate": "lib/coffeequate/coffeequate",
+      "coffeequate": "lib/Coffeequate/coffeequate",
       "jquery": "lib/jQuery/jquery.min",
       "jqueryui": "lib/jQuery/jquery.ui.min",
       "MobileEvents": "lib/jQuery/jquery.mobile.events.min",
