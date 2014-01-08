@@ -89,7 +89,7 @@ body {
   color: #ecece9;
 }
 body h1, body h2, body h3, body h4, body h5, body h6 {
-  margin: 10px;
+  padding: 10px;
   font-family: "Source Sans Pro", "Open Sans", Tahoma, Arial, sans-serif;
   color: #ecece9;
   text-align: center;

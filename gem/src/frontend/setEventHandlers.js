@@ -42,9 +42,14 @@
         console.log("Double-clicked " + variable + " in " + formulaType + " " + formulaID);
         if (formulaType === "equation") {
           return require(["backend/solveEquation", "frontend/addExpression"], function(solveEquation, addExpression) {
-            var expression;
-            expression = solveEquation(formulaID, variable);
-            return addExpression(expression);
+            var solution, solutions, _i, _len, _results;
+            solutions = solveEquation(formulaID, variable);
+            _results = [];
+            for (_i = 0, _len = solutions.length; _i < _len; _i++) {
+              solution = solutions[_i];
+              _results.push(addExpression(solution));
+            }
+            return _results;
           });
         }
       });

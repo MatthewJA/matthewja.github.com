@@ -48,6 +48,14 @@
         return setTimeout(sim, 0);
       }
     };
+    window.getParameter = function(name) {
+      if ((name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))) {
+        return decodeURIComponent(name[1]);
+      }
+    };
+    if (window.getParameter("realisticSun") === "true") {
+      bodies.sun.element.src = "./static/preloader/sun.png";
+    }
     return sim();
   }).call(this);
 

@@ -5,7 +5,8 @@
     addExpressionToWhiteboard = function(expression, expressionID) {
       var expressionDiv, html;
       if (settings.get("mathJaxEnabled")) {
-        html = expression.toMathML(expressionID, true);
+        console.log(expression);
+        html = expression.toMathML(expressionID, true, "0", true);
         expressionDiv = $(html);
         $("#whiteboard-panel").append(expressionDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);

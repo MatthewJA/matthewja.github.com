@@ -2,34 +2,48 @@
 (function() {
   var VERSION;
 
-  VERSION = "0.0.6";
-
-  MathJax.Hub.Config({
-    config: ["MMLorHTML.js"],
-    jax: ["input/MathML", "output/HTML-CSS"],
-    extensions: ["mml2jax.js", "MathMenu.js", "MathZoom.js"],
-    showMathMenu: false,
-    showMathMenuMSIE: false
-  });
+  VERSION = "0.0.7";
 
   require.config({
     urlArgs: "v=" + VERSION,
+    baseUrl: "./src",
+    catchError: true,
     paths: {
+      "coffeequate": "lib/coffeequate/coffeequate",
       "jquery": "lib/jQuery/jquery.min",
-      "jqueryui": "lib/jQuery/jquery-ui.min",
-      "JSAlgebra": "lib/JS-Algebra/src/",
-      "MathJax": "lib/MathJax/MathJax",
-      "TouchPunch": "lib/Touch-Punch/jquery.ui.touch-punch.min",
-      "MobileEvents": "lib/jQuery/jquery.mobile-events.min"
+      "jqueryui": "lib/jQuery/jquery.ui.min",
+      "MobileEvents": "lib/jQuery/jquery.mobile.events.min",
+      "TouchPunch": "lib/TouchPunch/jquery.ui.touchpunch.min",
+      "MathJax": (window.getParameter("mathJaxEnabled") === "false" ? "frontend/blank" : "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML")
     },
     shim: {
       "jqueryui": ["jquery"],
       "TouchPunch": ["jquery"],
-      "MobileEvents": ["jquery"]
+      "MobileEvents": ["jquery"],
+      "MathJax": {
+        exports: "MathJax",
+        init: function() {
+          MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            jax: ["input/MathML", "output/HTML-CSS"],
+            extensions: ["mml2jax.js", "MathMenu.js", "MathZoom.js"],
+            showMathMenu: false,
+            showMathMenuMSIE: false
+          });
+          MathJax.Hub.Startup.onload();
+          return MathJax;
+        }
+      }
     }
   });
 
-  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/settings"], function($, ui, me, setupFrontend, finishLoading, setupSettings, settings) {
+  require.onError = function(err) {
+    console.log(err.requireType);
+    console.log('modules: ' + err.requireModules);
+    throw err;
+  };
+
+  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/settings", "MathJax"], function($, ui, me, setupFrontend, finishLoading, setupSettings, settings, MathJax) {
     return $(function() {
       setupSettings();
       require(["TouchPunch"]);

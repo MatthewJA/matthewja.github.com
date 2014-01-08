@@ -15,7 +15,7 @@
       }
       equation.replaceVariables(replacements);
       if (settings.get("mathJaxEnabled")) {
-        html = equation.toMathML(equationID);
+        html = equation.toMathML(equationID, false, "0", true);
         equationDiv = $(html);
         $("#whiteboard-panel").append(equationDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
