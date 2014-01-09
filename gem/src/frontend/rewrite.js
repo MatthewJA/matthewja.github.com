@@ -5,7 +5,7 @@
     rewriteEquation = function(equationID, newEquation) {
       var equationDiv, html, position;
       if (settings.get("mathJaxEnabled")) {
-        html = newEquation.toMathML(equationID);
+        html = newEquation.toMathML(equationID, false, "0", true);
         equationDiv = $(html);
         position = $("#equation-" + equationID).position();
         $("#equation-" + equationID).replaceWith(equationDiv);
@@ -21,7 +21,7 @@
           });
         });
       } else {
-        html = equation.toHTML(equationID);
+        html = equation.toHTML(equationID, false, "0", true);
         equationDiv = $(html);
         $("#equation-" + equationID).replaceWith(equationDiv);
         $("#equation-" + equationID).css({
@@ -38,7 +38,7 @@
     rewriteExpression = function(expressionID, newExpression) {
       var expressionDiv, html, position;
       if (settings.get("mathJaxEnabled")) {
-        html = newExpression.toMathML(expressionID, true);
+        html = newExpression.toMathML(expressionID, true, "0", true);
         expressionDiv = $(html);
         position = $("#expression-" + expressionID).position();
         $("#expression-" + expressionID).replaceWith(expressionDiv);
@@ -54,7 +54,7 @@
           });
         });
       } else {
-        html = expression.toHTML(expressionID);
+        html = expression.toHTML(expressionID, true, "0", true);
         expressionDiv = $(html);
         $("#expression-" + expressionID).replaceWith(expressionDiv);
         $("#expression-" + expressionID).css({
@@ -75,6 +75,7 @@
         if (newVariableID == null) {
           newVariableID = null;
         }
+        throw new Error("Not implemented.");
       }
     };
   });

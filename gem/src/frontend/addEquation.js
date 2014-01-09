@@ -30,7 +30,7 @@
           }
         });
       } else {
-        html = equation.toHTML(equationID);
+        html = equation.toHTML(equationID, false, "0", true);
         equationDiv = $(html);
         if (position != null) {
           equationDiv.css({

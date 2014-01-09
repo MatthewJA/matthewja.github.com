@@ -9,6 +9,22 @@
 
 	<p>We are a <a href="http://www.woolsafe.org/australia/">WoolSafe</a> accredited business, and owner/operator Geoff is fully trade qualified. We service residential carpets &amp; upholstery, and are also specialists in commercial carpet care.</p>
 
+<h2>Services</h2>
+	
+	<p>In addition to being the local experts in residential carpet and upholstery cleaning, we are also trained in:</p>
+
+	<ul>
+		<li>Commercial carpet and upholstery cleaning</li>
+		<li>Advanced stain removal</li>
+		<li>Leather lounge cleaning</li>
+		<li>Mattress cleaning</li>
+		<li>Allergy and dust mite advice and treatment</li>
+		<li>Odour control</li>
+		<li>Carpet colour repair and restoration</li>
+		<li>Water damage mitigation</li>
+		<li>Carpet dry cleaning</li>
+	</ul>
+
 <h2>Qualifications</h2>
 
 	<p>We are fully trade qualified professionals, holding a Certificate III qualification in Asset Maintenance Carpet Cleaning, which involves 24 months of hands-on training. The qualification ensures competency in many areas including OH&amp;S, carpet and fabric identification, carpet and upholstery cleaning methods and chemistry, advanced stain removal, leather lounge cleaning, odour control, spot dying, and water damage mitigation. This qualification is quite different to a carpet cleaning certification which may be advertised by other carpet cleaners in that the latter is a one to two day course with a completion certificate.</p>
@@ -45,7 +61,7 @@
 	</div>
 
 	<div class="testimonial">
-		<span class="testimonialcontent">My brother advises that you did an excellent job and that the carpets came up a million dollars.</span>
+		<span class="testimonialcontent">You did an excellent job and the carpets came up a million dollars.</span>
 		<span class="testimonialauthor">Wally, Port Macquarie</span>
 	</div>
 
