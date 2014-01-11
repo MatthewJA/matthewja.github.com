@@ -3,7 +3,7 @@
   define(["jquery", "frontend/setEventHandlers", "frontend/settings", "backend/equationIndex", "backend/variableIndex"], function($, setEventHandlers, settings, equationIndex, variableIndex) {
     var addEquationToWhiteboard;
     addEquationToWhiteboard = function(equation, equationID, position) {
-      var equationDiv, html, replacements, variable, _i, _len, _ref;
+      var equationDiv, html, padding, replacements, variable, _i, _len, _ref;
       if (position == null) {
         position = null;
       }
@@ -20,26 +20,37 @@
         $("#whiteboard-panel").append(equationDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         return MathJax.Hub.Queue(function() {
+          var padding;
           setEventHandlers(equationDiv);
-          if (position != null) {
-            return $("#equation-" + equationID).css({
-              top: "" + position.top + "px",
-              left: "" + position.left + "px",
-              position: "absolute"
-            });
+          if (position == null) {
+            padding = 10;
+            position = {
+              top: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").height() - equationDiv.height() - padding) + padding + $("#whiteboard-panel").offset().top),
+              left: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").width() - equationDiv.width() - padding) + padding + $("#whiteboard-panel").offset().left)
+            };
           }
-        });
-      } else {
-        html = equation.toHTML(equationID, false, "0", true);
-        equationDiv = $(html);
-        if (position != null) {
-          equationDiv.css({
+          return $(equationDiv).css({
             top: "" + position.top + "px",
             left: "" + position.left + "px",
             position: "absolute"
           });
-        }
+        });
+      } else {
+        html = equation.toHTML(equationID, false, "0", true);
+        equationDiv = $(html);
         $("#whiteboard-panel").append(equationDiv);
+        if (position == null) {
+          padding = 10;
+          position = {
+            top: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").height() - equationDiv.height() - padding) + padding + $("#whiteboard-panel").offset().top),
+            left: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").width() - equationDiv.width() - padding) + padding + $("#whiteboard-panel").offset().left)
+          };
+        }
+        $(equationDiv).css({
+          top: "" + position.top + "px",
+          left: "" + position.left + "px",
+          position: "absolute"
+        });
         return setEventHandlers(equationDiv);
       }
     };

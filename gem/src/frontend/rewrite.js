@@ -38,6 +38,8 @@
     rewriteExpression = function(expressionID, newExpression) {
       var expressionDiv, html, position;
       if (settings.get("mathJaxEnabled")) {
+        console.log(newExpression);
+        console.log(newExpression.toMathML(expressionID, true, "0", true));
         html = newExpression.toMathML(expressionID, true, "0", true);
         expressionDiv = $(html);
         position = $("#expression-" + expressionID).position();

@@ -172,3 +172,9 @@ p {
 .testimonialauthor:before {
 	content: "\2015  ";
 }
+
+#faqindex {
+	background-color: #EEEEFF;
+	line-height: 20pt;
+	padding: 10pt;
+}

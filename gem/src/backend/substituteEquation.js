@@ -2,7 +2,7 @@
 (function() {
   define(["backend/equivalenciesIndex"], function(equivalenciesIndex) {
     return function(targetEquation, sourceExpression, variable) {
-      return targetEquation.substituteExpression(sourceExpression, variable, equivalenciesIndex);
+      return targetEquation.substituteExpression(sourceExpression, variable, equivalenciesIndex, true);
     };
   });
 

@@ -13,10 +13,10 @@
         return new coffeequate.Equation("F", "G * m * M * r**-2");
       },
       "gravitational-potential-energy": function() {
-        return new coffeequate.Equation("-1 * G * m * M * r**-1 + -Ep");
+        return new coffeequate.Equation("Ep", "-1 * G * m * M * r**-1");
       },
       "gravitational-potential-energy-simple": function() {
-        return new coffeequate.Equation("m * g * h + -Ep");
+        return new coffeequate.Equation("Ep", "m * g * h");
       },
       "force": function() {
         return new coffeequate.Equation("F", "m * a");
@@ -25,10 +25,7 @@
         return new coffeequate.Equation("F", "m * v**2 * r**-1");
       },
       "product": function() {
-        return new coffeequate.Equation("a * b + -c");
-      },
-      "contrived-example": function() {
-        return new coffeequate.Equation("3 * z * x + -y * w**3");
+        return new coffeequate.Equation("a", "b * c");
       },
       "contrived-pow-example": function() {
         return new coffeequate.Equation("a", "(b**-1)");

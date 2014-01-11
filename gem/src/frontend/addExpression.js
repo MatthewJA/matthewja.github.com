@@ -2,21 +2,49 @@
 (function() {
   define(["jquery", "frontend/setEventHandlers", "frontend/settings", "backend/expressionIndex"], function($, setEventHandlers, settings, expressionIndex) {
     var addExpressionToWhiteboard;
-    addExpressionToWhiteboard = function(expression, expressionID) {
-      var expressionDiv, html;
+    addExpressionToWhiteboard = function(expression, expressionID, position) {
+      var expressionDiv, html, padding;
+      if (position == null) {
+        position = null;
+      }
       if (settings.get("mathJaxEnabled")) {
         html = expression.toMathML(expressionID, true, "0", true);
         expressionDiv = $(html);
         $("#whiteboard-panel").append(expressionDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         return MathJax.Hub.Queue(function() {
-          return setEventHandlers(expressionDiv);
+          var padding;
+          setEventHandlers(expressionDiv);
+          if (position == null) {
+            padding = 10;
+            position = {
+              top: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").height() - expressionDiv.height() - padding) + padding + $("#whiteboard-panel").offset().top),
+              left: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").width() - expressionDiv.width() - padding) + padding + $("#whiteboard-panel").offset().left)
+            };
+          }
+          return $(expressionDiv).css({
+            top: "" + position.top + "px",
+            left: "" + position.left + "px",
+            position: "absolute"
+          });
         });
       } else {
         html = expression.toHTML(expressionID, true, "0", true);
         expressionDiv = $(html);
         $("#whiteboard-panel").append(expressionDiv);
-        return setEventHandlers(expressionDiv);
+        setEventHandlers(expressionDiv);
+        if (position == null) {
+          padding = 10;
+          position = {
+            top: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").height() - expressionDiv.height() - padding) + padding + $("#whiteboard-panel").offset().top),
+            left: Math.floor(Math.random() * Math.max(0, $("#whiteboard-panel").width() - expressionDiv.width() - padding) + padding + $("#whiteboard-panel").offset().left)
+          };
+        }
+        return $(expressionDiv).css({
+          top: "" + position.top + "px",
+          left: "" + position.left + "px",
+          position: "absolute"
+        });
       }
     };
     return function(expression) {

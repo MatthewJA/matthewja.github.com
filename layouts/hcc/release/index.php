@@ -63,7 +63,8 @@
 			<div class="whitebox">
 				<img src="static/white_fontside.png" class="titleimage">
 				<div id="nav">
-					<a href="#about" class="headinglink aboutlink">About</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - <a href="#contact" class="headinglink contactlink">Contact</a><br>
+					<a href="#about" class="headinglink aboutlink">Info</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - <a href="#contact" class="headinglink contactlink">Contact</a><br>
+					<a href="./about.php" class="smallerheadinglink secondaboutlink">About Us</a> - <a href="./faq.php" class="smallerheadinglink faqlink">FAQs</a><br>
 					<div class="phonenumbers">Mob: <a href="tel:0431350903">0431 350 903</a> <br> Ph: <a href="tel:0265824391">02 6582 4391</a></div>
 				</div>
 			</div>
