@@ -452,8 +452,10 @@ define("lib/almond", function(){});
       terminals = require("terminals");
       if (/^-?\d+(\.\d+)?$/.test(string) || /^-?\d+(\.\d+)?\/\d+(\.\d+)?$/.test(string)) {
         return new terminals.Constant(string);
-      } else if (/[a-zA-Z][a-zA-Z_\-\d]*/.test(string)) {
+      } else if (/^[a-zA-Z][a-zA-Z_\-\d]*$/.test(string)) {
         return new terminals.Variable(string);
+      } else if (/^\\[a-zA-Z][a-zA-Z_\-\d]*$/.test(string)) {
+        return new terminals.SymbolicConstant(string.slice(1));
       } else {
         throw new ParseError(string, "terminal");
       }
@@ -697,6 +699,18 @@ define("lib/almond", function(){});
         return this.copy();
       };
 
+      Constant.prototype.simplify = function() {
+        return this.copy();
+      };
+
+      Constant.prototype.expand = function() {
+        return this.copy();
+      };
+
+      Constant.prototype.expandAndSimplify = function() {
+        return this.copy();
+      };
+
       Constant.prototype.substituteExpression = function(sourceExpression, variable, equivalencies) {
         return this.copy();
       };
@@ -809,6 +823,18 @@ define("lib/almond", function(){});
       };
 
       SymbolicConstant.prototype.sub = function(substitutions) {
+        return this.copy();
+      };
+
+      SymbolicConstant.prototype.simplify = function() {
+        return this.copy();
+      };
+
+      SymbolicConstant.prototype.expand = function() {
+        return this.copy();
+      };
+
+      SymbolicConstant.prototype.expandAndSimplify = function() {
         return this.copy();
       };
 
@@ -933,6 +959,18 @@ define("lib/almond", function(){});
         } else {
           return this.copy();
         }
+      };
+
+      Variable.prototype.simplify = function() {
+        return this.copy();
+      };
+
+      Variable.prototype.expand = function() {
+        return this.copy();
+      };
+
+      Variable.prototype.expandAndSimplify = function() {
+        return this.copy();
       };
 
       Variable.prototype.toMathML = function(equationID, expression, equality, topLevel) {
@@ -2932,7 +2970,7 @@ define("lib/almond", function(){});
           expr = new operators.Add(this.right, new operators.Mul("-1", this.left));
           return new Equation(expr.substituteExpression(source, variable, equivalencies));
         } else {
-          return new Equation(this.left, this.right.substituteExpression(source, variable, equivalencies).simplify());
+          return new Equation(this.left, this.right.substituteExpression(source, variable, equivalencies).expandAndSimplify());
         }
       };
 
