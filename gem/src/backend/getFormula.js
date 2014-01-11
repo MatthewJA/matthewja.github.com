@@ -10,10 +10,10 @@
         return new coffeequate.Equation("p", "m * v");
       },
       "gravity": function() {
-        return new coffeequate.Equation("F", "G * m * M * r**-2");
+        return new coffeequate.Equation("F", "\\G * m * M * r**-2");
       },
       "gravitational-potential-energy": function() {
-        return new coffeequate.Equation("Ep", "-1 * G * m * M * r**-1");
+        return new coffeequate.Equation("Ep", "-1 * \\G * m * M * r**-1");
       },
       "gravitational-potential-energy-simple": function() {
         return new coffeequate.Equation("Ep", "m * g * h");
@@ -32,6 +32,9 @@
       },
       "projectile-motion": function() {
         return new coffeequate.Equation("s", "u * t + 1/2 * a * t**2");
+      },
+      "energy-mass-relation": function() {
+        return new coffeequate.Equation("E", "m * \\c ** 2");
       }
     };
     return function(name) {
