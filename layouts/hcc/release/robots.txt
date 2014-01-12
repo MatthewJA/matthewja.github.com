@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://hastingscarpetcleaning.com.au/sitemap.xml
