@@ -118,7 +118,7 @@ p {
 
 #quoteform {
 	margin: 0 auto;
-	background-color: #FFFFFF;
+	background-color: #EEEEFF;
 	width: 500pt;
 	padding: 10pt 0;
 }
@@ -195,4 +195,11 @@ p {
 #training {
 	list-style-type: square;
 	line-height: 20pt;
+}
+
+@media only screen and (max-width: 375px) {
+	#header img {
+		width: 100%;
+		margin-left: 0;
+	}
 }
