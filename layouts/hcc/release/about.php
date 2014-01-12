@@ -13,7 +13,7 @@
 	
 	<p>In addition to being the local experts in residential carpet and upholstery cleaning, we are also trained in:</p>
 
-	<ul>
+	<ul id="training">
 		<li>Commercial carpet and upholstery cleaning</li>
 		<li>Advanced stain removal</li>
 		<li>Leather lounge cleaning</li>

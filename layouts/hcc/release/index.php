@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title>Hastings Carpet Cleaning</title>
-
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="description" content="Looking for a carpet cleaner in Port Macquarie? Hastings Carpet Cleaning services the Port Macquarie area for both commercial and residential carpet cleaning.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" type="text/css" href="./static/styles.css">
@@ -61,10 +62,10 @@
 	<body>
 		<div class="box" id="top">
 			<div class="whitebox">
-				<img src="static/white_fontside.png" class="titleimage">
+				<img src="static/white_fontside.png" class="titleimage" alt="Hastings Carpet Cleaning">
 				<div id="nav">
-					<a href="#about" class="headinglink aboutlink">Info</a> - <a href="#prices" class="headinglink priceslink">Prices</a> - <a href="#contact" class="headinglink contactlink">Contact</a><br>
-					<a href="./about.php" class="smallerheadinglink secondaboutlink">About Us</a> - <a href="./faq.php" class="smallerheadinglink faqlink">FAQs</a><br>
+					<a href="#about" class="headinglink aboutlink">About</a> | <a href="#prices" class="headinglink priceslink">Prices</a> | <a href="#contact" class="headinglink contactlink">Contact</a><br>
+					<a href="./about.php" class="smallerheadinglink secondaboutlink">More Info</a> | <a href="./faq.php" class="smallerheadinglink faqlink">FAQs</a><br>
 					<div class="phonenumbers">Mob: <a href="tel:0431350903">0431 350 903</a> <br> Ph: <a href="tel:0265824391">02 6582 4391</a></div>
 				</div>
 			</div>
@@ -74,31 +75,31 @@
 			<div class="bigheading"><div class="bigheadingspacer"></div><div class="verticalaligner">Looking for a carpet cleaner in Port Macquarie?</div></div>
 			<div class="smallheading"><div class="verticalaligner">You're looking for Hastings Carpet Cleaning.</div></div>
 			<div class="iconbox">
-				<img src="./static/lighthouseicon.png"><br>
+				<img src="./static/lighthouseicon.png" alt="Locally owned and operated."><br>
 				<span>Locally owned and operated.</span>
 			</div>
 			<div class="iconbox">
-				<img src="./static/efficiencyicon.png"><br>
+				<img src="./static/efficiencyicon.png" alt="Prompt and efficient."><br>
 				<span>Prompt and efficient.</span>
 			</div>
 			<div class="iconbox">
-				<img src="./static/teamicon.png"><br>
+				<img src="./static/teamicon.png" alt="Family run business."><br>
 				<span>Family run business.</span>
-			</div>
-			<div class="smallerheading"><a href="./about.php">Click here</a> to learn more about us.</div>
+			</div><br>
+			<div class="smallerheading"><a href="./about.php">Click here to see our services and qualifications.</a></div>
 		</div>
 
 		<div class="box" id="prices">
 			<div class="bigheading"><div class="bigheadingspacer"></div><div class="verticalaligner">Get your carpets cleaned professionally.</div></div>
 			<div class="smallheading"><div class="verticalaligner"></div></div>
 			<div class="iconbox">
-				<img src="./static/emptyroomsicon.png"><br>
+				<img src="./static/emptyroomsicon.png" alt="Empty rooms up to 18m^2 from $33."><br>
 			</div>
 			<div class="iconbox">
-				<img src="./static/furnishedroomsicon.png"><br>
+				<img src="./static/furnishedroomsicon.png" alt="Furnished rooms up to 18m^2 from $35."><br>
 			</div>
 			<div class="iconbox">
-				<img src="./static/stairsicon.png"><br>
+				<img src="./static/stairsicon.png" alt="Stairs from $60."><br>
 			</div>
 			<div class="smallerheading">10% discount for more than five rooms.</div>
 			<div class="smallestheading">Minimum charge $85. Prices estimate only and may vary depending on your carpet condition.</div>
@@ -111,21 +112,21 @@
 			<div id="contacts">
 				<div class="contactsrow">
 					<div class="contact">
-						<img src="./static/phoneicon.png" class="contacticon">
+						<img src="./static/phoneicon.png" class="contacticon" alt="Phone">
 						<span class="contactdetail"><a href="tel:0265824391">02 6582 4391</a></span>
 					</div>
 					<div class="contact">
-						<img src="./static/mobileicon.png" class="contacticon">
+						<img src="./static/mobileicon.png" class="contacticon" alt="Mobile">
 						<span class="contactdetail"><a href="tel:0431350903">0431 350 903</a></span>
 					</div>
 				</div>
 				<div class="contactsrow">
 					<div class="contact">
-						<img src="./static/FB-f-Logo__blue_58.png" class="contacticon">
+						<img src="./static/FB-f-Logo__blue_58.png" class="contacticon" alt="Facebook">
 						<span class="contactdetail" id="fbcontactdetail"><a href="http://fb.me/hastingscarpetcleaning">hastingscarpetcleaning</a></span>
 					</div>
 					<div class="contact">
-						<img src="./static/twitterlogo64.png" class="contacticon">
+						<img src="./static/twitterlogo64.png" class="contacticon" alt="Twitter">
 						<span class="contactdetail"><a href="http://twitter.com/PMQCarpetClean">@PMQCarpetClean</a></span>
 					</div>
 				</div>
@@ -140,7 +141,7 @@
 		</div>
 
 		<div id="floatingnav">
-			<a href="#top">Home</a> - <a href="#about">About</a> - <a href="#prices">Prices</a> - <a href="#contact">Contact</a>
+			<a href="#top">Home</a> | <a href="#about">Info</a> | <a href="#prices">Prices</a> | <a href="#contact">Contact</a> | <a href="./faq.php">FAQs</a>
 		</div>
 
 	</body>

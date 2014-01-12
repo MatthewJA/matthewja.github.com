@@ -170,11 +170,11 @@ a:hover {
 #floatingnav {
 	/*width:50pt;*/
 	height:50pt;
-	width:200pt;
+	width:210pt;
 	background-color:#2C2CA4;
 	position:fixed;
 	bottom:0;
-	margin-left:-100pt;
+	margin-left:-115pt;
 	left:50%;
 	/*display:none;*/
 	color:#DFDFFF;
@@ -296,6 +296,14 @@ a:hover {
 	#quoteform input, #quoteform textarea {
 		margin:10pt 0;
 		padding:10pt 0;
+		width:100%;
+	}
+
+	#quoteform input[type="submit"] {
+		width:100%;
+	}
+
+	#quoteform #submit-button {
 		width:100%;
 	}
 }

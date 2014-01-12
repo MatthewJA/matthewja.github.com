@@ -178,3 +178,21 @@ p {
 	line-height: 20pt;
 	padding: 10pt;
 }
+
+.smallerheadinglink:link, .smallerheadinglink:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.smallerheadinglink:hover {
+	color: #7C7CF4;
+}
+
+.smallerheadinglink {
+	font-size: 80%;
+}
+
+#training {
+	list-style-type: square;
+	line-height: 20pt;
+}
