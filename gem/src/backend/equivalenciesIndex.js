@@ -66,7 +66,7 @@
             return equivalency;
           }
         }
-        return [];
+        return [variable];
       },
       clear: function() {
         return equivalencies.splice(0);
