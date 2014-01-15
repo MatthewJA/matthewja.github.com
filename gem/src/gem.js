@@ -13,6 +13,7 @@
       "jquery": "lib/jQuery/jquery.min",
       "jqueryui": "lib/jQuery/jquery.ui.min",
       "MobileEvents": "lib/jQuery/jquery.mobile.events.min",
+      "ContextMenu": "lib/jQuery/jquery.contextMenu",
       "TouchPunch": "lib/TouchPunch/jquery.ui.touchpunch.min",
       "MathJax": (window.getParameter("mathJaxEnabled") === "false" ? "frontend/blank" : "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML")
     },
@@ -43,7 +44,7 @@
     throw err;
   };
 
-  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/settings", "MathJax"], function($, ui, me, setupFrontend, finishLoading, setupSettings, settings, MathJax) {
+  require(["jquery", "jqueryui", "MobileEvents", "frontend/setupFrontend", "frontend/finishLoading", "frontend/setupSettings", "frontend/settings", "MathJax", "ContextMenu"], function($, ui, me, setupFrontend, finishLoading, setupSettings, settings, MathJax, ContextMenu) {
     return $(function() {
       setupSettings();
       require(["TouchPunch"]);

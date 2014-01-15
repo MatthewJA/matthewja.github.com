@@ -138,6 +138,26 @@ body #gem-window #whiteboard-panel {
   height: 500px;
   float: left;
 }
+body #gem-window #whiteboard-panel .equation {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 30px;
+  color: #ecece9;
+  cursor: default;
+}
+body #gem-window #whiteboard-panel .equation .variable {
+  color: #a6e22e;
+}
+body #gem-window #whiteboard-panel .expression {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 30px;
+  color: #ecece9;
+  cursor: default;
+}
+body #gem-window #whiteboard-panel .expression .variable {
+  color: #66d9ef;
+}
 body #gem-window #search-panel {
   width: 250px;
   height: 500px;
@@ -178,28 +198,6 @@ body #footer a:hover {
 
 .variable {
   outline: 1px solid transparent;
-}
-
-.equation {
-  display: inline-block;
-  font-family: monospace;
-  font-size: 30px;
-  color: #ecece9;
-  cursor: default;
-}
-.equation .variable {
-  color: #a6e22e;
-}
-
-.expression {
-  display: inline-block;
-  font-family: monospace;
-  font-size: 30px;
-  color: #ecece9;
-  cursor: default;
-}
-.expression .variable {
-  color: #66d9ef;
 }
 
 .equationVariableHelper {

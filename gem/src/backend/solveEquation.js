@@ -5,6 +5,7 @@
     return solveEquation = function(equationID, variable) {
       var equation;
       equation = equationIndex.get(equationID);
+      console.log("solution is " + (equation.solve(variable)));
       return equation.solve(variable);
     };
   });

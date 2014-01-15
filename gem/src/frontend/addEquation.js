@@ -21,7 +21,9 @@
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         return MathJax.Hub.Queue(function() {
           var padding;
-          setEventHandlers(equationDiv);
+          require(["frontend/setEventHandlers"], function(setEventHandlers) {
+            return setEventHandlers(equationDiv);
+          });
           if (position == null) {
             padding = 10;
             position = {

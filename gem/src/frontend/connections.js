@@ -11,10 +11,10 @@
     generateLineCSS = function(x1, y1, x2, y2) {
       var angle, css, height, translateX, translateY, width;
       height = settings.get("connectionWidth");
-      width = Math.floor(distance(x1, y1, x2, y2));
+      width = Math.floor(distance(x1, y1, x2, y2)) - settings.get("variablePadding") * 2;
       angle = Math.atan2(y2 - y1, x2 - x1);
-      translateX = x1;
-      translateY = y1;
+      translateX = x1 + Math.cos(angle) * settings.get("variablePadding");
+      translateY = y1 + Math.sin(angle) * settings.get("variablePadding");
       css = {
         "-moz-transform": "rotate(" + angle + "rad)",
         "-moz-transform-origin": "0 0",
@@ -29,8 +29,8 @@
         "position": "absolute",
         "top": "" + translateY + "px",
         "left": "" + translateX + "px",
-        "height": height,
-        "width": width
+        "height": "" + height + "px",
+        "width": "" + width + "px"
       };
       return css;
     };
