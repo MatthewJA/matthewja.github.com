@@ -97,6 +97,9 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 body h1 {
   font-size: 30px;
 }
+body li {
+  list-style-type: none;
+}
 body #loader {
   display: table;
   width: 850px;
@@ -145,6 +148,9 @@ body #gem-window #whiteboard-panel .equation {
   color: #ecece9;
   cursor: default;
 }
+body #gem-window #whiteboard-panel .equation .constant {
+  color: #f09a2e;
+}
 body #gem-window #whiteboard-panel .equation .variable {
   color: #a6e22e;
 }
@@ -154,6 +160,9 @@ body #gem-window #whiteboard-panel .expression {
   font-size: 30px;
   color: #ecece9;
   cursor: default;
+}
+body #gem-window #whiteboard-panel .expression .constant {
+  color: #c97be7;
 }
 body #gem-window #whiteboard-panel .expression .variable {
   color: #66d9ef;

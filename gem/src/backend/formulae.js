@@ -4,54 +4,52 @@
     var formulae;
     formulae = {
       "kinetic-energy": function() {
-        return new coffeequate.Equation("Ek", "m * v**2 * 1/2");
+        return new coffeequate.Equation("Ek::{kg * m**2 * s**-2}", "m::{kg} * v::{m * s**-1}**2 * 1/2");
       },
       "momentum": function() {
-        return new coffeequate.Equation("p", "m * v");
+        return new coffeequate.Equation("p::{kg * m * s**-1}", "m::{kg} * v::{m * s**-1}");
       },
       "gravity": function() {
-        return new coffeequate.Equation("F", "\\G * m * M * r**-2");
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "\\G * m::{kg} * M::{kg} * r::{m}**-2");
       },
       "gravitational-potential-energy": function() {
-        return new coffeequate.Equation("Ep", "-1 * \\G * m * M * r**-1");
+        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "-1 * \\G * m::{kg} * M::{kg} * r::{m}**-1");
       },
       "gravitational-potential-energy-simple": function() {
-        return new coffeequate.Equation("Ep", "m * g * h");
+        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "m::{kg} * g::{m * s**-2} * h::{m}");
       },
       "force": function() {
-        return new coffeequate.Equation("F", "m * a");
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "m::{kg} * a::{m * s**-2}");
       },
       "centripetal-force": function() {
-        return new coffeequate.Equation("F", "m * v**2 * r**-1");
-      },
-      "product": function() {
-        return new coffeequate.Equation("a", "b * c");
-      },
-      "contrived-pow-example": function() {
-        return new coffeequate.Equation("a", "(b**-1)");
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "m::{kg} * v::{m * s**-1}**2 * r::{m}**-1");
       },
       "projectile-motion": function() {
-        return new coffeequate.Equation("s", "u * t + 1/2 * a * t**2");
+        return new coffeequate.Equation("s::{m}", "u::{m * s**-1} * t::{s} + 1/2 * a::{m * s**-2} * t::{s}**2");
       },
       "projectile-velocity": function() {
-        return new coffeequate.Equation("v", "u + a * t");
+        return new coffeequate.Equation("v::{m * s**-1}", "u::{m * s**-1} + a::{m * s**-2} * t::{s}");
       },
       "energy-mass-relation": function() {
-        return new coffeequate.Equation("E", "m * \\c ** 2");
+        return new coffeequate.Equation("E::{kg * m**2 * s**-2}", "m::{kg} * \\c ** 2");
       },
       "differential-velocity": function() {
-        return new coffeequate.Equation("a", "@v");
+        return new coffeequate.Equation("a::{m * s**-2}", "@v::{m * s**-2}");
       },
       "distance-over-time": function() {
-        return new coffeequate.Equation("v", "d * t**-1");
+        return new coffeequate.Equation("v::{m * s**-1}", "d::{m} * t::{s}**-1");
       },
       "velocity-over-time": function() {
-        return new coffeequate.Equation("a", "v * t**-1");
+        return new coffeequate.Equation("a::{m * s**-2}", "v::{m * s**-1} * t::{s}**-1");
+      },
+      "radius-circumference": function() {
+        return new coffeequate.Equation("c::{m}", "2 * \\π * r::{m}");
       }
     };
     return {
       get: function(name) {
         if (name in formulae) {
+          console.log(formulae[name]());
           return formulae[name]();
         } else {
           throw new Error("No formula called " + name + " exists.");
