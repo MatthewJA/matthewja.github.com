@@ -36,39 +36,42 @@
       return equationIndex.set(equationID, newEquation);
     };
     rewriteExpression = function(expressionID, newExpression) {
-      var expressionDiv, html, position;
-      if (settings.get("mathJaxEnabled")) {
-        console.log(newExpression);
-        console.log(newExpression.toMathML(expressionID, true, "0", true));
-        html = newExpression.toMathML(expressionID, true, "0", true);
-        expressionDiv = $(html);
-        position = $("#expression-" + expressionID).position();
-        $("#expression-" + expressionID).replaceWith(expressionDiv);
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        MathJax.Hub.Queue(function() {
+      var exp, expressionDiv, html, position;
+      exp = expressionIndex.get(expressionID);
+      if (!(typeof exp.equals === "function" ? exp.equals(newExpression) : void 0)) {
+        console.log("" + exp + " not equal to " + newExpression);
+        if (settings.get("mathJaxEnabled")) {
+          html = newExpression.toMathML(expressionID, true, "0", true);
+          expressionDiv = $(html);
+          position = $("#expression-" + expressionID).position();
+          $("#expression-" + expressionID).replaceWith(expressionDiv);
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+          MathJax.Hub.Queue(function() {
+            $("#expression-" + expressionID).css({
+              top: "" + position.top + "px",
+              left: "" + position.left + "px",
+              position: "absolute"
+            });
+            return require(["frontend/setEventHandlers"], function(setEventHandlers) {
+              return setEventHandlers(expressionDiv);
+            });
+          });
+        } else {
+          html = newExpression.toHTML(expressionID, true, "0", true);
+          expressionDiv = $(html);
+          position = $("#expression-" + expressionID).position();
+          $("#expression-" + expressionID).replaceWith(expressionDiv);
           $("#expression-" + expressionID).css({
             top: "" + position.top + "px",
             left: "" + position.left + "px",
             position: "absolute"
           });
-          return require(["frontend/setEventHandlers"], function(setEventHandlers) {
+          require(["frontend/setEventHandlers"], function(setEventHandlers) {
             return setEventHandlers(expressionDiv);
           });
-        });
-      } else {
-        html = expression.toHTML(expressionID, true, "0", true);
-        expressionDiv = $(html);
-        $("#expression-" + expressionID).replaceWith(expressionDiv);
-        $("#expression-" + expressionID).css({
-          top: "" + position.top + "px",
-          left: "" + position.left + "px",
-          position: "absolute"
-        });
-        require(["frontend/setEventHandlers"], function(setEventHandlers) {
-          return setEventHandlers(expressionDiv);
-        });
+        }
+        return expressionIndex.set(expressionID, newExpression);
       }
-      return expressionIndex.set(expressionID, newExpression);
     };
     return {
       rewriteEquation: rewriteEquation,

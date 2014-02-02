@@ -3,35 +3,35 @@
   define(["coffeequate"], function(coffeequate) {
     var formulae;
     formulae = {
-      "kinetic-energy": function() {
-        return new coffeequate.Equation("Ek::{kg * m**2 * s**-2}", "m::{kg} * v::{m * s**-1}**2 * 1/2");
-      },
-      "momentum": function() {
-        return new coffeequate.Equation("p::{kg * m * s**-1}", "m::{kg} * v::{m * s**-1}");
-      },
-      "gravity": function() {
-        return new coffeequate.Equation("F::{kg * m * s**-2}", "\\G * m::{kg} * M::{kg} * r::{m}**-2");
-      },
-      "gravitational-potential-energy": function() {
-        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "-1 * \\G * m::{kg} * M::{kg} * r::{m}**-1");
-      },
-      "gravitational-potential-energy-simple": function() {
-        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "m::{kg} * g::{m * s**-2} * h::{m}");
-      },
       "force": function() {
         return new coffeequate.Equation("F::{kg * m * s**-2}", "m::{kg} * a::{m * s**-2}");
       },
       "centripetal-force": function() {
         return new coffeequate.Equation("F::{kg * m * s**-2}", "m::{kg} * v::{m * s**-1}**2 * r::{m}**-1");
       },
+      "gravity-force": function() {
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "\\G * m::{kg} * M::{kg} * r::{m}**-2");
+      },
+      "friction-force": function() {
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "μ * N::{kg * m * s**-2}");
+      },
+      "momentum": function() {
+        return new coffeequate.Equation("p::{kg * m * s**-1}", "m::{kg} * v::{m * s**-1}");
+      },
+      "angular-momentum": function() {
+        return new coffeequate.Equation("L::{kg * m**2 * s**-1}", "I::{kg * m**2} * ω::{s**-1}");
+      },
+      "moment-of-inertia-disk": function() {
+        return new coffeequate.Equation("I::{kg * m**2}", "1/2 * m::{kg} * R::{m}**2");
+      },
+      "moment-of-inertia-point": function() {
+        return new coffeequate.Equation("I::{kg * m**2}", "m::{kg} * R::{m}**2");
+      },
       "projectile-motion": function() {
         return new coffeequate.Equation("s::{m}", "u::{m * s**-1} * t::{s} + 1/2 * a::{m * s**-2} * t::{s}**2");
       },
       "projectile-velocity": function() {
         return new coffeequate.Equation("v::{m * s**-1}", "u::{m * s**-1} + a::{m * s**-2} * t::{s}");
-      },
-      "energy-mass-relation": function() {
-        return new coffeequate.Equation("E::{kg * m**2 * s**-2}", "m::{kg} * \\c ** 2");
       },
       "differential-velocity": function() {
         return new coffeequate.Equation("a::{m * s**-2}", "@v::{m * s**-2}");
@@ -42,8 +42,38 @@
       "velocity-over-time": function() {
         return new coffeequate.Equation("a::{m * s**-2}", "v::{m * s**-1} * t::{s}**-1");
       },
+      "angular-velocity": function() {
+        return new coffeequate.Equation("v::{m * s**-1}", "r::{m} * ω::{s**-1}");
+      },
+      "kinetic-energy": function() {
+        return new coffeequate.Equation("Ek::{kg * m**2 * s**-2}", "m::{kg} * v::{m * s**-1}**2 * 1/2");
+      },
+      "energy-mass-relation": function() {
+        return new coffeequate.Equation("E::{kg * m**2 * s**-2}", "m::{kg} * \\c ** 2");
+      },
+      "gravitational-potential-energy": function() {
+        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "-1 * \\G * m::{kg} * M::{kg} * r::{m}**-1");
+      },
+      "gravitational-potential-energy-simple": function() {
+        return new coffeequate.Equation("Ep::{kg * m**2 * s**-2}", "m::{kg} * g::{m * s**-2} * h::{m}");
+      },
+      "rotational-energy": function() {
+        return new coffeequate.Equation("E::{kg * m**2 * s**-2}", "I::{kg * m**2} * ω::{s**-1}**2");
+      },
+      "volume-density": function() {
+        return new coffeequate.Equation("ρ::{kg * m**-3}", "m::{kg} * V::{m**3}**-1");
+      },
       "radius-circumference": function() {
         return new coffeequate.Equation("c::{m}", "2 * \\π * r::{m}");
+      },
+      "circle-area": function() {
+        return new coffeequate.Equation("A::{m**2}", "\\π * r::{m}**2");
+      },
+      "rectangle-area": function() {
+        return new coffeequate.Equation("A::{m**2}", "w::{m} * l::{m}");
+      },
+      "prism-volume": function() {
+        return new coffeequate.Equation("V::{m**3}", "A::{m**2} * h::{m}");
       }
     };
     return {

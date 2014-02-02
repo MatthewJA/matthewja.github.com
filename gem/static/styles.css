@@ -167,6 +167,11 @@ body #gem-window #whiteboard-panel .expression .constant {
 body #gem-window #whiteboard-panel .expression .variable {
   color: #66d9ef;
 }
+body #gem-window #whiteboard-panel .text-comment {
+  display: inline-block;
+  font-size: 16px;
+  color: #ecece9;
+}
 body #gem-window #search-panel {
   width: 250px;
   height: 500px;
@@ -186,13 +191,33 @@ body #gem-window #search-panel #search-box {
   color: #ecece9;
   background-color: #404238;
 }
+body #gem-window #search-panel #search-results {
+  overflow-y: scroll;
+}
 body #gem-window #search-panel #search-results ul {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   padding-top: 10px;
   padding-left: 10px;
+  height: 380px;
   color: #ecece9;
   font-size: 20px;
   font-family: monospace;
   list-style-type: none;
+}
+body #gem-window #search-panel #extra-options ul {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  border: 0;
+  padding: 10px;
+  margin: 0;
+  font-size: 20px;
+  color: #ecece9;
+  background-color: #404238;
 }
 body #footer {
   text-align: center;

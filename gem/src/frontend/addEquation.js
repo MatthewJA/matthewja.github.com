@@ -13,13 +13,13 @@
         variable = _ref[_i];
         replacements[variable] = variableIndex.getNextUniqueID(variable);
       }
-      equation.replaceVariables(replacements);
+      equation = equation.replaceVariables(replacements);
       if (settings.get("mathJaxEnabled")) {
         html = equation.toMathML(equationID, false, "0", true);
         equationDiv = $(html);
         $("#whiteboard-panel").append(equationDiv);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        return MathJax.Hub.Queue(function() {
+        MathJax.Hub.Queue(function() {
           var padding;
           require(["frontend/setEventHandlers"], function(setEventHandlers) {
             return setEventHandlers(equationDiv);
@@ -53,8 +53,11 @@
           left: "" + position.left + "px",
           position: "absolute"
         });
-        return setEventHandlers(equationDiv);
+        require(["frontend/setEventHandlers"], function(setEventHandlers) {
+          return setEventHandlers(equationDiv);
+        });
       }
+      return equation;
     };
     return function(equation, position) {
       var equationID;
@@ -62,7 +65,8 @@
         position = null;
       }
       equationID = equationIndex.add(equation);
-      addEquationToWhiteboard(equation, equationID, position);
+      equation = addEquationToWhiteboard(equation, equationID, position);
+      equationIndex.set(equationID, equation);
       return equationID;
     };
   });

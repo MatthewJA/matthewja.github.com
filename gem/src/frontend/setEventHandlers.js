@@ -68,23 +68,61 @@
       target.contextMenu("context-menu-variable", {
         "Set numerical value": {
           click: function(variableElement) {
-            var equation, equationID, formulaID, formulaType, value, variable, _ref, _ref1;
+            var formulaID, formulaType, variable, _ref;
             _ref = getInfo(variableElement), variable = _ref[0], formulaType = _ref[1], formulaID = _ref[2];
-            value = window.prompt("Enter a numerical value for this variable.", "1");
-            if (/^\d+(\.\d+)?$/.test(value)) {
-              _ref1 = makeEquation(variable, value), equationID = _ref1[0], equation = _ref1[1];
-              if (numericalValues.getExpression(variable) != null) {
-                return require(["frontend/rewrite"], function(rewrite) {
-                  return rewrite.rewriteExpression(numericalValues.getExpression(variable), equation);
-                });
-              } else {
-                return require(["frontend/addExpression"], function(addExpression) {
-                  var eID;
-                  eID = addExpression(equation);
-                  return numericalValues.set(variable, value, eID);
-                });
+            return $.prompt({
+              state0: {
+                title: "Enter a numerical value for this variable.",
+                html: '<input type="text" name="numericalvalue" value="1"><br>',
+                buttons: {
+                  "Set Value": 1,
+                  "Cancel": -1
+                },
+                focus: 0,
+                submit: function(e, v, m, f) {
+                  var equation, equationID, value, _ref1;
+                  e.preventDefault();
+                  if (v === 1) {
+                    value = f.numericalvalue;
+                    if (/^\d+(\.\d+)?$/.test(value)) {
+                      _ref1 = makeEquation(variable, value), equationID = _ref1[0], equation = _ref1[1];
+                      if (numericalValues.getExpression(variable) != null) {
+                        require(["frontend/rewrite"], function(rewrite) {
+                          return rewrite.rewriteExpression(numericalValues.getExpression(variable), equation);
+                        });
+                      } else {
+                        require(["frontend/addExpression"], function(addExpression) {
+                          var eID;
+                          eID = addExpression(equation);
+                          return numericalValues.set(variable, value, eID);
+                        });
+                      }
+                      return $.prompt.close();
+                    } else {
+                      return $.prompt.nextState();
+                    }
+                  } else {
+                    return $.prompt.close();
+                  }
+                }
+              },
+              state1: {
+                title: "Please enter a number.",
+                buttons: {
+                  "Okay": 1,
+                  "Cancel": -1
+                },
+                focus: 0,
+                submit: function(e, v, m, f) {
+                  e.preventDefault();
+                  if (v === 1) {
+                    return $.prompt.prevState();
+                  } else {
+                    return $.prompt.close();
+                  }
+                }
               }
-            }
+            });
           }
         },
         "Delete formula": {
@@ -118,7 +156,7 @@
       } else {
         target = $(".equation, .expression");
       }
-      return target.contextMenu("context-menu-variable", {
+      return target.contextMenu("context-menu-formula", {
         "Evaluate": {
           click: function(variableElement) {
             var formulaID, formulaType, _ref;
