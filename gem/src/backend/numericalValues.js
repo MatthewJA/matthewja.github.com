@@ -11,7 +11,7 @@
       },
       get: function(variable) {
         if (variable in values) {
-          return value[variable];
+          return values[variable];
         } else {
           return null;
         }

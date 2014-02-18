@@ -87,6 +87,7 @@ body {
   background-color: #151613;
   font-family: "Source Sans Pro", "Open Sans", Tahoma, Arial, sans-serif;
   color: #ecece9;
+  overflow: auto;
 }
 body h1, body h2, body h3, body h4, body h5, body h6 {
   padding: 10px;
@@ -140,6 +141,7 @@ body #gem-window #whiteboard-panel {
   width: 600px;
   height: 500px;
   float: left;
+  overflow: auto;
 }
 body #gem-window #whiteboard-panel .equation {
   display: inline-block;
@@ -218,6 +220,13 @@ body #gem-window #search-panel #extra-options ul {
   font-size: 20px;
   color: #ecece9;
   background-color: #404238;
+}
+body #gem-window #search-panel #extra-options button {
+  width: 100%;
+  margin: 0;
+}
+body #gem-window #search-panel #extra-options .button-down {
+  background-color: #AAAAFF;
 }
 body #footer {
   text-align: center;

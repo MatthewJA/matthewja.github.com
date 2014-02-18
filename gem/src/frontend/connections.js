@@ -44,13 +44,15 @@
     };
     repaint = function(connection) {
       var h1, h2, p1, p2, w1, w2;
-      p1 = connection.source.offset();
-      p2 = connection.target.offset();
-      w1 = connection.source.width();
-      w2 = connection.target.width();
-      h1 = connection.source.height();
-      h2 = connection.target.height();
-      return connection.element.css(generateLineCSS(p1.left + w1 / 2, p1.top + h1 / 2, p2.left + w2 / 2, p2.top + h2 / 2));
+      if (connection.deleted == null) {
+        p1 = connection.source.offset();
+        p2 = connection.target.offset();
+        w1 = connection.source.width();
+        w2 = connection.target.width();
+        h1 = connection.source.height();
+        h2 = connection.target.height();
+        return connection.element.css(generateLineCSS(p1.left + w1 / 2, p1.top + h1 / 2, p2.left + w2 / 2, p2.top + h2 / 2));
+      }
     };
     return {
       repaintVariables: function(element) {
@@ -106,6 +108,33 @@
         };
         connections.push(connection);
         return element;
+      },
+      removeAllVariableConnections: function(formula) {
+        var connection, variable, variables, _i, _len, _results;
+        variables = formula.find(".variable").addBack(formula.attr("id"));
+        _results = [];
+        for (_i = 0, _len = connections.length; _i < _len; _i++) {
+          connection = connections[_i];
+          _results.push((function() {
+            var _base, _j, _len1, _results1;
+            _results1 = [];
+            for (_j = 0, _len1 = variables.length; _j < _len1; _j++) {
+              variable = variables[_j];
+              variable = $(variable);
+              if (variable.is(connection.source) || variable.is(connection.target)) {
+                console.log(variable, "matches", connection.source, "or", connection.target);
+                if (typeof (_base = connection.element).remove === "function") {
+                  _base.remove();
+                }
+                _results1.push(connection.deleted = true);
+              } else {
+                _results1.push(console.log(variable, "doesn't match", connection.source, "or", connection.target));
+              }
+            }
+            return _results1;
+          })());
+        }
+        return _results;
       },
       setEquivalency: function(a, b) {
         var c, cID, connection, d, dID, equivalency, exists, sourceID, targetID, _i, _len, _results;

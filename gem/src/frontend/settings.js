@@ -6,7 +6,9 @@
       mathJaxEnabled: true,
       connectionWidth: 1,
       variablePadding: 10,
-      loadForever: false
+      loadForever: false,
+      assumeZeroUncertainty: true,
+      showSymbolicUncertainties: false
     };
     return {
       get: function(name) {
