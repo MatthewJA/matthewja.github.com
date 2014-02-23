@@ -21,6 +21,23 @@
       },
       getNumericalValues: function() {
         return values;
+      },
+      clear: function() {
+        var prop, _results;
+        for (prop in values) {
+          if (values.hasOwnProperty(prop)) {
+            delete values[prop];
+          }
+        }
+        _results = [];
+        for (prop in valueExpressions) {
+          if (valueExpressions.hasOwnProperty(prop)) {
+            _results.push(delete valueExpressions[prop]);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       }
     };
   });

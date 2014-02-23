@@ -23,6 +23,9 @@
         }
         equations[equationID] = equation;
         return equations[equationID];
+      },
+      clear: function() {
+        return equations.splice(0);
       }
     };
   });

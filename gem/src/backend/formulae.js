@@ -87,6 +87,9 @@
       "heat-flow-through-insulator": function() {
         return new coffeequate.Equation("P::{kg * m**2 * s**-3}", "A::{m**2} * ΔT::{K} * R::{kg**-1 * s**3 * K}");
       },
+      "larmor-radiation-power": function() {
+        return new coffeequate.Equation("@E::{kg * m**2 * s**-3}", "-2/3 * q::{A * s}**2 * (4 * \\π * \\ε0)**-1 * a::{m * s**-2}**2 * \\c::{m * s**-1}**-1");
+      },
       "volume-density": function() {
         return new coffeequate.Equation("ρ::{kg * m**-3}", "m::{kg} * V::{m**3}**-1");
       },

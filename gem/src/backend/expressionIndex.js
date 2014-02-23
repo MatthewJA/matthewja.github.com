@@ -23,6 +23,9 @@
         }
         expressions[expressionID] = expression;
         return expressions[expressionID];
+      },
+      clear: function() {
+        return expressions.splice(0);
       }
     };
   });

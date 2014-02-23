@@ -19,6 +19,18 @@
       },
       getUncertaintyMap: function() {
         return uncertainties;
+      },
+      clear: function() {
+        var prop, _results;
+        _results = [];
+        for (prop in uncertainties) {
+          if (uncertainties.hasOwnProperty(prop)) {
+            _results.push(delete uncertainties[prop]);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       }
     };
   });

@@ -32,6 +32,23 @@
         variableID = label + "-" + this.getLabelCount(label);
         this.add(variableID, label);
         return variableID;
+      },
+      clear: function() {
+        var prop, _results;
+        for (prop in variables) {
+          if (variables.hasOwnProperty(prop)) {
+            delete variables[prop];
+          }
+        }
+        _results = [];
+        for (prop in variableLabels) {
+          if (variableLabels.hasOwnProperty(prop)) {
+            _results.push(delete variableLabels[prop]);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       }
     };
   });
