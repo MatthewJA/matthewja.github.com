@@ -208,6 +208,12 @@ body #gem-window #search-panel #search-results ul {
   font-family: monospace;
   list-style-type: none;
 }
+body #gem-window #search-panel #search-results ul li {
+  cursor: default;
+}
+body #gem-window #search-panel #search-results ul li:hover {
+  color: #ffbbbb;
+}
 body #gem-window #search-panel #extra-options ul {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
