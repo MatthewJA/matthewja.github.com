@@ -41,13 +41,13 @@
         _ref = getInfo($(this)), variable = _ref[0], formulaType = _ref[1], formulaID = _ref[2];
         console.log("Double-clicked " + variable + " in " + formulaType + " " + formulaID);
         if (formulaType === "equation") {
-          return require(["backend/solveEquation", "frontend/addExpression"], function(solveEquation, addExpression) {
+          return require(["backend/solveEquation", "frontend/addExpression", "backend/expressionIndex", "backend/equationIndex", "backend/equivalenciesIndex"], function(solveEquation, addExpression, expressionIndex, equationIndex, equivalenciesIndex) {
             var expressionID, solution, solutions, _i, _len, _results;
             solutions = solveEquation(formulaID, variable);
             _results = [];
             for (_i = 0, _len = solutions.length; _i < _len; _i++) {
               solution = solutions[_i];
-              _results.push(expressionID = addExpression(solution));
+              _results.push(expressionID = addExpression(solution, equationIndex.get(formulaID).getVariableUnits(variable, equivalenciesIndex)));
             }
             return _results;
           });

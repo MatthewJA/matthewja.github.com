@@ -7,9 +7,14 @@
       console.log(expression._gem_evaluatedExpression);
       if (expression._gem_evaluatedExpression != null) {
         html += "<mo>=</mo>" + (settings.get("mathJaxEnabled") ? expression._gem_evaluatedExpression.toMathML(expressionID, true, "0", false) : expression._gem_evaluatedExpression.toHTML(expressionID, true, "0", false));
-      }
-      if (expression._gem_uncertaintyExpression != null) {
-        html += "<mo>&plusmn;</mo>" + (settings.get("mathJaxEnabled") ? expression._gem_uncertaintyExpression.toMathML(expressionID, true, "0", false) : expression._gem_uncertaintyExpression.toHTML(expressionID, true, "0", false));
+        if (expression._gem_uncertaintyExpression != null) {
+          html += "<mo>&plusmn;</mo>" + (settings.get("mathJaxEnabled") ? expression._gem_uncertaintyExpression.toMathML(expressionID, true, "0", false) : expression._gem_uncertaintyExpression.toHTML(expressionID, true, "0", false));
+        }
+        if (expression._gem_units != null) {
+          html += (settings.get("mathJaxEnabled") ? expression._gem_units.toMathML() : expression._gem_units.toHTML());
+        } else {
+          console.log(expression._gem_units);
+        }
       }
       html += (settings.get("mathJaxEnabled") ? "</math></div>" : "</div>");
       return html;

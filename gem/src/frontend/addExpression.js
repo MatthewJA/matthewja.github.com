@@ -52,10 +52,14 @@
         });
       }
     };
-    return function(expression) {
+    return function(expression, units) {
       var expressionID;
+      if (units == null) {
+        units = null;
+      }
       expressionID = expressionIndex.add(expression);
       setExpressionAddendums(expression);
+      expression._gem_units = units;
       addExpressionToWhiteboard(expression, expressionID);
       return expressionID;
     };
