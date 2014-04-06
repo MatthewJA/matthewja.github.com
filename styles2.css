@@ -1,0 +1,110 @@
+/* Overall */
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+
+	font-family: "Trebuchet MS", Tahoma, sans-serif;
+	font-size: 12pt;
+
+	background-color: #FAFAFA;
+}
+
+/* Links */
+a {
+	color: #334466;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #7788AA;
+}
+
+/* Headers */
+header {
+	display: block;
+}
+
+header#title {
+	display: block;
+	margin-bottom: 20pt;
+	padding: 10pt 10pt 20pt 10pt;
+
+	font-size: 16pt;
+	color: #FAFAFA;
+
+	text-align: center;
+
+	background-color: #555555;
+}
+
+/* Sections */
+
+section {
+	display: block;
+}
+
+section > header {
+	margin-bottom: 20pt;
+	padding: 10pt 20pt 20pt 20pt;
+
+	color: #FAFAFA;
+
+	background-color: #6699DD;
+}
+
+/* Articles */
+
+section#projects > article {
+	min-height: 250px;
+	padding-right: 20%;
+	margin-bottom: 20pt;
+}
+
+article > header {
+	padding: 10pt 20pt 15pt 20pt;
+	margin-bottom: 20pt;
+
+	color: #222222;
+
+	background-color: #99CCFF;
+}
+
+article > img {
+	float: left;
+	margin: 0 20pt;
+}
+
+/* General headings */
+h1, h2, h3, h4, h5, h6 {
+	font-family: Oxygen, "Trebuchet MS", Tahoma, sans-serif;
+}
+
+h1 {
+	font-size: 60pt;
+
+	text-align: center;
+
+	margin: 10pt 0 20pt 0;
+}
+
+h2 {
+	font-size: 30pt;
+}
+
+h3 {
+	font-size: 20pt;
+}
+
+h4 {
+	font-size: 15pt;
+}
+
+/* Elements */
+p {
+	display: block;
+	margin-bottom: 10pt;
+}
