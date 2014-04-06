@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<!-- Hello! :D -->
+
+	<head>
+		<title>MatthewJA</title>
+		<link rel="stylesheet" type="text/css" href="./styles.css">
+		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript">
+			var screens = ["top", "goodsiricannotdraw", "codingandprogramming"];
+			function goToScreen(a) {
+						$('html, body').stop().animate({
+							scrollTop: $("#" + screens[a]).position().top
+						}, 400);
+			};
+		</script>
+	</head>
+	<body>
+		<div id="top">
+			<h1>Hello, world! :D</h1>
+			<h2>I am Matthew Alger and I make things sometimes</h2>
+
+			<a class="box" id="gsicd" onclick="goToScreen(1); return false;" href="#goodsiricannotdraw">
+				Good Sir, I Cannot Draw
+			</a>
+
+			<a class="box" id="codingprogramming" onclick="goToScreen(2); return false;" href="#codingandprogramming">
+				Coding and Programming
+			</a>
+
+			<a class="box" href="mailto:hello.i.am.matthewja@gmail.com">
+				Contact<br>
+				<span class="text">hello.i.am.matthewja@gmail.com</span>
+			</a>
+
+			<div id="stickman">
+				<img src="./static/stickman_frontfacing.png">
+			</div>
+		</div>
+
+		<div id="goodsiricannotdraw">
+			<h1>Good Sir, I Cannot Draw</h1>
+			<h2>A webcomic about things, since 2010!</h2>
+
+			<a class="box" id="gsicd2" href="http://gsicd.matthewja.com/">
+				Get on it!
+			</a>
+
+			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
+		</div>
+
+		<div id="codingandprogramming">
+			<h1>Coding and Programming</h1>
+			<h2>Here's some stuff I've done recently:</h2>
+
+			<a class="box" id="treegen" href="/html5tests/tree.html">
+				Tree Generator
+			</a>
+
+			<a class="box" id="patterns" href="/html5tests/patterns.html">
+				Patterns
+			</a>
+
+			<a class="box" id="snake" href="/html5tests/snake.html">
+				Circle Snake
+			</a>
+
+			<h2>Here's some stuff I'm working on now:</h2>
+
+			<a href="http://github.com/MatthewJA/Graphical-Equation-Manipulator" class="box" id="gem">
+				Graphical Equation Manipulator
+			</a>
+
+			<div id="euler"><img src="http://projecteuler.net/profile/MatthewJA.png"></div>
+
+			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
+		</div>
+	</body>
+</html>

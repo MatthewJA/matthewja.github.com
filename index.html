@@ -1,81 +1,91 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-
-	<!-- Hello! :D -->
-
 	<head>
-		<title>MatthewJA</title>
-		<link rel="stylesheet" type="text/css" href="./styles.css">
+		<title>Matthew Alger</title>
+
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script type="text/javascript">
-			var screens = ["top", "goodsiricannotdraw", "codingandprogramming"];
-			function goToScreen(a) {
-						$('html, body').stop().animate({
-							scrollTop: $("#" + screens[a]).position().top
-						}, 400);
-			};
-		</script>
+		<link rel="stylesheet" type="text/css" href="./css3reset.css">
+		<link rel="stylesheet" type="text/css" href="./styles.css">
 	</head>
 	<body>
-		<div id="top">
+		<header id="title">
 			<h1>Hello, world! :D</h1>
-			<h2>I am Matthew Alger and I make things sometimes</h2>
+			I'm Matthew Alger. I make things sometimes!
+			
+			<nav>
+				<a href="http://blog.matthewja.com/">Development Blog</a> -
+				<a href="/">This Very Site</a>
+			</nav>
+		</header>
 
-			<a class="box" id="gsicd" onclick="goToScreen(1); return false;" href="#goodsiricannotdraw">
-				Good Sir, I Cannot Draw
-			</a>
+		<section id="me">
+			<header><h2>About Me</h2></header>
+			<p>
+				I'm a reasonably enthusiastic university student with an interest in programming and computer science.<br>
+				I study computer science and physics at the ANU, and do a variety of neat things - like making this website - on the side.
+			</p>
 
-			<a class="box" id="codingprogramming" onclick="goToScreen(2); return false;" href="#codingandprogramming">
-				Coding and Programming
-			</a>
+			<p>
+				You can contact me at <strong>hello.i.am.matthewja<wbr>(at)<wbr>gmail<wbr>(dot)<wbr>com</strong>.
+			</p>
+		</section>
 
-			<a class="box" href="mailto:hello.i.am.matthewja@gmail.com">
-				Contact<br>
-				<span class="text">hello.i.am.matthewja@gmail.com</span>
-			</a>
+		<section id="projects">
+			<header><h2>Projects</h2></header>
 
-			<div id="stickman">
-				<img src="./static/stickman_frontfacing.png">
-			</div>
-		</div>
+			<article>
+				<header><h3>Coffeequate</h3></header>
 
-		<div id="goodsiricannotdraw">
-			<h1>Good Sir, I Cannot Draw</h1>
-			<h2>A webcomic about things, since 2010!</h2>
+				<img src="/Coffeequate/images/coffeequate_small.png">
 
-			<a class="box" id="gsicd2" href="http://gsicd.matthewja.com/">
-				Get on it!
-			</a>
+				<p>
+					<strong>Coffeequate</strong> is a computer algebra system (CAS) for JavaScript.
+					It can manipulate algebraic expressions, and solve and simplify equations.
+				</p>
 
-			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
-		</div>
+				<p>
+					It's a work in progress, but already works for a multitude of equations, and works great on linear and quadratic equations.
+					We eventually plan to add trigonometry, calculus, and a variety of other fancy features.
+				</p>
 
-		<div id="codingandprogramming">
-			<h1>Coding and Programming</h1>
-			<h2>Here's some stuff I've done recently:</h2>
+				<p>
+					<a href="/Coffeequate/">Read more</a>, or check out <a href="http://github.com/MatthewJA/Coffeequate">the code</a>, brought to you by myself and the wonderful <a href="http://github.com/BuckShlegeris">Buck Shlegeris</a>.
+				</p>
+			</article>
 
-			<a class="box" id="treegen" href="/html5tests/tree.html">
-				Tree Generator
-			</a>
+			<article>
+				<header><h3>Graphical Equation Manipulator</h3></header>
 
-			<a class="box" id="patterns" href="/html5tests/patterns.html">
-				Patterns
-			</a>
+				<img src="/Graphical-Equation-Manipulator/images/gem_small.png">
 
-			<a class="box" id="snake" href="/html5tests/snake.html">
-				Circle Snake
-			</a>
+				<p>
+					<strong>Graphical Equation Manipulator</strong> is a system to make solving simple physics problems far easier.
+					Based on <a href="http://github.com/BuckShlegeris">Buck&nbsp;Shlegeris</a>/<a href="http://github.com/BuckShlegeris/pyGem">pyGem</a>.
+				</p>
 
-			<h2>Here's some stuff I'm working on now:</h2>
+				<p>
+					<a href="/Graphical-Equation-Manipulator/">Read more</a>, or check out <a href="http://github.com/MatthewJA/Graphical-Equation-Manipulator">the code</a>, brought to you by myself and <a href="http://github.com/BuckShlegeris">Buck Shlegeris</a>.
+				</p>
+			</article>
 
-			<a href="http://github.com/MatthewJA/Graphical-Equation-Manipulator" class="box" id="gem">
-				Graphical Equation Manipulator
-			</a>
+			<article>
+				<header><h3>Circle Snake</h3></header>
 
-			<div id="euler"><img src="http://projecteuler.net/profile/MatthewJA.png"></div>
+				<img src="/snake/static/snake_logo.png">
 
-			<a class="back" onclick="goToScreen(0); return false;" href="#">&lt;BACK&gt;</a>
-		</div>
+				<p>
+					<strong>Circle Snake</strong> is a delightfully fun and terribly easy game, according to absolutely nobody.
+				</p>
+
+				<p>
+					This was one of the first things I programmed in JavaScript, so I think it's a decent example of what happens when you sit me in front of something I haven't seen before. I'm currently working on a remake - Circle Snake 2, of course - which will be programmed a little better, and run a little smoother.
+				</p>
+
+				<p>
+					<a href="/snake/">Go play it</a>, or check out <a href="http://github.com/MatthewJA/matthewja.github.com/tree/master/snake">the code</a>.
+				</p>
+			</article>
+		</section>
 	</body>
 </html>

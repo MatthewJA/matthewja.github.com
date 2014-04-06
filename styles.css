@@ -1,125 +1,131 @@
-* {
-	padding:0;
-	margin:0;
-}
-
+/* Overall */
 html {
-	height:100%;
+	height: 100%;
 }
 
 body {
-	height:100%;
-	background-color:#788FB3;
-	color:#FFFFFF;
-	margin-top:10%;
-	margin:0;
-	padding:0;
-	text-align: center;
+	height: 100%;
+
+	font-family: "Trebuchet MS", Tahoma, sans-serif;
+	font-size: 12pt;
+	line-height: 16pt;
+
+	background-color: #FAFAFA;
 }
 
-h1, h2, h3, .box , .back {
-	font-family:Oxygen, Tahoma, Sans-serif;
-	text-align:center;
-	font-weight:normal;
+/* Links */
+a {
+	color: #334466;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #7788AA;
+}
+
+/* Headers */
+header {
+	display: block;
+}
+
+header#title {
+	display: block;
+	margin-bottom: 20pt;
+	padding: 10pt 10pt 20pt 10pt;
+
+	font-size: 16pt;
+	color: #FAFAFA;
+
+	text-align: center;
+
+	background-color: #555555;
+}
+
+header > h1 {
+	line-height: 80px;
+}
+
+header > nav {
+	margin-top: 20pt;
+
+	font-size: 12pt;
+}
+
+header a {
+	color: #BBCCEE;
+}
+
+/* Sections */
+
+section {
+	display: block;
+
+	margin-bottom: 20pt;
+}
+
+section > header {
+	margin-bottom: 20pt;
+	padding: 10pt 20pt 20pt 20pt;
+
+	color: #FAFAFA;
+
+	background-color: #6699DD;
+}
+
+section > p {
+	padding: 0 20pt 0 20pt;
+}
+
+/* Articles */
+
+section#projects > article {
+	min-height: 250px;
+	padding-right: 20%;
+	margin-bottom: 20pt;
+}
+
+article > header {
+	padding: 10pt 20pt 15pt 20pt;
+	margin-bottom: 20pt;
+
+	color: #222222;
+
+	background-color: #99CCFF;
+}
+
+article > img {
+	float: left;
+	margin: 0 20pt;
+}
+
+/* General headings */
+h1, h2, h3, h4, h5, h6 {
+	font-family: Oxygen, "Trebuchet MS", Tahoma, sans-serif;
 }
 
 h1 {
-	font-size:80px;
+	font-size: 60pt;
+
+	text-align: center;
+
+	margin: 10pt 0 20pt 0;
 }
 
 h2 {
-	font-size:30px;
+	font-size: 30pt;
 }
 
-h3, .box {
-	font-size:20px;
-	font-weight:bold;
+h3 {
+	font-size: 20pt;
 }
 
-a:link, a:visited, a:active, a:hover {
-	color:#FFFFFF;
-	text-decoration:none;
+h4 {
+	font-size: 15pt;
 }
 
-.back {
-	display:block;
-}
-
-.box {
-	width:300px;
-	height:200px;
-	background-color:#9AAFCE;
-	display:inline-block;
-	*zoom:1;
-	*display:inline;
-	padding:10px;
-	margin:10px;
-	vertical-align:top;
-	cursor:pointer;
-}
-
-#stickman {
-	text-align:center;
-	margin-top:25px;
-	clear:both;
-}
-
-#gsicd {
-	background-image:url("./static/gsicd.png");
-}
-
-#gsicd2 {
-	background-image:url("./static/gsicd2.png");
-}
-
-#codingprogramming {
-	background-image:url("./static/codingprogramming.png");
-}
-
-#treegen {
-	background-image:url("./static/html5tree.png");
-}
-
-#patterns {
-	background-image:url("./static/patterns.png");
-}
-
-#snake {
-	background-image:url("./static/snake.png");
-}
-
-#gem {
-	background-image:url("./static/gem.png");
-	font-size:inherit;
-}
-
-#top, #goodsiricannotdraw, #codingandprogramming {
-	width:100%;
-	min-height:100%;
-}
-
-#top {
-	top:0;
-}
-
-#goodsiricannotdraw {
-	background-color:#EE8877;
-	top:100%;
-}
-
-#codingandprogramming {
-	background-color:#88EE77;
-	top:200%;
-}
-
-#goodsiricannotdraw .box {
-	background-color:#FF9988;
-}
-
-#codingandprogramming .box {
-	background-color:#99FF88;
-}
-
-.text {
-	font-size:75%;
+/* Elements */
+p {
+	display: block;
+	margin-bottom: 10pt;
 }
