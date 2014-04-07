@@ -60,8 +60,9 @@ header a {
 
 section {
 	display: block;
-
+	clear: both;
 	margin-bottom: 20pt;
+	min-height: 300px;
 }
 
 section > header {
@@ -79,9 +80,12 @@ section > p {
 
 /* Articles */
 
+article {
+	padding-right: 20%;
+}
+
 section#projects > article {
 	min-height: 250px;
-	padding-right: 20%;
 	margin-bottom: 20pt;
 }
 
@@ -97,6 +101,10 @@ article > header {
 article > img {
 	float: left;
 	margin: 0 20pt;
+}
+
+article > p {
+	padding: 0 20pt;
 }
 
 /* General headings */
