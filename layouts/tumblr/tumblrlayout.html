@@ -6,6 +6,51 @@
 		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="http://matthewja.com/css3reset.css">
 		<link rel="stylesheet" type="text/css" href="http://matthewja.com/styles.css">
+		<style type="text/css">
+			h3 > a {
+				color: black;
+			}
+
+			.post-information {
+				margin-bottom: 20pt;
+				width: 80%;
+
+				color: #EFEFEF;
+
+				background-color: #385470;
+
+				min-height: 16pt;
+			}
+
+			.post-time {
+				float: left;
+				margin-left: 20pt;
+			}
+
+			.post-tag {
+				float: right;
+				margin-right: 20pt;
+			}
+
+			.post-tag > a {
+				margin-left: 10pt;
+				color: #DEDEEF;
+			}
+
+			.post-tag > a:hover {
+				color: #7788AA;
+			}
+
+			.post-tag > a:before {
+				content: "#";
+			}
+
+			.clearfix {
+				clear: both;
+				display: block;
+			}
+
+		</style>
 	</head>
 	<body>
 		<header id="title">
@@ -15,6 +60,7 @@
 			<nav>
 				<a href="http://matthewja.com/">My Website</a> -
 				<a href="http://github.com/MatthewJA">GitHub</a> -
+				<a href="/archive">Blog Archive</a> -
 				<a href="/">This Very Blog</a>
 			</nav>
 		</header>
@@ -22,29 +68,39 @@
 		<section id="posts">
 			{block:Posts}{block:Text}
 				<article class="text-post">
-					<header>{block:Title}<h3>{Title}</h3>{/block:Title}</header>
+					<header>{block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{Body}
 				</article>
 			{/block:Text}{block:Photo}
 				<article class="photo-post">
-					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<header>{block:Caption}<h3><a href="{Permalink}">{Caption}</a></h3>{/block:Caption}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					<img src="{PhotoURL-500}" alt="{PhotoAlt}">
 				</article>
 			{/block:Photo}{block:Panorama}
 				<article class="panorama-post">
-					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<header>{block:Caption}<h3><a href="{Permalink}">{Caption}</a></h3>{/block:Caption}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{LinkOpenTag}
 						<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
 					{LinkCloseTag}
 				</article>
 			{/block:Panorama}{block:Photoset}
 				<article class="panorama-post">
-					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<header>{block:Caption}<h3><a href="{Permalink}">{Caption}</a></h3>{/block:Caption}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{Photoset-500}
 				</article>
 			{/block:Photoset}{block:Quote}
 				<article class="quote-post">
-					<header><h3>Quote</h3></header>
+					<header><h3><a href="{Permalink}">Quote</a></h3></header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					<div class="quote-content">"{Quote}"</div>
 					{block:Source}
 						<div class="quote-source">{Source}</div>
@@ -52,7 +108,9 @@
 				</article>
 			{/block:Quote}{block:Link}
 				<article class="link-post">
-					<header><h3><a href="{URL}" class="link" {Target}>{Name}</a></h3></header>
+					<header><h3><a href="{Permalink}"><a href="{URL}" class="link" {Target}>{Name}</a></a></h3></header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{block:Description}
 						<p>
 							{Description}
@@ -61,7 +119,9 @@
 				</article>
 			{/block:Link}{block:Chat}
 				<article class="chat-post">
-					<header>{block:Title}<h3>{Title}</h3>{/block:Title}</header>
+					<header>{block:Title}<h3><a href="{Permalink}">{Title}</a></h3>{/block:Title}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					<p>
 						<ul class="chat">
 							{block:Lines}
@@ -76,15 +136,29 @@
 				</article>
 			{/block:Chat}{block:Video}
 				<article class="video-post">
-					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<header>{block:Caption}<h3><a href="{Permalink}">{Caption}</a></h3>{/block:Caption}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{Video-500}
 				</article>
 			{/block:Video}{block:Audio}
 				<article class="video-post">
-					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<header>{block:Caption}<h3><a href="{Permalink}">{Caption}</a></h3>{/block:Caption}</header>
+					<div class="post-information">{block:Date}<span class="post-time">{DayOfMonth} {Month} {Year}, {24Hour}:{Minutes}{/block:Date}</span>{block:HasTags}
+					{block:Tags}<span class="post-tag"><a href="{TagURL}">{Tag}</a></span>{/block:Tags}{/block:HasTags}<span class="clearfix"></div>
 					{AudioEmbed}
 				</article>
 			{/block:Audio}{/block:Posts}
 		</section>
+
+		<header>
+			{block:PreviousPage}
+				<a href="{PreviousPage}">&#171; Previous</a>
+			{/block:PreviousPage}{block:NextPage}
+				<a href="{NextPage}">Next &#187;</a>
+			{/block:NextPage}
+		</header>
+
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	</body>
 </html>

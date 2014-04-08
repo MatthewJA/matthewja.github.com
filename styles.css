@@ -110,6 +110,7 @@ article > p {
 /* General headings */
 h1, h2, h3, h4, h5, h6 {
 	font-family: Oxygen, "Trebuchet MS", Tahoma, sans-serif;
+	font-weight: normal;
 }
 
 h1 {
