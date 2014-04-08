@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Matthew Alger</title>
+
+		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="http://matthewja.com/css3reset.css">
+		<link rel="stylesheet" type="text/css" href="http://matthewja.com/styles.css">
+	</head>
+	<body>
+		<header id="title">
+			<h1>Let's talk about Matthew.</h1>
+			That's me!
+			
+			<nav>
+				<a href="http://matthewja.com/">My Website</a> -
+				<a href="http://github.com/MatthewJA">GitHub</a> -
+				<a href="/">This Very Blog</a>
+			</nav>
+		</header>
+
+		<section id="posts">
+			{block:Posts}{block:Text}
+				<article class="text-post">
+					<header>{block:Title}<h3>{Title}</h3>{/block:Title}</header>
+					{Body}
+				</article>
+			{/block:Text}{block:Photo}
+				<article class="photo-post">
+					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					<img src="{PhotoURL-500}" alt="{PhotoAlt}">
+				</article>
+			{/block:Photo}{block:Panorama}
+				<article class="panorama-post">
+					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					{LinkOpenTag}
+						<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
+					{LinkCloseTag}
+				</article>
+			{/block:Panorama}{block:Photoset}
+				<article class="panorama-post">
+					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					{Photoset-500}
+				</article>
+			{/block:Photoset}{block:Quote}
+				<article class="quote-post">
+					<header><h3>Quote</h3></header>
+					<div class="quote-content">"{Quote}"</div>
+					{block:Source}
+						<div class="quote-source">{Source}</div>
+					{/block:Source}
+				</article>
+			{/block:Quote}{block:Link}
+				<article class="link-post">
+					<header><h3><a href="{URL}" class="link" {Target}>{Name}</a></h3></header>
+					{block:Description}
+						<p>
+							{Description}
+						</p>
+					{/block:Description}
+				</article>
+			{/block:Link}{block:Chat}
+				<article class="chat-post">
+					<header>{block:Title}<h3>{Title}</h3>{/block:Title}</header>
+					<p>
+						<ul class="chat">
+							{block:Lines}
+								<li class="{Alt} user_{UserNumber}">
+									{block:Label}
+										<span class="label">{Label}</span>
+									{/block:Label}{Line}
+								</li>
+							{/block:Lines}
+						</ul>
+					</p>
+				</article>
+			{/block:Chat}{block:Video}
+				<article class="video-post">
+					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					{Video-500}
+				</article>
+			{/block:Video}{block:Audio}
+				<article class="video-post">
+					<header>{block:Caption}<h3>{Caption}</h3>{/block:Caption}</header>
+					{AudioEmbed}
+				</article>
+			{/block:Audio}{/block:Posts}
+		</section>
+	</body>
+</html>

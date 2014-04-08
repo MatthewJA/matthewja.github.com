@@ -82,11 +82,11 @@ section > p {
 
 article {
 	padding-right: 20%;
+	margin-bottom: 30pt;
 }
 
 section#projects > article {
 	min-height: 250px;
-	margin-bottom: 20pt;
 }
 
 article > header {
