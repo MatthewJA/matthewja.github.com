@@ -84,28 +84,38 @@
                   e.preventDefault();
                   if (v === 1) {
                     value = f.numericalvalue;
-                    if (/^-?\d+(\.\d+)?(\s*\+-\s*-?\d+(\.\d+)?)?$/.test(value)) {
+                    if (/^-?\d+(\.\d+)?(e-?\d+(\.\d+)?)?(\s*\+-\s*-?\d+(\.\d+)?(e-?\d+(\.\d+)?)?)?$/.test(value)) {
                       value = value.replace(/\s/g, "");
                       splitValue = value.split("+-");
                       uncertainty = splitValue[1];
                       value = splitValue[0];
-                      uncertaintiesIndex.set(variable, uncertainty);
+                      if (uncertainty != null) {
+                        uncertaintiesIndex.set(variable, uncertainty);
+                      } else {
+                        uncertaintiesIndex.set(variable, "0");
+                      }
                       _ref1 = makeEquation(variable, value), equationID = _ref1[0], equation = _ref1[1];
                       require(["backend/formulae"], function(formulae) {
                         if (uncertainty != null) {
                           equation._gem_uncertaintyExpression = formulae.makeExpression(uncertainty);
+                        } else {
+                          delete equation._gem_uncertaintyExpression;
                         }
                         if (numericalValues.getExpression(variable) != null) {
-                          return require(["frontend/rewrite"], function(rewrite) {
-                            return rewrite.rewriteExpression(numericalValues.getExpression(variable), equation);
+                          require(["frontend/rewrite"], function(rewrite) {
+                            rewrite.rewriteExpression(numericalValues.getExpression(variable), equation);
+                            return numericalValues.set(variable, value, numericalValues.getExpression(variable));
                           });
                         } else {
-                          return require(["frontend/addExpression"], function(addExpression) {
+                          require(["frontend/addExpression"], function(addExpression) {
                             var eID;
                             eID = addExpression(equation);
                             return numericalValues.set(variable, value, eID);
                           });
                         }
+                        return require(["frontend/rewrite"], function(rewrite) {
+                          return rewrite.refreshExpressionsWithVariable(variable);
+                        });
                       });
                       return $.prompt.close();
                     } else {

@@ -24,6 +24,9 @@
         expressions[expressionID] = expression;
         return expressions[expressionID];
       },
+      getAllExpressions: function() {
+        return expressions.slice(0);
+      },
       clear: function() {
         return expressions.splice(0);
       }

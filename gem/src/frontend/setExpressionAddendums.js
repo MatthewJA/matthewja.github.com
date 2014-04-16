@@ -8,8 +8,9 @@
       for (_i = 0, _len = variables.length; _i < _len; _i++) {
         variable = variables[_i];
         if (numericalValues.get(variable) != null) {
-          evaluatedExpression = expression.sub(numericalValues.getNumericalValues(), uncertaintiesIndex.getUncertaintyMap(), equivalenciesIndex, settings.get("assumeZeroUncertainty"));
+          evaluatedExpression = expression.sub(numericalValues.getNumericalValues(), uncertaintiesIndex.getUncertaintyMap(), equivalenciesIndex, settings.get("assumeZeroUncertainty"), true);
           expression._gem_evaluatedExpression = evaluatedExpression;
+          console.log("set a value");
           break;
         }
       }
@@ -18,7 +19,7 @@
         for (_j = 0, _len1 = variables.length; _j < _len1; _j++) {
           otherVariable = variables[_j];
           if (showSymbolicUncertainties || (uncertaintiesIndex.get(otherVariable) != null)) {
-            uncertaintyExpression = expression.right.getUncertainty().sub(numericalValues.getNumericalValues(), uncertaintiesIndex.getUncertaintyMap(), equivalenciesIndex, settings.get("assumeZeroUncertainty"));
+            uncertaintyExpression = expression.right.getUncertainty().sub(numericalValues.getNumericalValues(), uncertaintiesIndex.getUncertaintyMap(), equivalenciesIndex, settings.get("assumeZeroUncertainty"), true);
             expression._gem_uncertaintyExpression = uncertaintyExpression;
             break;
           } else {

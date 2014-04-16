@@ -122,13 +122,12 @@
               variable = variables[_j];
               variable = $(variable);
               if (variable.is(connection.source) || variable.is(connection.target)) {
-                console.log(variable, "matches", connection.source, "or", connection.target);
                 if (typeof (_base = connection.element).remove === "function") {
                   _base.remove();
                 }
                 _results1.push(connection.deleted = true);
               } else {
-                _results1.push(console.log(variable, "doesn't match", connection.source, "or", connection.target));
+                _results1.push(void 0);
               }
             }
             return _results1;

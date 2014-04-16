@@ -54,9 +54,6 @@
       "projectile-velocity": function() {
         return new coffeequate.Equation("v::{m * s**-1}", "u::{m * s**-1} + a::{m * s**-2} * t::{s}");
       },
-      "projectile-velocity-squared": function() {
-        return new coffeequate.Equation("v::{m * s**-1}", "(u::{m * s**-1}**2 + 2 * a::{m * s**-2} * s::{m})**1/2");
-      },
       "differential-velocity": function() {
         return new coffeequate.Equation("a::{m * s**-2}", "@v::{m * s**-2}");
       },
@@ -81,6 +78,12 @@
       "heat-energy": function() {
         return new coffeequate.Equation("EH::{kg * m**2 * s**-2}", "c::{m * s**-2 * K**-1} * m::{kg} * ΔT::{K}");
       },
+      "internal-energy": function() {
+        return new coffeequate.Equation("ΔU::{kg * m**2 * s**-2}", "Q::{kg * m**2 * s**-2} + W::{kg * m**2 * s**-2}");
+      },
+      "work-from-pressure-volume": function() {
+        return new coffeequate.Equation("W::{kg * m**2 * s**-2}", "P::{kg * m**-1 * s**-2} * V::{m**3}");
+      },
       "black-body-radiation-power": function() {
         return new coffeequate.Equation("P::{kg * m**2 * s**-3}", "A::{m**2} * \\σ * T::{K}**4");
       },
@@ -94,10 +97,13 @@
         return new coffeequate.Equation("ρ::{kg * m**-3}", "m::{kg} * V::{m**3}**-1");
       },
       "coulombs-law": function() {
-        return new coffeequate.Equation("F::{kg * m * s**-2}", "(4 * \\π * \\ε0)**-1 * q1::{A * s} * q2::{A * s} * r::{m}**2");
+        return new coffeequate.Equation("F::{kg * m * s**-2}", "(4 * \\π * \\ε0)**-1 * q1::{A * s} * q2::{A * s} * r::{m}**-2");
       },
       "electric-field-strength": function() {
         return new coffeequate.Equation("E::{kg * m * s**-3 * A}", "F::{kg * m * s**-2} * q::{A * s}**-1");
+      },
+      "ideal-gas": function() {
+        return new coffeequate.Equation("P::{kg * m**-1 * s**-2}", "n::{mol} * \\R * T::{K} * V::{m**3}**-1");
       },
       "radius-circumference": function() {
         return new coffeequate.Equation("c::{m}", "2 * \\π * r::{m}");

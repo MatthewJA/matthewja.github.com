@@ -5,6 +5,7 @@
       var c;
       c = $('<div class="text-comment" />');
       c.text(comment);
+      c.html(c.html().replace("\\\\", "<br>"));
       $("#whiteboard-panel").append(c);
       c.draggable({
         containment: "#whiteboard-panel",
@@ -30,7 +31,7 @@
                 submit: function(e, v, m, f) {
                   e.preventDefault();
                   if (v === 1) {
-                    element.html(f.comment);
+                    element.html(f.comment.replace("\\\\", "<br>"));
                     return $.prompt.close();
                   } else {
                     return $.prompt.close();
