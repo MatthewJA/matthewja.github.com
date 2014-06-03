@@ -51,7 +51,6 @@
 				}
 			}
 		}
-		n -= state;
 		return n;
 	}
 
