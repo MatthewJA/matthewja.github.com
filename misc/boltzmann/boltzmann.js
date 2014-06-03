@@ -124,7 +124,7 @@
 
 		// Update slider-based variables.
 
-		temperature = parseFloat($("#temperature").val());
+		temperature = Math.pow(6, parseFloat($("#temperature").val()))-1;
 		$("#tempdisplay").html(temperature+"");
 		magnetism = parseFloat($("#magnetism").val());
 		$("#magdisplay").html(magnetism+"");
