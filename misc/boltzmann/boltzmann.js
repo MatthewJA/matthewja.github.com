@@ -38,19 +38,18 @@
 		var n = 0;
 		for (var i = -1; i < 2; i++) {
 			for (var ii = -1; ii < 2; ii++) {
-				if (i != ii) { // We don't want to count the cell itself as a neighbour.
-					var yOff = (y+i)%yCellCount;
-					if (yOff < 0) {
-						yOff = yCellCount + yOff;
-					}
-					var xOff = (x+ii)%xCellCount;
-					if (xOff < 0) {
-						xOff = xCellCount + xOff;
-					}
-					n += grid[yOff][xOff];
+				var yOff = (y+i)%yCellCount;
+				if (yOff < 0) {
+					yOff = yCellCount + yOff;
 				}
+				var xOff = (x+ii)%xCellCount;
+				if (xOff < 0) {
+					xOff = xCellCount + xOff;
+				}
+				n += grid[yOff][xOff];
 			}
 		}
+		n -= 1;
 		return n;
 	}
 
@@ -127,7 +126,9 @@
 		// Update slider-based variables.
 
 		temperature = parseFloat($("#temperature").val());
+		$("#tempdisplay").html(temperature+"");
 		magnetism = parseFloat($("#magnetism").val());
+		$("#magdisplay").html(magnetism+"");
 
 		// Run simulation step.
 
