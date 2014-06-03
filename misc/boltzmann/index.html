@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Boltzmann</title>
+			<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+			<style>
+				* {
+					padding:0;
+					margin:0;
+					font-family:'Merriweather Sans', Tahoma, sans-serif;
+					color:#EFEFEF;
+				}
+				body, html {
+					min-height:100%;
+					overflow:auto;
+					background-color:#222222;
+					text-align:center;
+				}
+				#canvas {
+					margin-top:100px;
+				}
+			</style>
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1 style="position:absolute; left:10px;">Boltzmann</h1>
+		<h2 style="position:absolute; top:35px; left:30px;">Based on Damon Binder's magnetism simulation</h2>
+		<canvas id="canvas">
+			You need a modern browser which supports HTML5 canvas to view this.
+		</canvas>
+
+		<div>
+			<label>Temperature</label> <input type="range" name="temperature" id="temperature" min="0" max="20" value="4" step="0.01"><br>
+			<label>Magnetism</label> <input type="range" name="magnetism" id="magnetism" min="-5" max="5" value="0" step="0.01"><br>
+		</div>
+
+		<script type="text/javascript" src="./boltzmann.js"></script>
+	</body>
+</html>
