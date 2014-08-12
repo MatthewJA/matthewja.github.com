@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "id": "damon",
+      "label": "Damon",
+      "x": 0,
+      "y": 0,
+      "size": 3
+    },
+    {
+      "id": "everyone",
+      "label": "Literally everyone else",
+      "x": 3,
+      "y": 1,
+      "size": 10
+    },
+    {
+      "id": "angus",
+      "label": "Probably Angus",
+      "x": 4,
+      "y": 2,
+      "size": 2
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "source": "everyone",
+      "target": "damon"
+    },
+    {
+      "id": "e1",
+      "source": "damon",
+      "target": "angus"
+    }
+  ]
+}
