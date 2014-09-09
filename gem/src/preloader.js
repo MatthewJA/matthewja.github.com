@@ -36,8 +36,6 @@
 
   lastUpdate = (new Date()).getTime() - Math.random() * 20000;
 
-  debugger;
-
   sim = function() {
     var body, dt, now, x, y;
     now = (new Date()).getTime();
