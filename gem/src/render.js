@@ -3,7 +3,7 @@
   define(["mathjax"], function(MathJax) {
     var math;
     math = function(callback) {
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub, "#whiteboard"]);
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
       return MathJax.Hub.Queue(callback);
     };
     return {

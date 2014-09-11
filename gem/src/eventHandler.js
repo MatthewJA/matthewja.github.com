@@ -13,8 +13,7 @@
       }
     };
     equation = function(element) {
-      console.log(element);
-      return element.draggable();
+      return element.draggable(draggableProperties);
     };
     expression = function(element) {
       return element.draggable(draggableProperties);
