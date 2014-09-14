@@ -26,9 +26,8 @@
 
 							var info = $("<div class=\"info\">");
 							var to = data[i].repo.name;
-							var to_url = data[i].repo.url;
 							info.html(
-								"Pushed to <a href=\"http://github.com/" + to_url + "\">" + to + "</a>");
+								"Pushed to <a href=\"http://github.com/" + to + "\">" + to + "</a>");
 							item.append(info);
 
 							div.append(last_item)
