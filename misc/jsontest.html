@@ -6,10 +6,21 @@
 <body>
 	<script type="text/javascript">
 		$(function() {
-			var div = $("<div>");
-			$("body").append(div);
+			var ul = $("<ul>");
+			$("body").append(ul);
 			$.getJSON("https://api.github.com/users/MatthewJA/events?&page=1", function(data) {
-				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					if(data[i].type == "PushEvent") {
+						var li = $("<li class=\"event\">");
+						var to = data[i].repo.name;
+						var to_url = data[i].repo.url;
+
+						li.html(
+							"Pushed to <a href=\"" + to_url + "\">" + to + "</a>");
+
+						ul.append(li);
+					}
+				};
 			});
 		});
 	</script>
