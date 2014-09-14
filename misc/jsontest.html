@@ -28,7 +28,7 @@
 							var to = data[i].repo.name;
 							var to_url = data[i].repo.url;
 							info.html(
-								"Pushed to <a href=\"//" + to_url + "\">" + to + "</a>");
+								"Pushed to <a href=\"http://github.com/" + to_url + "\">" + to + "</a>");
 							item.append(info);
 
 							div.append(last_item)
@@ -42,7 +42,7 @@
 							var message_url = commits[ii].url;
 
 							commit.html(
-								"<a href=\"" + message_url + "\">" + message + "</a>");
+								"<a href=\"http://github.com/" + last_seen + message_url + "\">" + message + "</a>");
 							last_item.append(commit);
 						};
 					}
