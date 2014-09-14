@@ -7,8 +7,10 @@
 	<script type="text/javascript">
 		$(function() {
 			var div = $("<div>");
-			div.html($.getJSON("https://api.github.com/users/MatthewJA/events?&page=1"));
 			$("body").append(div);
+			$.getJSON("https://api.github.com/users/MatthewJA/events?&page=1", function(data) {
+				console.log(data);
+			});
 		});
 	</script>
 </body>
