@@ -38,10 +38,10 @@
 						for (var ii = 0; ii < commits.length; ii++) {
 							var commit = $("<div class=\"commit\">");
 							var message = commits[ii].message;
-							var message_url = commits[ii].url;
+							var message_sha = commits[ii].sha;
 
 							commit.html(
-								"<a href=\"http://github.com/" + last_seen + message_url + "\">" + message + "</a>");
+								"<a href=\"http://github.com/" + last_seen + "/commits/" + message_sha + "\">" + message + "</a>");
 							last_item.append(commit);
 						};
 					}
