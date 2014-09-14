@@ -2,23 +2,41 @@
 <head>
 	<title>JSON test</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<style type="text/css">
+		.commit {
+			margin-left: 20px;
+		}
+	</style>
 </head>
 <body>
 	<script type="text/javascript">
 		$(function() {
-			var ul = $("<ul>");
-			$("body").append(ul);
+			var div = $("<div>");
+			$("body").append(div);
 			$.getJSON("https://api.github.com/users/MatthewJA/events?&page=1", function(data) {
 				for (var i = 0; i < data.length; i++) {
 					if(data[i].type == "PushEvent") {
-						var li = $("<li class=\"event\">");
+						var item = $("<div class=\"event\">");
 						var to = data[i].repo.name;
 						var to_url = data[i].repo.url;
+						var commits = data[i].payload.commits;
 
-						li.html(
-							"Pushed to <a href=\"" + to_url + "\">" + to + "</a>");
+						var info = $("<div class=\"info\">");
+						info.html(
+							"Pushed to <a href=\"//" + to_url + "\">" + to + "</a>");
+						div.append(info);
 
-						ul.append(li);
+						var commit_div = $("<div class=\"commits\">");
+						for (var ii = 0; ii < commits.length; ii++) {
+							var commit = $("<div class=\"commit\">");
+							var message = commits[ii].message;
+							var message_url = commits[ii].url;
+
+							commit.html(
+								"<a href=\"" + message_url + "\">" + message + "</a>");
+						};
+
+						div.append(item);
 					}
 				};
 			});
