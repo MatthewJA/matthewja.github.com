@@ -6,7 +6,9 @@
 <body>
 	<script type="text/javascript">
 		$(function() {
-			$.getJSON("https://api.github.com/users/MatthewJA/events?&page=1")
+			var div = $("<div>");
+			div.html($.getJSON("https://api.github.com/users/MatthewJA/events?&page=1"));
+			$("body").append(div);
 		});
 	</script>
 </body>
