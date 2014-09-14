@@ -14,19 +14,28 @@
 			var div = $("<div>");
 			$("body").append(div);
 			$.getJSON("https://api.github.com/users/MatthewJA/events?&page=1", function(data) {
+
+				var last_seen = null;
+				var last_item = null;
+
 				for (var i = 0; i < data.length; i++) {
 					if(data[i].type == "PushEvent") {
-						var item = $("<div class=\"event\">");
-						var to = data[i].repo.name;
-						var to_url = data[i].repo.url;
+						if(last_seen != data[i].repo.name) {
+							last_seen = data[i].repo.name;
+							var item = $("<div class=\"event\">");
+
+							var info = $("<div class=\"info\">");
+							var to = data[i].repo.name;
+							var to_url = data[i].repo.url;
+							info.html(
+								"Pushed to <a href=\"//" + to_url + "\">" + to + "</a>");
+							item.append(info);
+
+							div.append(last_item)
+							last_item = item;
+						}
+
 						var commits = data[i].payload.commits;
-
-						var info = $("<div class=\"info\">");
-						info.html(
-							"Pushed to <a href=\"//" + to_url + "\">" + to + "</a>");
-						item.append(info);
-
-						var commit_div = $("<div class=\"commits\">");
 						for (var ii = 0; ii < commits.length; ii++) {
 							var commit = $("<div class=\"commit\">");
 							var message = commits[ii].message;
@@ -34,11 +43,8 @@
 
 							commit.html(
 								"<a href=\"" + message_url + "\">" + message + "</a>");
-							commit_div.append(commit);
+							last_item.append(commit);
 						};
-						item.append(commit_div);
-
-						div.append(item);
 					}
 				};
 			});
