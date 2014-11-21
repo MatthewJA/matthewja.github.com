@@ -50,7 +50,7 @@ img.thumb {
 a:link, a:visited {
 	color: #FFFFFF;
 	font-weight: bold;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 header a:link, header a:visited {
