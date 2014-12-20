@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secret Santa 2014</title>
+    <meta charset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core-min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+    <script src="http://comicfury.com/cflayoutjs.js.php?cc=inline"></script>
+    <link rel="stylesheet" type="text/css" href="cf.css">
+    <style type="text/css">
+        .ifloggedin {
+            display: none;
+        }
+
+        .pldiv {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading... (requires JavaScript)</div>
+    <div id="main" style="display: none;">
+<div id="wrapper">
+            <div id="header">
+                <a href="http://comicfury.com/index.php" id="banner"><img src="http://comicfury.com/images/wilsonbanner.png" alt="Comic Fury webcomic hosting" id="bannerimg"></a>
+                <div id="searchbar">
+                    <form method="get" action="http://comicfury.com/search.php"><div>
+                        <input name="search" value="1" type="hidden">
+                        <input name="incvi" value="1" type="hidden">
+                        <input name="incse" value="1" type="hidden">
+                        <input name="incnu" value="1" type="hidden">
+                        <input name="incla" value="1" type="hidden">
+                        <input name="webcomics" value="1" type="hidden">
+                        <input name="all_ge" value="1" type="hidden">
+                        <input name="all_st" value="1" type="hidden">
+                        <input name="all_la" value="1" type="hidden">
+                        <div id="topsearchwrap"><input name="query" value="" id="topsearch" type="text"></div>
+                        <input id="topsearchsubmit" type="submit">
+                    </div></form>
+                </div>
+                <ul id="menu1">
+                    <li><a href="http://comicfury.com/index.php">Main</a></li>
+                    <li><a href="http://comicfury.com/usercp.php"><b>My Updates</b></a></li>
+                    <li><a href="http://comicfury.com/forum/index.php"><b>Forum</b></a></li>
+                    <li><a href="http://comicfury.com/contact.php">Contact us</a></li>
+                    <li><a href="http://comicfury.com/search.php">Advanced search</a></li>
+                </ul>
+            </div>
+            <div id="menubar">
+                <ul id="menu2">
+                    <li class="ifloggedin"><a href="http://comicfury.com/comic.php?action=yourcomics"><b>My Webcomics</b></a></li>
+                    <li class="ifloggedin"><a href="http://comicfury.com/comic.php?action=subscriptions">My Subscriptions</a></li>
+                    <li class="ifloggedin"><a href="http://comicfury.com/comic.php?action=create"><b>New webcomic site</b></a></li>
+                    <li class="ifloggedin"><a href="http://comicfury.com/changesettings.php">Account settings</a></li>
+
+                    
+                    <li class="ifnotloggedin"><a href="http://comicfury.com/login.php">Log in</a></li>
+                    <li class="ifnotloggedin"><a href="http://comicfury.com/register.php">Register</a></li>
+                    <li class="ifnotloggedin"><a href="http://comicfury.com/moreinfo.php">More info</a></li>
+                    
+                </ul>
+            </div>
+            <div id="content">
+                <div id="topboxwrap">
+                    <div id="topbox">
+                        <h1 id="headline">Comic Fury Webcomic Hosting - Secret Santa 2014</h1>
+                        <div id="loginbox" class="loginbox">
+                            <span class="ifloggedin" style="display: none;">Welcome back, <b class="cf-username"></b>. <a href="http://comicfury.com/pms.php">Private messages</a> (0 new), <a href="http://comicfury.com/login.php">Log out</a></span>
+                            <span class="ifnotloggedin">You are not logged in. <a href="http://comicfury.com/login.php">Log in</a>, <a href="http://comicfury.com/register.php">Register</a>, <a href="http://comicfury.com/moreinfo.php">More info</a></span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div id="pagecontent">
+
+
+
+                <div id="forumwrap">
+                    <div id="forumwrap2">
+                        <div id="forumwrap3">
+                            <div id="forumwrap4">
+                                <div id="forumwrap5">
+                                    <div id="forumwrap6">
+                                        <div id="forumwrap7">
+                                            <div id="forumtopbar">
+                                                <div class="inner">
+                                                    <div id="forumtopbarhead"><a href="http://comicfury.com/forum/index.php">Forum</a> &gt; <a href="http://comicfury.com/forum/viewforum.php?id=10">Mediterranean Avenue</a> &gt; Secret Santa 2014</div>
+                                                    <div id="forumtopbarcontent">
+                                                        <div class="right"><b>Pages</b>:  [<a href="http://comicfury.com/forum/viewthread.php?id=19847&amp;page=1"><b>1</b></a>] </div>
+                                                        
+                                                        <a href="http://comicfury.com/forum/reply.php?id=19847" class="replyurl threadurl ifloggedin">Reply to this thread</a>  
+                                                        <br>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="postwrap" id="firstpost">
+                    <a name="p1" class="anchor"></a>
+                    <div class="post">
+                        <div class="inner">
+                            <div class="posttopbarhead"> "Secret Santa 2014", <span class="posttime">Today</span> <span class="postid"><a href="#p1">#1</a></span><div class="clear"></div></div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="posttopbarcontent">
+                                        
+                                        <div class="authorinfobox">
+                                            <span class="authorname"><a href="http://comicfury.com/profile.php?username=Shipp">Shipp</a></span><span class="male"><img src="http://comicfury.com/images/mal.png" alt="♂" title="Male"></span><br>
+                                            <br>
+                                            <img src="http://comicfury.com/avatars/22_814183.jpg" alt="User avatar"><br>
+                                            <div class="authorinfo"><span class="infoname">Posts:</span> <span class="info">1701</span></div>
+                                            <div class="authorinfo"><span class="infoname">Referrals:</span> <span class="info">0</span></div>
+                                            <div class="authorinfo"><span class="infoname">Registration date:</span> <span class="info">11th Jul 2008</span></div>
+                                            
+                                            
+                                        </div>
+                                        <div class="postcontent">
+                                            <div class="postmessage">Hello. I'm Shipp!</div>
+                                            <div class="postsignature">_______________________<br><div class="sigcontent"><a href="http://urthefirstcity.thecomicseries.com/">Ur, the First City</a></div></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="postactions">
+                                            <span class="postaction ifloggedin quotethispost"><a href="#">Quote this post</a></span>
+                                            <span class="postaction ifloggedin reportthispost"><a href="#">Report post</a></span>
+                                            <span class="postaction ifloggedin"><a href="http://comicfury.com/pms.php?act=write&amp;rec=Shipp">Send a PM to this user</a></span>
+                                            <span class="postaction ifloggedin likethispost" id="postlike"><a href="#">Like post</a></span>
+                                            
+                                            <span class="postaction ifloggedin dislikethispost" id="postdislike"><a href="#">Dislike post</a></span>
+
+                                            <div class="pldiv"></div>
+                                            
+                                                
+                                                
+                                            
+                                            
+                                                
+                                                
+                                            
+                                        </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+
+
+
+                <div class="postwrap">
+                    <div class="post">
+                        <div class="inner">
+                            <div id="forumtopbarhead"><a href="http://comicfury.com/forum/index.php">Forum</a> &gt; <a href="http://comicfury.com/forum/viewforum.php?id=10">Mediterranean Avenue</a> &gt; Secret Santa 2014</div>
+                            <div id="forumtopbarcontent">
+                                <div class="right"><b>Pages</b>:  [<a href="#"><b>1</b></a>] </div>
+                                
+                                <a href="http://comicfury.com/forum/reply.php?id=19847" class="replyurl threadurl ifloggedin">Reply to this thread</a>  
+                                <br>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                </div>
+                            </div>
+                            <div id="push"></div>
+                        </div>
+    </div>
+    <script type="text/javascript">
+        function pad(a,b){return(1e15+a+"").slice(-b)}
+        $(function() {
+            if (comicfury.loggedin) {
+                $(".ifnotloggedin").hide();
+                $(".ifloggedin").show();
+                $(".cf-username").html(comicfury.user.username);
+            } else {
+                $(".ifloggedin").hide();
+            }
+            var date = new Date();
+            var hours = date.getHours();
+            var ampm;
+            if (hours == 0) {
+                ampm = "AM";
+                hours = 12;
+            } else if (hours < 12) {
+                ampm = "AM";
+            } else if (hours == 12) {
+                ampm = "PM";
+            } else {
+                ampm = "PM";
+                hours -= 12;
+            }
+            var minutes = date.getMinutes()<10?'0':''+date.getMinutes();
+            $(".posttime").html("Today, " + hours + ":" + minutes + " " + ampm);
+
+            var pldivopen = false;
+            $(".quotethispost").click(function(event) {
+                var pldiv = $(event.target).parents(".postactions").children(".pldiv");
+                pldiv.html("No boosting Shipp's ego.");
+                if (!pldivopen) {
+                    pldiv.show(500);
+                    pldivopen = true;
+                    setTimeout(function() {
+                        pldivopen = false;
+                        pldiv.hide(500);
+                    }, 2000);
+                }
+                return false;
+            });
+            $(".reportthispost").click(function(event) {
+                var pldiv = $(event.target).parents(".postactions").children(".pldiv");
+                pldiv.html("Error (0): Out of order");
+                if (!pldivopen) {
+                    pldiv.show(500);
+                    pldivopen = true;
+                    setTimeout(function() {
+                        pldivopen = false;
+                        pldiv.hide(500);
+                    }, 2000);
+                }
+                return false;
+            });
+
+            $(".likethispost").click(function(event) {
+                $(event.target).replaceWith("Liked!");
+                return false;
+            });
+            $(".dislikethispost").click(function(event) {
+                $(event.target).replaceWith("Disliked!");
+                return false;
+            });
+        })
+        $.getJSON("shipp.json", function(data) {
+            $("#loading").hide();
+            $("#main").show();
+        });
+    </script>
+</body>
+</html>
