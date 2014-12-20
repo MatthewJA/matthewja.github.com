@@ -66,7 +66,7 @@
                     <div id="topbox">
                         <h1 id="headline">Comic Fury Webcomic Hosting - Secret Santa 2014</h1>
                         <div id="loginbox" class="loginbox">
-                            <span class="ifloggedin" style="display: none;">Welcome back, <b class="cf-username"></b>. <a href="http://comicfury.com/pms.php">Private messages</a> (0 new), <a href="http://comicfury.com/login.php">Log out</a></span>
+                            <span class="ifloggedin" style="display: none;"><span id="welcomeback">Welcome back, </span><b class="cf-username"></b>. <a href="http://comicfury.com/pms.php">Private messages</a> (0 new), <a href="http://comicfury.com/login.php">Log out</a></span>
                             <span class="ifnotloggedin">You are not logged in. <a href="http://comicfury.com/login.php">Log in</a>, <a href="http://comicfury.com/register.php">Register</a>, <a href="http://comicfury.com/moreinfo.php">More info</a></span>
                         </div>
                         <div class="clear"></div>
@@ -89,7 +89,7 @@
                                                     <div id="forumtopbarcontent">
                                                         <div class="right"><b>Pages</b>:  [<a href="http://comicfury.com/forum/viewthread.php?id=19847&amp;page=1"><b>1</b></a>] </div>
                                                         
-                                                        <a href="http://comicfury.com/forum/reply.php?id=19847" class="replyurl threadurl ifloggedin">Reply to this thread</a>  
+                                                        <a href="#" class="replyurl threadurl ifloggedin spawnnewpost">Reply to this thread</a>  
                                                         <br>
                                                         <div class="clear"></div>
                                                     </div>
@@ -103,12 +103,13 @@
                     </div>
                 </div>
 
+                <div id="theposts">
 
                 <div class="postwrap" id="firstpost">
                     <a name="p1" class="anchor"></a>
                     <div class="post">
                         <div class="inner">
-                            <div class="posttopbarhead"> "Secret Santa 2014", <span class="posttime">Today</span> <span class="postid"><a href="#p1">#1</a></span><div class="clear"></div></div>
+                            <div class="posttopbarhead"> <span class="posttitle">"Secret Santa 2014", </span><span class="posttime">Today</span> <span class="postid"><a href="#p1" class="postnum">#1</a></span><div class="clear"></div></div>
                             
                             
                             
@@ -119,6 +120,7 @@
                                         
                                         <div class="authorinfobox">
                                             <span class="authorname"><a href="http://comicfury.com/profile.php?username=Shipp">Shipp</a></span><span class="male"><img src="http://comicfury.com/images/mal.png" alt="♂" title="Male"></span><br>
+                                            <span style="font-style: italic;">the grinch that stole christmas</span>
                                             <br>
                                             <img src="http://comicfury.com/avatars/22_814183.jpg" alt="User avatar"><br>
                                             <div class="authorinfo"><span class="infoname">Posts:</span> <span class="info">1701</span></div>
@@ -128,7 +130,7 @@
                                             
                                         </div>
                                         <div class="postcontent">
-                                            <div class="postmessage">Hello. I'm Shipp!</div>
+                                            <div class="postmessage">Hello. I'm Shipp!<br><br>Click the "more please" button and I'll make some posts or something.</div>
                                             <div class="postsignature">_______________________<br><div class="sigcontent"><a href="http://urthefirstcity.thecomicseries.com/">Ur, the First City</a></div></div>
                                         </div>
                                         <div class="clear"></div>
@@ -154,10 +156,19 @@
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
 
+                </div> <!-- #theposts -->
 
-
+                <div class="postwrap">
+                    <div class="post">
+                        <div class="inner">
+                            <a href="#" class="spawnnewpost"><div id="nextpagebar">
+                                More please! &gt;
+                            </div></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="postwrap">
                     <div class="post">
@@ -166,7 +177,7 @@
                             <div id="forumtopbarcontent">
                                 <div class="right"><b>Pages</b>:  [<a href="#"><b>1</b></a>] </div>
                                 
-                                <a href="http://comicfury.com/forum/reply.php?id=19847" class="replyurl threadurl ifloggedin">Reply to this thread</a>  
+                                <a href="#" class="replyurl threadurl ifloggedin spawnnewpost">Reply to this thread</a>  
                                 <br>
                                 <div class="clear"></div>
                             </div>
@@ -179,15 +190,40 @@
                         </div>
     </div>
     <script type="text/javascript">
-        function pad(a,b){return(1e15+a+"").slice(-b)}
-        $(function() {
-            if (comicfury.loggedin) {
-                $(".ifnotloggedin").hide();
-                $(".ifloggedin").show();
-                $(".cf-username").html(comicfury.user.username);
-            } else {
-                $(".ifloggedin").hide();
+        var posts = 1;
+        var data = {};
+
+        function getPostMessage() {
+            var num = Math.floor(Math.random() * 4 + 1);
+            var post = "";
+            for (var i = 0; i < num; i++) {
+                post += data.posts[Math.floor(Math.random() * data.posts.length)];
+                if (post.slice(-1) != "." &&
+                    post.slice(-1) != "," &&
+                    post.slice(-1) != "?" &&
+                    post.slice(-1) != "!") {
+                    post += "<br>";
+                } else {
+                    post += " ";
+                }
             }
+            return post;
+        }
+
+        function newPost() {
+            var post = $("#firstpost").clone();
+            $("#theposts").append(post);
+            posts += 1;
+            post.attr("id", "");
+            post.children(".anchor").attr("name", "p" + posts);
+            post.find(".postnum").attr("href", "#p" + posts).html("#" + posts);
+            post.find(".posttime").html(getDateStamp());
+            post.find(".posttitle").html("");
+            post.find(".postmessage").html(getPostMessage());
+            $(document).scrollTop(post.offset().top);
+        };
+
+        function getDateStamp() {
             var date = new Date();
             var hours = date.getHours();
             var ampm;
@@ -203,7 +239,19 @@
                 hours -= 12;
             }
             var minutes = date.getMinutes()<10?'0':''+date.getMinutes();
-            $(".posttime").html("Today, " + hours + ":" + minutes + " " + ampm);
+            return "Today, " + hours + ":" + minutes + " " + ampm;
+        };
+
+        $(function() {
+            if (comicfury.loggedin) {
+                $(".ifnotloggedin").hide();
+                $(".ifloggedin").show();
+                $(".cf-username").html(comicfury.user.username);
+            } else {
+                $(".ifloggedin").hide();
+            }
+            
+            $(".posttime").html(getDateStamp());
 
             var pldivopen = false;
             $(".quotethispost").click(function(event) {
@@ -241,9 +289,16 @@
                 $(event.target).replaceWith("Disliked!");
                 return false;
             });
+
+            $(".spawnnewpost").click(function(event) {
+                newPost();
+                return false;
+            })
         })
-        $.getJSON("shipp.json", function(data) {
+        $.getJSON("shipp.json", function(d) {
             $("#loading").hide();
+            $("#welcomeback").html(d.messages[Math.floor(Math.random() * d.messages.length)])
+            data = d;
             $("#main").show();
         });
     </script>
