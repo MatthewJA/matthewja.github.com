@@ -13,7 +13,7 @@
       eH = element.height();
       eW = element.width();
       top = (Math.random() * (wH - eH) - eT) / wH * 100;
-      left = (Math.random() * (wW - eW) - eL) / wL * 100;
+      left = (Math.random() * (wW - eW) - eL) / wW * 100;
       return element.css({
         top: top + "%",
         left: left + "%"
@@ -21,12 +21,20 @@
     };
     addEquation = function(equation) {
       $("#whiteboard").append(equation.element);
-      index.equation.add(equation);
       equation.element.attr("id", "equation-" + equation.id);
       return render.math(function() {
+        var label, variable, _i, _len, _ref, _results;
         equation.element = $("#equation-" + equation.id);
         eventHandler.equation(equation.element);
-        return placeRandomly(equation.element);
+        placeRandomly(equation.element);
+        _ref = equation.element.find(".variable");
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          variable = _ref[_i];
+          label = $(variable).text();
+          _results.push($(variable).attr("id", "variable-equ-" + equation.id + "-" + label));
+        }
+        return _results;
       });
     };
     return addEquation;

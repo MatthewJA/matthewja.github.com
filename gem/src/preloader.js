@@ -83,7 +83,8 @@
       if (opacity < 1) {
         return setTimeout(closePreloader, 0);
       } else {
-        return window.gem.preloaderClosed = true;
+        window.gem.preloaderClosed = true;
+        return window.gem.updateCanvasSize();
       }
     }
   };

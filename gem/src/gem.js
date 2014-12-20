@@ -39,8 +39,28 @@ Licensed under GPL v3.
   });
 
   require(["jquery", "Expression", "render", "jqueryui"], function($, Expression, render, ui) {
+    var canvas, resizeTimer;
     window.gem.loaded = true;
-    return require(["addEquation", "formulae"], function(addEquation, formulae) {
+    canvas = $("#lines-canvas")[0];
+    resizeTimer = null;
+    window.gem.updateCanvasSize = function() {
+      var height, width;
+      width = $("#whiteboard").width();
+      height = $("#whiteboard").height();
+      canvas.width = width;
+      canvas.height = height;
+      return require(["redrawCanvas"], function(redrawCanvas) {
+        return redrawCanvas();
+      });
+    };
+    $(window).resize(function() {
+      clearTimeout(resizeTimer);
+      return resizeTimer = setTimeout(window.gem.updateCanvasSize, 50);
+    });
+    return require(["addEquation", "addExpression", "formulae", "Line", "index"], function(addEquation, addExpression, formulae, Line, index) {
+      addEquation(formulae.getEquation("angular-momentum"));
+      addEquation(formulae.getEquation("momentum"));
+      addEquation(formulae.getEquation("torque"));
       return addEquation(formulae.getEquation("force"));
     });
   });

@@ -60,6 +60,16 @@ p {
 	position: relative;
 }
 
+#lines-canvas {
+	width: -webkit-calc(100% - 20px);
+	width: -moz-calc(100% - 20px);
+	width: calc(100% - 20px);
+	height: -webkit-calc(100% - 20px);
+	height: -moz-calc(100% - 20px);
+	height: calc(100% - 20px);
+	position: absolute;
+}
+
 /* Loader */
 
 #loader {
@@ -88,19 +98,57 @@ p {
 /* Math */
 
 .equation {
-	font-size: 125%;
-	color: #408D5A;
+	font-size: 125%; /* For some reason, this is further multiplied by 130%.
+						No clue why. */
+	color: #222222;
 }
 
 .expression {
 	font-size: 125%;
+	color: #222222;
+}
+
+.equation .variable {
+	color: #408D5A;
+	font-weight: bold;
+}
+
+.expression .variable {
 	color: #405A8D;
+	font-weight: bold;
+}
+
+.equationHelper {
+	color: #408D5A;
+	font-size: 162.5%;
+	font-weight: bold;
+	cursor: default; /* This helps reset the pointer after we stop dragging. */
+}
+
+.expressionHelper {
+	color: #405A8D;
+	font-size: 162.5%;
+	font-weight: bold;
+	cursor: default; /* This helps reset the pointer after we stop dragging. */
 }
 
 .grabbable {
+	cursor: pointer; /* Fallback for browsers that don't support grab. */
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
 	cursor: grab;
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
+	-khtml-user-select: none;
+	position: absolute;
+}
+
+.grabbed {
+	cursor: move !important; /* Fallback for browsers that don't support
+								grabbing */
+	cursor: -webkit-grabbing !important;
+	cursor: -moz-grabbing !important;
+	cursor: grabbing !important;
 }
