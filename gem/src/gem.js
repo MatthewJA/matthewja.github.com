@@ -38,7 +38,7 @@ Licensed under GPL v3.
     }
   });
 
-  require(["jquery", "Expression", "render", "jqueryui"], function($, Expression, render, ui) {
+  require(["jquery", "Expression", "render", "jqueryui", "search"], function($, Expression, render, ui, search) {
     var canvas, resizeTimer;
     window.gem.loaded = true;
     canvas = $("#lines-canvas")[0];
@@ -57,11 +57,16 @@ Licensed under GPL v3.
       clearTimeout(resizeTimer);
       return resizeTimer = setTimeout(window.gem.updateCanvasSize, 50);
     });
-    return require(["addEquation", "addExpression", "formulae", "Line", "index"], function(addEquation, addExpression, formulae, Line, index) {
-      addEquation(formulae.getEquation("angular-momentum"));
-      addEquation(formulae.getEquation("momentum"));
-      addEquation(formulae.getEquation("torque"));
-      return addEquation(formulae.getEquation("force"));
+    search.setup();
+    return require(["addEquation", "addExpression", "formulae", "Line", "index", "search"], function(addEquation, addExpression, formulae, Line, index, search) {
+      var fs;
+      addEquation(formulae.getEquation("angular-momentum", true));
+      addEquation(formulae.getEquation("momentum", true));
+      addEquation(formulae.getEquation("torque", true));
+      addEquation(formulae.getEquation("force", true));
+      fs = formulae.getAllFormulaNames();
+      search.drawFormulae(fs);
+      return window.fs = search.formulaSearch;
     });
   });
 

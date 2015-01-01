@@ -12,7 +12,8 @@
       },
       stop: function(event, ui) {
         $(this).css("left", "" + (parseInt($(this).css("left")) / ($("#main").width() / 100)) + "%");
-        return $(this).css("top", "" + (parseInt($(this).css("top")) / ($("#main").height() / 100)) + "%");
+        $(this).css("top", "" + (parseInt($(this).css("top")) / ($("#main").height() / 100)) + "%");
+        return $(event.target).find("*").removeClass("grabbed");
       }
     };
     draggableVariableProperties = {
@@ -22,8 +23,10 @@
       helper: "clone",
       appendTo: "#whiteboard",
       start: function(event, ui) {
+        var variable;
         $(event.target).fadeTo(0, 0);
-        $(event.target).removeClass("grabbed");
+        variable = $(event.target).closest(".variable");
+        variable.find("*").addBack(variable).removeClass("grabbed");
         if ($(event.target).parents(".equation").length !== 0) {
           $(ui.helper).addClass("equationHelper variable");
         } else {

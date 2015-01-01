@@ -3,18 +3,23 @@
   define(["coffeequate", "elementTools", "Expression", "index"], function(CQ, elementTools, Expression, index) {
     var Equation;
     return Equation = (function() {
-      function Equation(lhs, rhs) {
+      function Equation(lhs, rhs, unique) {
         var changeLabels, id;
+        if (unique == null) {
+          unique = false;
+        }
         this.lhs = CQ(lhs);
         this.rhs = CQ(rhs);
         index.equation.add(this);
-        id = this.id;
-        changeLabels = function(variable) {
-          variable.label += id;
-          return variable;
-        };
-        this.lhs = this.lhs.mapOverVariables(changeLabels);
-        this.rhs = this.rhs.mapOverVariables(changeLabels);
+        if (unique) {
+          id = this.id;
+          changeLabels = function(variable) {
+            variable.label += id;
+            return variable;
+          };
+          this.lhs = this.lhs.mapOverVariables(changeLabels);
+          this.rhs = this.rhs.mapOverVariables(changeLabels);
+        }
         this.element = elementTools.makeEquation(this.toMathML());
       }
 
