@@ -258,6 +258,7 @@
             } else {
                 restartGame(context);
             }
+            return false;
         });
 
         mainLoop(context);
