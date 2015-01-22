@@ -38,7 +38,7 @@ section {
 	clear: both;
 }
 
-p {
+p, ul {
 	margin: 20pt;
 }
 
