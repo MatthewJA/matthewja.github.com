@@ -42,6 +42,10 @@ p, ul {
 	margin: 20pt;
 }
 
+pre > code {
+	padding: 5pt 20pt;
+}
+
 img.thumb {
 	float: left;
 	margin: 20pt;
