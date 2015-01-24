@@ -43,7 +43,7 @@ p, ul {
 }
 
 pre > code {
-	padding: 5pt 20pt !important; /* yeah yeah, hljs doesn't like this one */
+	padding: 5pt 20pt 20pt 20pt !important; /* yeah yeah, hljs doesn't like this one */
 }
 
 img.thumb {
