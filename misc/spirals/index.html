@@ -30,7 +30,7 @@
         }
         stars = [];
         for (var r = 0; r < 200; r += 2) {
-            for (var t = 0; t < 2 * Math.PI; t += Math.PI/25) {
+            for (var t = 0; t < 2 * Math.PI; t += Math.PI/30) {
                 var x = r*Math.cos(t);
                 var y = r*Math.sin(t)*0.9;
                 var c = t == 0 ? "#FF0000" : "#000000";
@@ -49,7 +49,7 @@
                 // find angle and radius of star
                 var r = Math.hypot(star.x, star.y);
                 var t = Math.atan2(star.y, star.x);
-                t += Math.PI/20/Math.sqrt(r);
+                t += Math.PI/5/Math.pow(r, 0.9);
                 star.x = r*Math.cos(t);
                 star.y = r*Math.sin(t);
 
