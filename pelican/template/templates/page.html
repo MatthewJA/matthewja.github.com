@@ -8,8 +8,9 @@
     {{ page.content }}
 
     {% if page.recent_posts %}
+        <h2>Recent posts</h2>
         <ul id="post-list">
-            {% for article in articles %}
+            {% for article in articles[:5] %}
                  <li>{% include "article_summary.html" %}</li>
             {% endfor %}
         </ul>
