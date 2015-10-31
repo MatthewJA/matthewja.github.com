@@ -35,13 +35,18 @@ html, body {
 #main {
     padding: 10pt;
     max-width: 600pt;
-    margin: 0 auto;
+    margin: 0 auto 30pt auto;
 
     background-color: #FFFFFF;
 }
 
 #main a {
     color: #9DA7B0;
+    text-decoration: underline;
+}
+
+#main a:hover {
+    color: #ADADAD;
 }
 
 h1, h2, h3, h4, h5, h6 {

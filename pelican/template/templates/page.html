@@ -7,6 +7,15 @@
 
     {{ page.content }}
 
+    {% if page.recent_posts %}
+        <ul id="post-list">
+            {% for article in articles %}
+                 <li>{% include "article_summary.html" %}</li>
+            {% endfor %}
+        </ul>
+        <div class="clearfix"></div>
+    {% endif %}
+
 	{% if page.modified %}
 		<p>
 		Last updated: {{ page.locale_modified }}

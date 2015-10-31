@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>Commenting Code is a Dark Art</title>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/base.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/article.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/index.css">
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <div id="wrap">
+        <header id="banner" class="body">
+            <h1><a href="http://matthewja.com">Commenting Code is a Dark Art <strong></strong></a></h1>
+        </header><nav id="menu">
+            <ul>
+                    <li class="active"><a href="http://matthewja.com/category/blog-posts.html">Blog Posts</a></li>
+                    <li><a href="http://matthewja.com/category/projects.html">Projects</a></li>
+                    <li><a href="http://matthewja.com/category/writing.html">Writing</a></li>
+            </ul>
+        </nav>
+
+        <div id="main">
+  <section id="content" class="body">
+    <div>
+      <h2 class="entry-title">
+        <a href="http://matthewja.com/programming-in-academia.html" rel="bookmark"
+           title="Permalink to Programming in academia">Programming in academia</a></h2>
+   
+    </div>
+    <div class="post-info">
+      <abbr class="published" title="2015-10-31T22:00:00+11:00">
+        Sat 31 October 2015
+      </abbr>
+      <address class="vcard author right">
+        By             <a class="url fn" href="http://matthewja.com/author/matthewja.html">MatthewJA</a>
+      </address>
+    </div><!-- /.post-info -->
+    <div class="entry-content">
+      <p>My university prides itself on being research-driven. The net result of this is that I know a lot of students pursuing research projects (I've done <a href="http://matthewja.com/reward-modulation.html">two</a> <a href="http://matthewja.com/inverse-reinforcement-learning.html">myself</a>), mostly in physics. These projects almost invariably require some degree of programming: experimental data needs to be processed, simulations need to be run, and so on. Whether the project involves code the students have written themselves, code written by their supervisors, or some combination thereof, there is a running theme: A lot of that code is <em>really bad</em>. Let me make it clear that I don't mean the code works poorly or uses dodgy methods &mdash; most people don't have a strong programming background; sometimes dodgy methods are necessary &mdash; I mean it looks bad, reads poorly, and is nightmarish to maintain.</p>
+<p>What exactly do I mean by <strong>code quality</strong>? Code quality is made up of a lot of things: good commenting, good and consistent variable names, well-formatted code, sensible module structure, functional decomposition, and so on. It's certainly not easy, and it definitely takes practice. Choosing when to split off and make a new function is a non-trivial decision, variable names can be really hard to choose, and commenting code is a dark art. We already aim for consistent code quality in software projects; most <a href="https://github.com/styleguide">large open source projects</a> have a style guide and most languages <a href="https://www.python.org/dev/peps/pep-0008/">have</a> <a href="https://github.com/rust-lang/rust/tree/master/src/doc/style">their</a> <a href="https://wiki.haskell.org/Programming_guidelines">own</a> too. Why should the same standards not apply to academic code?</p>
+<p>A common response when I talk to people about this is that since the code is for research, the quality of the code doesn't matter &mdash; it gets results, and the results are what matter. I can't disagree strongly enough. Yes, results matter, but research builds on research. If your research is remotely useful, then someone (maybe even you) is going to need to build on your result at some point. It should go without saying that they shouldn't need to rewrite what you've already done, so when that day comes, your code needs to be accessible and it needs to be clear. Reusing or extending your code is something that needs to be made as easy as possible.</p>
+<p>But even if nobody is going to be reusing your code, <em>you're</em> going to be using it for the duration of your project, and in all likelihood you aren't going to be writing it once and never look at it again. You're going to need to modify it to accept different kinds of experimental data, or you're going to need to edit your simulation to accommodate more of the theory. You're going to find out that you have errors, somewhere, in the code, and you're going to need to fix them. These things <em>will</em> happen, and the lower the quality of your code, the harder they are going to be to deal with. Bad code is a time sink.</p>
+    </div><!-- /.entry-content -->
+  </section>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="push">
+
+    <footer id="contentinfo" class="body">
+        <div class="left">
+            Powered by <a href="http://getpelican.com/">Pelican</a> on <a href="http://python.org/">Python</a>.
+        </div>
+    </footer>
+</body>
+</html>
