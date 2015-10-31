@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = 'MatthewJA'
+AUTHOR = 'Matthew Alger'
 SITENAME = 'Commenting Code is a Dark Art'
 SITEURL = 'http://matthewja.com'
 
