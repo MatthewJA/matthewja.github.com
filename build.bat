@@ -1,0 +1,1 @@
+call pelican content -o . -t pelican/template -s pelican/pelicanconf.py

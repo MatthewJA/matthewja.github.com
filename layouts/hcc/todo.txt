@@ -1,4 +1,0 @@
-- top bars are too thin for text (padding above and below should be the same)
-- make contact icons into a grid
-- textarea font should be the same as the others
-- all inputs need Muli/Trebuchet

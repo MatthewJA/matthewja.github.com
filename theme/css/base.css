@@ -1,0 +1,128 @@
+/* COLOURS:
+
+    - #7893AE THEME
+    - #ACD3FA HIGHLIGHT
+    - #435261 THEME DARK
+    - #ADA478 ALT
+    - #FAE0AC ALT HIGHLIGHT
+    - #525252 DARK
+    - #ADADAD DARK HIGHLIGHT
+    - #E1EFFC LIGHT
+    - #9DA7B0 LIGHT HIGHLIGHT
+*/
+
+/* Resets */
+a {
+    /* Default link styling makes me very unhappy. */
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Main */
+
+html, body {
+    height: 100%;
+
+    background-color: #E1EFFC;
+    font-family: "PT Sans";
+}
+
+#wrap {
+    min-height: 100%;
+    margin-bottom: -30pt;
+}
+
+#main {
+    padding: 10pt;
+    max-width: 600pt;
+    margin: 0 auto;
+
+    background-color: #FFFFFF;
+}
+
+#main a {
+    color: #9DA7B0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #435261;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.push {
+    height: 30pt;
+    clear: both;
+}
+
+.lead {
+    float: left;
+    margin: 0 10pt 10pt 10pt;
+}
+
+/* Header */
+
+#banner {
+    width: 90%;
+    padding: 10pt 5%;
+    background-color: #525252;
+
+    text-align: center;
+    color: #ACD3FA;
+    font-family: Raleway;
+}
+
+#banner h1 {
+    color: inherit;
+}
+
+nav {
+    background-color: #7893AE;
+
+    text-align: center;
+    color: #E1EFFC;
+    font-family: Raleway;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    padding: 10pt;
+
+    list-style-type: none;
+
+    font-weight: bold;
+}
+
+nav li:hover {
+    background-color: #ACD3FA;
+    color: #525252;
+}
+
+/* Footer */
+
+footer.body {
+    width: 90%;
+    height: 20pt;
+    padding: 5pt 5%;
+
+    background-color: #7893AE;
+    color: #ACD3FA;
+    text-align: center;
+
+    clear: all;
+}

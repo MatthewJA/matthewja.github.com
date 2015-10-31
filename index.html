@@ -1,104 +1,46 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Matthew Alger</title>
+<html lang="en">
+<head>
+        <title>Home</title>
+        <meta charset="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/base.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/article.css">
+        <link rel="stylesheet" type="text/css" href="http://matthewja.com/theme/css/index.css">
+</head>
 
-		<meta charset="UTF-8">
+<body id="index" class="home">
+    <div id="wrap">
+        <header id="banner" class="body">
+            <h1><a href="http://matthewja.com">Commenting Code is a Dark Art <strong></strong></a></h1>
+        </header><nav id="menu">
+            <ul>
+                    <li><a href="http://matthewja.com/category/projects.html">Projects</a></li>
+                    <li><a href="http://matthewja.com/category/writing.html">Writing</a></li>
+            </ul>
+        </nav>
 
-		<link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="./css3reset.css">
-		<link rel="stylesheet" type="text/css" href="./styles.css">
-	</head>
-	<body>
-		<header>
-			<h1>Matthew Alger</h1>
-			<nav>
-				<a href="#">Here</a> | <a href="http://blog.matthewja.com/">Blog</a> | <a href="http://github.com/MatthewJA">GitHub</a>
-			</nav>
-		</header>
+        <div id="main">
+    <h1>Home</h1>
+    
 
-		<div id="column">
-			<section id="about">
-				<h2>About Me</h2>
-				<img class="thumb" src="static/me.jpg" alt="Matthew Alger">
-				<p>Hello! I'm Matthew Alger. I program things and study computer science and physics at the ANU. I like to write Python and JavaScript, and sometimes even Haskell and PHP.</p>
-				<p>You can email me at <strong>hello.i.am.matthewja@gmail.com</strong>.</p>
-			</section>
+    <p><img alt="Matthew Alger" class="lead" src="http://matthewja.com/images/me.jpg" /></p>
+<p>Hello! I'm <strong>Matthew Alger</strong>. I program things, and I study computer science and physics at the Australian National University. I like to write Python, and I occasionally write Haskell, JavaScript, or (regretfully) PHP.</p>
+<p>This site is a bit of a work in progress, but so is everything, so that's okay.</p>
 
-			<section id="completed-projects">
-				<h2>Completed Projects</h2>
 
-				<section id="coffeequate">
-					<h3>Coffeequate</h3>
-					<img class="thumb" src="/Coffeequate/images/coffeequate_small.png" alt="Coffeequate">
-					<p><a href="/Coffeequate/">Coffeequate</a> is a computer algebra system (CAS) for JavaScript. It can manipulate algebraic expressions, and solve and simplify equations. It can also do simple differentiation, and propogate uncertainties. We plan to eventually add support for trigonometry and logarithms, as well as more complicated equations.</p>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
-					<p>You can read more about Coffeequate <a href="/Coffeequate/">here</a>, or look at the code <a href="http://github.com/MatthewJA/Coffeequate">here</a>. Maintained by myself and <a href="http://bshlgrs.github.io/">Buck Shlegeris</a>.</p>
-				</section>
-			</section>
+    <div class="push">
 
-			<section id="ongoing-projects">
-				<h2>Ongoing Projects</h2>
-
-					<p>
-						Watch this space!
-					</p>
-
-<!-- 				<section id="gem">
-					<h3>Graphical Equation Manipulator</h3>
-					<img class="thumb" src="/Graphical-Equation-Manipulator/images/gem_small.png" alt="Graphical Equation Manipulator">
-					<p><a href="/Graphical-Equation-Manipulator/">Graphical Equation Manipulator</a> (GEM) is a system to make solving simple physics problems far easier. Based on <a href="http://bshlgrs.github.io/">Buck Shlegeris</a>' <a href="http://github.com/bshlgrs/pyGem">pyGem</a>.</p>
-
-					<p>You can read more about GEM <a href="/Graphical-Equation-Manipulator/">here</a>, or look at the code <a href="http://github.com/MatthewJA/Graphical-Equation-Manipulator">here</a>. Maintained by myself and <a href="http://bshlgrs.github.io/">Buck Shlegeris</a>.</p>
-				</section> -->
-
-<!-- 				<section id="cs2">
-					<h3>Circle Snake 2</h3>
-					<img class="thumb" src="static/snake_logo.png" alt="Circle Snake 2">
-					<p><a href="/misc/circlesnake/">Circle Snake</a> is a game I made while learning JavaScript, which you can play <a href="/misc/circlesnake/">here</a>. It's poorly optimised and has a few problems, so I'm rewriting it as <a href="/Circle-Snake-2/">Circle Snake 2</a>!</p>
-
-					<p>My progress so far is located <a href="/Circle-Snake-2/">here</a>, or you can look at the code <a href="http://github.com/MatthewJA/Circle-Snake-2">here</a>.</p> -->
-				</section>
-			</section>
-
-			<section id="things-written">
-				<h2>Things I've Written</h2>
-
-				<section id="denoising-autoencoders">
-					<h3>Investigating Reward-Modulation in Denoising Autoencoders</h3>
-					<img class="thumb" src="/static/da_small.png" alt="Denoising Autoencoders">
-					<p><a href="http://bshlgrs.github.io/">Buck Shlegeris</a> and I worked together on a reading course/research project in 2014, using <a href="http://deeplearning.net/software/theano/">Theano</a> to perform various machine learning tasks, with the end goal of figuring out whether smoothly changing the cost function over time from a supervised to an unsupervised form would be more effective than switching suddenly halfway through learning (or not switching at all). This was the first academic project I've done, and it was neat teaching ourselves machine learning and also learning to write a decent final report. Neither of us had any background in machine learning at all, so essentially the project became a crash course in that.</p>
-
-					<p>Our results weren't that interesting for a wide range of reasons, but you can read my final report <a href="http://courses.cecs.anu.edu.au/courses/CSPROJECTS/14S2/Reports/Matthew_Alger_Report.pdf">here</a> for the foreseeable future. I've since learned considerably more about the topic, and I'm still finding it pretty interesting!</p>
-				</section>
-
-				<section id="ode-summary">
-					<h3>Ordinary Differential Equations</h3>
-					<img class="thumb" src="/static/odes_small.png" alt="Ordinary Differential Equations">
-					<p>I took a course in ordinary differential equations (and vector calculus) in early 2014, and wrote up some summary notes for finals revision. They're not spectacular &mdash; they really only contain stuff that I happened to write up &mdash; but hey, maybe someone will find them useful. They're <a href="/files/Ordinary_Differential_Equations.pdf">here</a> if you want to read them! I make no guarantees as to the accuracy of the content (this course was my first introduction to ODEs).</p>
-
-					<p>These notes are heavily based upon the 2014 MATH2405 lectures (D. Wickramasinghe), and Elementary Differential Equations and Boundary Value Problems (W. E. Boyce &amp; R. C. DiPrima).</p>
-				</section>
-			</section>
-
-			<section>
-				<h2>Miscellaneous Items</h2>
-
-				<section id="cs">
-					<h3>Circle Snake</h3>
-					<img class="thumb" src="static/snake_1_logo.png" alt="Circle Snake">
-					<p><a href="/misc/circlesnake/">Circle Snake</a> is a game I made while learning JavaScript, which you can play <a href="/misc/circlesnake/">here</a>. It's not a spectacular example of my code, but it's pretty fun! The code is <a href="https://github.com/MatthewJA/Circle-Snake">on GitHub</a>.</p>
-				</section>
-
-				<section id="treegen">
-					<h3>Tree Generator</h3>
-					<img class="thumb" src="static/tree_logo.png" alt="Tree Generator">
-					<p><a href="/misc/tree/">Tree Generator</a> is a throwaway page I worked on while learning JavaScript. It recursively generates trees. You can try it out <a href="/misc/tree/">here</a>.</p>
-				</section>
-			</section>
-
-			<div style="clear:both;"></div>
-		</div>
-
-	</body>
+    <footer id="contentinfo" class="body">
+        <div class="left">
+            Powered by <a href="http://getpelican.com/">Pelican</a> on <a href="http://python.org/">Python</a>.
+        </div>
+    </footer>
+</body>
 </html>
