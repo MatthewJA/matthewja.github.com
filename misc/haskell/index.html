@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Haskell Masterclass</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .sidenote {
+        color: #AAA;
+        font-style: italic;
+      }
+      .aside {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Haskell: A Crash Course in Functional Programming
+*insert byline here*
+
+---
+
+# A brief introduction
+
+Me:
+- Matthew (hello!)
+- Studying CS/Physics at the ANU
+- Software Engineering Intern at Google
+- NCSS '12/'13, Tutor '15
+
+Haskell:
+- Functional .sidenote[(a program is just function evaluation)]
+- Lazily evaluated .sidenote[(evaluates only when necessary)]
+- Strongly typed .sidenote[(we know the type of all data at all times)]
+- Made by people who really like mathematics
+
+---
+
+# What we're going to do
+
+We're going to:
+- Learn how to do basic things in Haskell
+- Talk about interesting computer science concepts
+- Get a feel for functional programming
+- Think about things differently!
+
+---
+
+# Outline
+
+- Data and types
+- Functions
+- Defining types
+- Pattern matching
+
+---
+
+layout: true
+
+# Data and types
+
+---
+
+## A crash-course in types
+
+What is a type?
+- Types tell you what properties some data have
+- Types tell you what you can do to that data
+- All data have a type
+- All data with a particular type behave the same way
+
+---
+
+## A crash-course in types
+
+Common examples:
+- `3` is an `Integer`
+- `1.21` is a `Float`
+  - `3.0` is also a `Float`
+- `True` is a `Bool`
+- `'h'` is a `Char`
+
+If we need to write down what type some data is, we use `::` .
+- `3 :: Integer` means "`3` is an `Integer`"
+- `1.21 :: Float` means "`1.21` is a `Float`"
+- `True :: Bool` means "`True` is a `Bool`"
+- `'h' :: Char` means "`'h'` is a `Char`"
+
+---
+
+## Numeric types
+
+**`Integer`**. Whole numbers. You can add them, multiply them, and subtract them:
+```haskell
+1 + 2
+2 * 5
+7 - 4
+```
+
+**`Float`**. Decimal numbers. You can add them, multiply them, subtract them, and divide them:
+```haskell
+1.134 + 2.4
+2.3 * 5.0
+7.1 - 4.34567
+8.5 / 4.0
+```
+
+---
+
+## .aside[Aside: ] Syntax
+
+Comments:
+```haskell
+-- haskell will ignore this line
+```
+
+Order of operations:
+```haskell
+4 * (2 + 3) -- use parentheses to change evaluation order
+```
+
+---
+
+## Booleans
+
+**`Boolean`**. Either `True` or `False`.
+Used for logic.
+
+```haskell
+coolResult = if x &lt; 4
+             then 100000 * 34
+             else 15
+```
+
+You can make booleans by doing comparisons like `&lt;`, `&gt;`, `==`, and `/=`, and you can also just write `True` and `False`.
+
+---
+
+## Lists
+
+Lists are ordered collections of data. We write a list with square brackets, and separate the data in the list with commas.
+```haskell
+[1, 2, 3, 7, 9, 11]
+```
+
+All data in the list must be the same type!
+
+Lists are data, too, so they have a type. The type of a list is the type of whatever is in the list, surrounded by square brackets.
+```haskell
+[1, 2, 3] :: [Integer] -- a list of Integers
+[True, False, False, True, False] :: [Bool] -- a list of Bools
+[[1, 3, 5], [1], [2, 3]] :: [[Integer]] -- a list of lists of Integers!
+```
+
+---
+
+layout: true
+
+# Functions
+
+
+---
+
+## Functions in Haskell
+
+In other languages, you *call* a function, and the function *does stuff*. In Haskell, you *apply* functions to data, and they *transform* that data in some way. Your whole program becomes one big function evaluation.
+
+- No loops, just functions
+- No variables, just input and output
+- Sadness, tears, and pain
+
+---
+
+## Like in mathematics!
+
+Here's a mathematical function definition:
+$$parabola(x) = x^2$$
+
+Here's how you'd use that:
+$$parabola(2) \rightarrow 2^2 \rightarrow 4$$
+
+Here's the same function definition in Haskell:
+```haskell
+parabola x = x^2
+```
+
+Here's how you'd use that:
+```haskell
+parabola 2 -- same as 2^2 from the definition -- 4
+```
+
+---
+
+## Applying functions to data
+
+Say I have a function `addOne` that takes one number and adds `1` to it. To use that function, I just write:
+```haskell
+addOne 4
+addOne 8
+addOne 100
+```
+and these would become `5`, `9`, and `101` respectively.
+
+Say I have a function `add` that takes two numbers and adds them together.
+
+To use that function, I just write:
+```haskell
+add 1 3
+add 5 2
+add 8 6
+```
+and these would become `4`, `7`, and `14` respectively.
+
+---
+
+## Some basic, standard functions
+
+On numbers:
+- `mod`, integer remainder of two numbers
+- `div`, integer division of two numbers
+- `negate`, negates one number
+- `even`, checks if a number is even
+- `odd`, checks if a number is odd
+- `pi` is a function that takes *no* arguments and gives a number back
+- `sqrt` is a function that takes a `Float` and gives its square root back
+
+**Try using them!** The syntax is:
+```haskell
+function arg1 arg2 arg3 ...
+
+odd 5 -- for example
+```
+
+---
+
+## Some basic, standard functions
+
+On lists:
+- `head` takes a list and gives you the first thing in it
+- `last` takes a list and gives you the last thing in it
+- `tail` takes a list and gives you a list of everything but the first thing in it
+- `init` takes a list and gives you a list of everything but the last thing in it
+- `reverse` takes a list and reverses it
+- `take` takes a number `\(n\)` and a list, and gives you back the first `\(n\)` things from that list
+
+(Lists are much more interesting than numbers!)
+
+**Try these too!** Remember, list syntax is
+```haskell
+['h', 'e', 'l', 'l', 'o']
+```
+
+---
+
+## Writing functions
+
+Writing functions is pretty much just like you would write them in mathematics.
+
+```haskell
+addOne n = n + 1
+add x y = x + y
+```
+
+Now we're getting somewhere. **Try defining your own** &mdash; a classic example is to implement the quadratic formula:
+$$x(a, b, c) = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+
+--
+
+```haskell
+x a b c = (-b + sqrt (b^2 - 4*a*c))/(2*a)
+
+x 1 3 1 -- -0.3819660112501051
+```
+
+---
+
+## Function types
+
+If you want to refer to a function, you just use its name: `sqrt`, `addOne`, `even`, `head`, `tail`...
+
+In Haskell, functions are data! Since they're data, they also have types. The type of a function `f` that takes one `Integer` and returns a `Char` looks like this:
+```haskell
+f :: Integer -> Char
+```
+
+Reasonably intuitive! The type of a function `f` that takes *any* type and then returns something of the same type looks like this:
+```haskell
+f :: a -> a
+```
+(Note that `a` is lowercase &mdash; it's just a placeholder. We could also have used `b`, `any`, `sometype`...)
+
+---
+
+## Function types
+
+Here are some types for functions we've already seen:
+```haskell
+even :: Integer -> Bool
+odd :: Integer -> Bool
+head :: [a] -> a
+tail :: [a] -> [a]
+sqrt :: Float -> Float
+```
+
+---
+
+## Function types
+
+What if we have multiple arguments? The `div` function takes two `Integer`s divides them, and returns the integer part of the result. Its type looks like this:
+```haskell
+div :: Integer -> Integer -> Integer
+```
+
+`take` takes an `Integer` and a list of any type, and gives back a list of the same type. Its type looks like this:
+```haskell
+take :: Integer -> [a] -> [a]
+```
+
+<!-- The astute readers amongst you, presumably the ones reading this source code, will note that the type of `take` isn't actually `Integer -> [a] -> [a]`, it's `Int -> [a] -> [a]`. However, the distinction between Integer and Int is beyond the scope of this talk. -->
+
+The basic format, then, is to just chain together the types of all your arguments with `->` separating them, then put another `->`, then put the return type.
+
+.sidenote[(There's a fantastic reason for this weird syntax; I'll explain it if we get time.)]
+
+---
+
+## Function types
+
+When you write a function, Haskell can guess its types. But it's good practice to put the types above each function, like so:
+```haskell
+addOne :: Integer -> Integer
+addOne x = x + 1
+```
+
+---
+
+## Branching
+
+Branching is when you do different things based on a condition. There are three main ways this is done in Haskell; here's two for now:
+
+```haskell
+x = if y == 2
+    then 2
+    else (y + 1000)
+```
+The `if` here is an *expression* &mdash; it itself has a value, unlike in Python or C where an `if` is a *statement* controlling program flow.
+
+```haskell
+x
+  | y == 2 = 2
+  | y &gt;= 10 = y - 10
+  | otherwise = y + 1000
+```
+This is called a "guard"; you can use any `Bool` on the left of the `=` sign and the expression on the right is returned for the first `True` left-hand side.
+
+---
+
+layout: true
+
+# Defining types
+
+---
+
+Haskell uses *algebraic data types*, meaning you can combine different types to make new types. You could (if you wanted to) define `Bool` like this:
+```haskell
+data Bool = True | False
+```
+This line defines a new type called `Bool`. `|` can be read as "or" or "union"; this kind of type is called a *union type*. Another example:
+```haskell
+data TemperatureUnit = Celsius | Fahrenheit | Kelvin
+```
+`Celsius` etcetera are literal values, so you can just use them in your code.
+
+```haskell
+temperatureSystem :: [Char] -> TemperatureUnit
+temperatureSystem country = if country == ['U', 'S', 'A']
+                            then Fahrenheit
+                            else Celsius
+```
+
+---
+
+You can also combine multiple kinds of data into one type:
+```haskell
+data Temperature = Temp Float TemperatureUnit
+
+-- example
+Temp 100.0 Celsius
+```
+`Temperature` is the name of the type, and `Temp` here is called a *type constructor* &mdash; it's how we tell Haskell that we're talking about a `Temperature` rather than just putting random words down.
+
+This is called a *product type*.
+
+---
+
+You can combine union and product types to make even more types. This one is either an `Integer` or a `Char`:
+```haskell
+data EitherIntOrChar = EitherInteger Integer | EitherChar Char
+```
+`EitherInteger` and `EitherChar` are type constructors. If we didn't have those, then Haskell couldn't tell that we're using `EitherIntOrChar` types instead of `Integer`s or `Char`s. To use this type, you'd just have to put one of the constructors in front of the associated value:
+```haskell
+EitherInteger 1 :: EitherIntOrChar
+EitherChar 'h' :: EitherIntOrChar
+[EitherChar 'h', EitherChar 'e', EitherInteger 1,
+                 EitherInteger 1, EitherChar 'o'] :: [EitherIntOrChar]
+```
+
+---
+
+Maybe we have a function that returns a number sometimes, but might break sometimes &mdash; maybe a function that gets the square root of a number, but instead returns some special value if the number we put in is negative.
+
+```haskell
+maybeSqrt :: Float -> Float
+maybeSqrt x = if x &gt;= 0
+              then sqrt x
+              else ???
+```
+
+But what can we return? We shouldn't return a `Float` because then we couldn't distinguish it from an actual answer. Maybe we can make a new type:
+```haskell
+data MaybeFloat = Yes Float | NoFloat
+```
+So something in our new data type is either a `Yes Float`, or it's `NoFloat`. Example values in this type:
+```haskell
+Yes 10.0
+Yes 234.23
+Yes pi
+NoFloat
+```
+
+---
+
+Now, we can use our new type.
+
+```haskell
+maybeSqrt :: Float -> MaybeFloat
+maybeSqrt x = if x &gt;= 0
+              then Yes (sqrt x)
+              else NoFloat
+```
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
