@@ -347,9 +347,11 @@ addOne x = x + 1
 
 ---
 
-## Branching
+layout: false
 
-Branching is when you do different things based on a condition. There are three main ways this is done in Haskell; here's two for now:
+# Branching
+
+Branching is when you do different things based on a condition. There are three main ways this is done in Haskell.
 
 ```haskell
 x = if y == 2
@@ -365,6 +367,101 @@ x
   | otherwise = y + 1000
 ```
 This is called a "guard"; you can use any `Bool` on the left of the `=` sign and the expression on the right is returned for the first `True` left-hand side.
+
+---
+
+# Branching
+
+The third way is called *pattern matching*. We need to know more about types to cover it properly, but the basic idea is that you replace one of your function arguments with a *pattern*. At the simplest level, this might just be a value. Then, that particular function definition only runs if the pattern is matched by the input values. If your data contains other data (like a list), then you can also match using placeholders, and Haskell will store the corresponding data in those placeholders (check the code below for an example).
+
+```haskell
+myDivision :: Float -> Float -> Float
+myDivision a 0.0 = 10000000.0 -- basically infinity, right?
+myDivision a b = a/b
+
+-- usage examples
+myDivision 1.0 0.0 -- 10000000.0
+myDivision 1.0 2.0 -- 0.5
+```
+
+```haskell
+contrivedList :: [Integer] -> Integer
+contrivedList [] = 0
+contrivedList [x] = x
+contrivedList [x, y] = x + y
+contrivedList list = head list
+
+-- usage example
+contrivedList [1, 2] -- 3
+```
+
+---
+
+# Recursion
+
+In Haskell, there are no loops. Instead, you just define functions in terms of themselves. Here is how you might implement factorial:
+
+```haskell
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+```
+
+This is called *recursion*.
+
+We can also use recursion to do things with lists, but we need to know more pattern matching for that.
+
+---
+
+layout: true
+
+# List Patterns
+
+---
+
+We'll cover list patterns quickly here so you can try them out, then we'll come back after we do some more stuff with types.
+
+Haskell has an operator called `:` and it prepends things to lists:
+```haskell
+1 : [] == [1]
+1 : [2, 3] == [1, 2, 3]
+1 : 2 : [3] == [1, 2, 3]
+1 : 2 : 3 : [] == [1, 2, 3]
+```
+
+You can use these in patterns. For example, `1 : rest` matches any list starting with `1`, and then stores the rest of the list in `rest`.
+```haskell
+-- this function cuts off the first 1 from a list
+contrived :: [Integer] -> [Integer]
+contrived (1:rest) = rest
+contrived list = list
+
+-- usage examples
+contrived [1, 2, 3] -- [2, 3]
+contrived [2, 3, 4] -- [2, 3, 4]
+```
+
+---
+
+We can also use placeholders instead of literal values, e.g. `first : rest` &mdash; here, Haskell would match any list with at least one thing in it, store the first thing in `first`, and the rest in `rest`. We could use this to implement `head`! **Try this yourself!** Remember, `head` takes a list and returns the first thing in it.
+
+```haskell
+head :: [a] -> a
+```
+--
+```haskell
+head (first:rest) = first
+```
+
+---
+
+Now, we have the tools to do really interesting things to lists. Let's try writing a function that returns the last thing in a list.
+
+If we have exactly one thing in the list, then our list would be something of the form `[x]` and the last element is `x`, so we can write that down:
+```haskell
+last :: [a] -> a
+last [x] = x
+```
 
 ---
 
@@ -451,6 +548,10 @@ maybeSqrt x = if x &gt;= 0
               then Yes (sqrt x)
               else NoFloat
 ```
+
+---
+
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
