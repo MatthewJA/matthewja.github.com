@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Haskell Masterclass</title>
+    <!-- (c) Matthew Alger 2016 -->
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -29,7 +30,6 @@
 class: center, middle
 
 # Haskell: A Crash Course in Functional Programming
-*insert byline here*
 
 ---
 
@@ -387,7 +387,6 @@ myDivision 1.0 2.0 -- 0.5
 ```haskell
 contrivedList :: [Integer] -> Integer
 contrivedList [] = 0
-contrivedList [x] = x
 contrivedList [x, y] = x + y
 contrivedList list = head list
 
@@ -429,7 +428,7 @@ Haskell has an operator called `:` and it prepends things to lists:
 1 : 2 : 3 : [] == [1, 2, 3]
 ```
 
-You can use these in patterns. For example, `1 : rest` matches any list starting with `1`, and then stores the rest of the list in `rest`.
+You can use this in patterns to "unprepend". For example, `1 : rest` matches any list starting with `1`, and then stores the rest of the list in `rest`.
 ```haskell
 -- this function cuts off the first 1 from a list
 contrived :: [Integer] -> [Integer]
@@ -463,6 +462,12 @@ last :: [a] -> a
 last [x] = x
 ```
 
+If we have more than one thing in the list, then we really only need to cut off the first thing and get the last thing in the rest of the list.
+```haskell
+last (first:rest) = last rest
+```
+And that's it! Note that Haskell will try and match these patterns in order, so if you put `(first:rest)` first, it'll match `x:[]` and you'll try calling `last` on an empty list.
+
 ---
 
 layout: true
@@ -487,6 +492,18 @@ temperatureSystem country = if country == ['U', 'S', 'A']
                             then Fahrenheit
                             else Celsius
 ```
+
+---
+
+## .aside[Aside: ] Deriving `Show` for sanity
+
+When you make a type, Haskell assumes that there's no way to print it out, ever. You can tell it to try and guess how to print out your type:
+```haskell
+data TemperatureUnit = Celsius | Fahrenheit | Kelvin
+  deriving (Show)
+```
+
+Now you can use your type in Haskell and Haskell won't get confused when you return values of the type. If you get errors like `No instance for (Show Temperature) arising from a use of 'print'`, you probably haven't derived `Show`.
 
 ---
 
@@ -551,7 +568,75 @@ maybeSqrt x = if x &gt;= 0
 
 ---
 
+We can generalise this to work with any type, not just `Float`s, by using a *type variable*:
+```haskell
+data Maybe a = Just a | Nothing
+```
 
+I've changed the names from `Yes` and `NoFloat` to `Just` and `Nothing`, because Haskell actually includes this type for you. It's called the `Maybe` type.
+
+`a` can be whatever type you want, so we can rewrite `maybeSqrt` using this.
+```haskell
+maybeSqrt :: Float -> Maybe Float
+maybeSqrt x = if x &gt;= 0
+              then Just (sqrt x)
+              else Nothing
+```
+
+This is commonly used to handle errors.
+
+---
+
+## Types and pattern matching
+
+Pattern matching can be used to break down a type. For example, say we have a `Maybe Integer` and we want to add one to it if there's a number in it, and return `Nothing` if not.
+```haskell
+maybeAddOne :: Maybe Integer -> Maybe Integer
+maybeAddOne Nothing = Nothing
+maybeAddOne (Just something) = something + 1
+```
+
+You can compare this to the definition to see how pattern matching lets you break down types.
+```haskell
+data Maybe Integer = Nothing | Just Integer
+```
+
+---
+
+## Recursive type definitions
+
+You can define a type in terms of itself. Such a type is called a *recursive type*. Lists, it turns out, are recursive, and you can define them like this:
+```haskell
+data List a = EmptyList | Prepend a (List a)
+```
+
+Or, rewriting this with list syntax:
+```haskell
+data [a] = [] | a : [a]
+```
+
+Now you might be able to see why pattern matching can use `:` to break down a list.
+
+---
+
+layout: false
+
+# Suggested exercises
+- Find the number of elements in a list
+- Find the second-last element in a list
+- Sum a list of integers
+- Reverse a list
+- Apply a function to every element in a list
+
+# Where to go from here
+- Lazy evaluation
+- Higher order functions: `map`, `filter`, `fold`, `zipWith`
+- More complicated data structures like trees
+- IO
+- Currying and partial application
+- Functors, applicative functors, and monads
+
+If we have time, I can go through some of these things.
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
