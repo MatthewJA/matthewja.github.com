@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Haskell Masterclass</title>
-    <!-- (c) Matthew Alger 2016 -->
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -593,7 +592,7 @@ Pattern matching can be used to break down a type. For example, say we have a `M
 ```haskell
 maybeAddOne :: Maybe Integer -> Maybe Integer
 maybeAddOne Nothing = Nothing
-maybeAddOne (Just something) = something + 1
+maybeAddOne (Just something) = Just (something + 1)
 ```
 
 You can compare this to the definition to see how pattern matching lets you break down types.
