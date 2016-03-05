@@ -123,17 +123,108 @@ You can enter **expressions** into it and Python will evaluate them, then tell y
 
 ## Getting around IDLE
 
-.rightimg[![Shell](shell.png)]
+.rightimg[![File editor](editor.png)]
 
-### Shell
+### File editor
 
-This is the shell. You can use it to *interact* with Python code that you've already written.
+In the shell window: File > New File
 
-How do you interact with it? ...With more Python code. **:D**
+This is where you write code. Save files with a `.py` file extension (you'll have to type it in yourself) and you'll get **syntax highlighting**.
 
-You can enter **expressions** into it and Python will evaluate them, then tell you the answer (in blue).
+---
 
+layout: false
 
+# Comments
+
+Lines that start with a `#` are ignored by Python. You can (and should) use this to describe how your code works to anyone reading your code.
+
+```python
+# This is a comment
+# This is another comment
+# Python is pretty good
+
+some_code_here()  # I can also put comments at the end of lines of code
+```
+
+---
+
+layout: true
+
+# Basics
+
+---
+
+Programming is a glorified way of manipulating **values**. Different kinds of values have different **types** and are represented in different ways.
+
+```python
+1  # int
+1.0  # float
+"hello"  # str
+True  # bool
+```
+
+---
+
+You can combine values with **operators** to make new values.
+
+```python
+1 + 2  # is 3
+1.0 + 2  # is 3.0
+1 / 2  # is 0.5
+"hello" + "world"  # is "helloworld"
+True and False  # is False
+```
+
+Operators work on different types. `+`, `-`, `*`, and `/` work on numbers in ways you would expect; `and` and `or` work on `bool`s and let you do logic.
+
+(also there's heaps more operators)
+
+---
+
+.rightimg[![Shell basics](shell2.png)]
+
+You can try this out in the shell.
+
+---
+
+layout: false
+
+# Strings
+
+Strings are sequences of characters.
+
+```python
+"hello"
+"world"
+"this is me"
+```
+
+You can add them together. You can also slice them:
+
+```python
+"this is me"[0]  # "t"
+"this is me"[1]  # "h"
+"this is me"[1:3]  # "hi"
+```
+
+If you just put a single number in the brackets, you will get a single character back. Note that `0` is the first character.
+
+If you put two numbers separated by `:`, you will get multiple characters back. If you put in `[i:j]`, you will get back the `i`th character up to (but *not including*) the `j`th character.
+
+---
+
+# Lists
+
+Lists are sequences of values. They can have whatever you want in them and be as long as you like.
+
+```python
+[1, 2, 3]
+["hello", "world", "this is me"]
+[1, 2, "hello", "world"]
+[True, True, False]
+[]
+```
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
