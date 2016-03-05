@@ -53,7 +53,7 @@ Programming languages:
 Python:
 - General-purpose programming language
 - *De facto* standard language used for machine learning, statistics, physics, biology, AI, ...
-- Powers Reddit, Bitbucket, Dropbox, Sublime Text, BitTorrent, Blender, Sage, Linux, Civilization IV, Django, Blender, GIMP, YouTube...
+- Powers Reddit, Bitbucket, Dropbox, Sublime Text, BitTorrent, Blender, Sage, Linux, Civilization IV, Django, GIMP, YouTube...
 
 ---
 
@@ -422,6 +422,78 @@ $$
   7 & 8 & 9\\\\
 \end{bmatrix}
 $$]
+
+---
+
+# Working with data
+
+To work with data, we could do things the hard way, or we could not do things the hard way. For the purposes of this workshop, we are not doing things the hard way.
+
+## NumPy
+
+NumPy is the Python community's answer to not doing things the hard way. You'll need to install it:
+
+- On Mac OS X, `sudo pip3 install numpy` should work.
+- On Windows, [download this](http://www.lfd.uci.edu/~gohlke/pythonlibs/djcobkfp/numpy-1.11.0rc1+mkl-cp35-cp35m-win_amd64.whl), save it to your C: drive and rename it to `numpy.whl`, then open command prompt and run `cd C:\Python35\Scripts\pip.exe install C:\numpy.whl`.
+- On Ubuntu or Debian, `sudo apt-get install python3-numpy` should work.
+
+(This is a one-time setup thing...)
+
+.sidenote[Dead link? [Try this one.](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)]
+
+---
+
+# Using NumPy
+
+Put this at the top of your code:
+
+```python
+import numpy
+```
+
+This tells Python that we want to use NumPy. Let's load some data. Specifically, [this data](population_data.csv), via data.act.gov.au.
+```csv
+Year,Projected Population - Male,Projected Population - Female,Total Persons,Aged 0-14 years,Aged 15-64 years,Aged 65+ years,Median age,Growth - Persons p.a.,Growth - % p.a.
+2009,174999,177190,352189,18.4%,71.4%,10.2%,33.7,,
+2010,178055,179903,357958,18.3%,71.3%,10.4%,33.8,5769,1.6%
+```
+
+Loading it is easy:
+```python
+# 0, 3, and 7 are year, total persons, and median age, respectively
+population_data = numpy.genfromtxt("population_data.csv", delimiter=",",
+                                   names=True, usecols=[0, 3, 7])
+```
+
+(This kind of code will deal with nicely formatted CSVs. If your CSVs are not nice, then you will have to work a bit harder, but that's outside of scope.)
+
+---
+
+# Can we use loops with it?
+
+You bet. It's basically a list of lists &mdash; one list of rows, and then each row is a list itself.
+
+```python
+for row in population_data:
+  year = row[0]
+  pop = row[1]
+  age = row[2]
+
+  print(year)
+```
+
+<!-- TODO: Plots! Regression! -->
+
+<!-- 
+# Magic
+
+Convert the CSV file into something called an array:
+
+```python
+population_data = numpy.array(population_data.tolist())
+```
+
+You now have something that's a lot like a matrix. You can slice it like a list, but you also have the ability to  -->
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
