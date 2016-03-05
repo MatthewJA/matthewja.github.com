@@ -131,6 +131,8 @@ In the shell window: File > New File
 
 This is where you write code. Save files with a `.py` file extension (you'll have to type it in yourself) and you'll get **syntax highlighting**.
 
+To run code, a) save it, b) Run > Run Module. If you're on Windows, you can also hit F5.
+
 ---
 
 layout: false
@@ -216,7 +218,7 @@ If you put two numbers separated by `:`, you will get multiple characters back. 
 
 # Lists
 
-Lists are sequences of values. They can have whatever you want in them and be as long as you like.
+Lists are sequences of values. They can have whatever you want in them and be as long as you like. They are a bunch of values surrounded by square brackets.
 
 ```python
 [1, 2, 3]
@@ -225,6 +227,116 @@ Lists are sequences of values. They can have whatever you want in them and be as
 [True, True, False]
 []
 ```
+
+Just like strings, they can be sliced.
+```python
+[1, 2, "hello", "world"][0]  # 1
+[1, 2, "hello", "world"][1]  # 2
+[1, 2, "hello", "world"][1:3]  # [2, "hello"]
+```
+
+---
+
+# Printing
+
+If you try adding some numbers in Python's shell (or whatever), Python tells you what the result is. But if you type code into its own file, and then run that with Python, Python won't tell you anything. You have to explicitly tell Python to output information. You do this with `print`.
+
+```python
+print("Hello world!")
+print(1 + 2)
+```
+
+---
+
+# Variables
+
+We want to store our values somewhere, so that we can reuse them (and also so that we don't have to jam all our maths onto one line). **Variables** are how we do this:
+
+```python
+x = 1
+result = x + 2
+print(result)  # prints 3
+```
+
+Variables can be named any sequence of letters and underscores. Note that you can change their values later:
+```python
+x = 1
+# x is 1
+x = 2
+# x is now 2
+```
+
+You can even change their values based on their current values.
+```python
+x = 1
+x = x + 1
+# x is now 2
+```
+
+---
+
+layout: true
+
+# Making decisions
+
+---
+
+You can compare values with **boolean operators**:
+
+```python
+# here, x and y are variables
+x == y  # equality
+x != y  # inequality
+x > y  # greater than
+x < y  # less than
+x >= y  # greater than or equal to
+x <= y  # less than or equal to
+```
+
+Python turns these into `True` or `False`.
+
+```python
+x = 1
+y = 2
+
+print(x != y)  # prints True
+```
+
+---
+
+You can make Python do different things depending on whether something is `True` or `False` using an **if statement**.
+
+```python
+x = True
+
+if x:
+  print("x is True!")
+else:
+  print("x is False!")
+  # you can have lots f lines inside if/else
+  # just keep indenting them
+```
+
+All the code that runs inside the `if` statement should be indented &mdash; this just means you should put a tab or four spaces in front of each line.
+
+---
+
+Inside the `if` statements you can put whatever code you want (including more `if` statements).
+
+```python
+y = 100
+
+x = 0
+
+if y < 80:
+  z = 1200
+  x = z + 1
+else:
+  x = 4
+
+print(x)  # what does this print? hint: it prints 4
+```
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
