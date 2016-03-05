@@ -317,7 +317,7 @@ else:
   # just keep indenting them
 ```
 
-All the code that runs inside the `if` statement should be indented &mdash; this just means you should put a tab or four spaces in front of each line.
+All the code that runs inside the `if` statement must be indented &mdash; this just means you should put a tab or two spaces in front of each line.
 
 ---
 
@@ -337,6 +337,91 @@ else:
 print(x)  # what does this print? hint: it prints 4
 ```
 
+---
+
+layout: true
+
+# Making decisions (repeatedly)
+
+---
+
+If you want to do something over and over again until something happens, you need a `while` loop. `while` loops are exactly like `if` statements, except that when Python gets to the end of the code inside them, it jumps back up to the start, checks whether the condition is `True` again, and then maybe runs the whole loop again (and repeat).
+
+```python
+x = 0
+while x < 10:
+  x = x + 1
+  print(x)
+```
+
+```python
+while True:
+  # this runs forever!
+  print("hello")
+```
+
+Just like with `if`s, you need to indent all the code that goes inside a `while` loop. You can put whatever code you want inside `while` loops (including more `while` loops or `if` statements... etc).
+
+---
+
+layout: false
+
+# .aside[Fun computer science fact]
+
+You can now write Python programs that compute *literally any computable values*!
+
+- variables
+- `if`
+- `while`
+
+*Technically* all you need!
+
+--
+
+...though we should do more real-world stuff. First stop, `for` loops!
+
+---
+
+# `for` loops
+
+If you have a list of things, and you want to run some code for each thing in the list, you use a `for` loop.
+
+```python
+my_cool_list = [1, 2, 3, 4, 5]
+
+for item in my_cool_list:
+  print(item * item)
+```
+
+In the above code, `item` is a variable. You can call it whatever you want.
+
+---
+
+# Nested `for` loops
+
+Maybe you have a list of lists.
+
+```python
+z = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+```
+
+And you want to do something to all of the elements in all of the lists.
+
+```python
+for sublist in z:
+  for item in sublist:
+    print(item)
+```
+
+.sidenote[Of course, when would we ever have a list of lists...?
+
+$$
+\begin{bmatrix}
+  1 & 2 & 3\\\\
+  4 & 5 & 6\\\\
+  7 & 8 & 9\\\\
+\end{bmatrix}
+$$]
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
