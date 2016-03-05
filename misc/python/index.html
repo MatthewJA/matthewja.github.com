@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python Workshop</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Raleway);
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700,400italic);
+
+      body { font-family: 'Roboto'; }
+      h1, h2, h3 {
+        font-family: 'Raleway';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Inconsolata'; }
+      .sidenote {
+        color: #AAA;
+        font-style: italic;
+      }
+      .aside {
+        color: red;
+      }
+      .rightimg img {
+        float: right;
+        max-height: 370px;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Python: A Crash Course in Programming
+
+Slides: [http://matthewja.com/misc/python](http://matthewja.com/misc/python)
+
+---
+
+# A brief introduction
+
+Programming:
+- I have a computer
+- I want to make the computer do things for me
+  - I need to use a programming language to tell it how to do the things
+
+Programming languages:
+- Can be specialised .sidenote[(e.g. R for statistics)] or general-purpose
+- Formal, meaning that grammar matters
+
+Python:
+- General-purpose programming language
+- *De facto* standard language used for machine learning, statistics, physics, biology, AI, ...
+- Powers Reddit, Bitbucket, Dropbox, Sublime Text, BitTorrent, Blender, Sage, Linux, Civilization IV, Django, Blender, GIMP, YouTube...
+
+---
+
+# What we're going to do
+
+We're going to learn how to do basic things in Python:
+- Make decisions
+- Do things repeatedly
+- Work with data
+- Use NumPy to work with data *better*
+- Use MatPlotLib to make pretty pictures of data
+- Read documentation
+
+After this, you should have some background to help you out when you need to solve a programming task.
+
+---
+
+# Outline
+
+- Fundamentals
+- Types, lists, strings, and methods
+- Expressions, `print`
+- `if`, `while`, and `for`
+- Files and data
+- NumPy
+- MatPlotLib
+
+---
+
+layout: true
+
+# Fundamentals
+
+---
+
+## Installing Python
+
+You should have Python 3.5 already installed. If you don't:
+- Windows: [Download and run this installer.](https://www.python.org/ftp/python/3.5.1/python-3.5.1-amd64.exe)
+- Mac OS X: [Download and run this installer.](https://www.python.org/ftp/python/3.5.1/python-3.5.1-macosx10.6.pkg)
+- Linux: You probably already have Python!
+
+---
+
+.rightimg[![IDLE](idle.png)]
+
+## Running Python
+
+1. Open IDLE3 or IDLE.
+2. You're running Python
+
+---
+
+## Getting around IDLE
+
+.rightimg[![Shell](shell.png)]
+
+### Shell
+
+This is the shell. You can use it to *interact* with Python code that you've already written.
+
+How do you interact with it? ...With more Python code. **:D**
+
+You can enter **expressions** into it and Python will evaluate them, then tell you the answer (in blue).
+
+---
+
+## Getting around IDLE
+
+.rightimg[![Shell](shell.png)]
+
+### Shell
+
+This is the shell. You can use it to *interact* with Python code that you've already written.
+
+How do you interact with it? ...With more Python code. **:D**
+
+You can enter **expressions** into it and Python will evaluate them, then tell you the answer (in blue).
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;delayStartupUntil=configured"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
