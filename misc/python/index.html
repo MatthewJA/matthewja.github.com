@@ -26,6 +26,13 @@
         max-height: 370px;
         margin-left: 20px;
       }
+      .centreimg {
+        text-align: center;
+        display: block;
+      }
+      .centreimg img {
+        max-height: 400px;
+      }
     </style>
   </head>
   <body>
@@ -226,7 +233,9 @@ Strings are sequences of characters.
 "this is me"
 ```
 
-You can add them together. You can also slice them:
+You can add them together, e.g. `"hello" + "world"` gives `"helloworld"`.
+
+You can also slice them:
 
 ```python
 "this is me"[0]  # "t"
@@ -324,6 +333,8 @@ x = 1
 y = 2
 
 print(x != y)  # prints True
+print(y < x)  # prints False
+z = y > x  # z is now True
 ```
 
 ---
@@ -337,7 +348,7 @@ if x:
   print("x is True!")
 else:
   print("x is False!")
-  # you can have lots f lines inside if/else
+  # you can have lots of lines inside if/else
   # just keep indenting them
 ```
 
@@ -348,17 +359,19 @@ All the code that runs inside the `if` statement must be indented &mdash; this j
 Inside the `if` statements you can put whatever code you want (including more `if` statements).
 
 ```python
-y = 100
+y = 78
 
 x = 0
 
 if y < 80:
-  z = 1200
-  x = z + 1
+  z = 10 * y
+  if z > 770:
+    x = z + 1
+    # note that we've now indented *twice*
 else:
   x = 4
 
-print(x)  # what does this print? hint: it prints 4
+print(x)  # what does this print? hint: it prints 781
 ```
 
 ---
@@ -457,7 +470,11 @@ To work with data, we could do things the hard way, or we could not do things th
 
 ---
 
-# Using NumPy
+layout: true
+
+# NumPy
+
+---
 
 Put this at the top of your code:
 
@@ -479,13 +496,23 @@ population_data = numpy.genfromtxt("population_data.csv", delimiter=",",
                                    names=True, usecols=[0, 3, 7])
 ```
 
-This assumes that your code is in the same directory as the CSV.
+This assumes that your code is in the same directory as the data file, and that the data file is a nice CSV (like you might get out of Excel).
 
 <!-- (This kind of code will deal with nicely formatted CSVs. If your CSVs are not nice, then you will have to work a bit harder, but that's outside of scope.) -->
 
 ---
 
-# Can we use loops with it?
+Since all our data is numeric, we can convert `population_data` into an array, which lets us do neat things like pull out specific columns and transform lots of data at once.
+
+```python
+population_data = numpy.array(population_data.tolist())
+```
+
+This works because magic (outside the scope of this workshop).
+
+---
+
+## Can we use loops with it?
 
 You bet. It's basically a list of lists &mdash; one list of rows, and then each row is a list itself.
 
@@ -498,25 +525,98 @@ for row in population_data:
   print(year)
 ```
 
-Since all our data is numeric, we can 
-<!-- TODO: Consider changing this to use arrays (properly). -->
+---
+
+## How do we get a column by itself?
+
+Remember slicing lists?
+
+```python
+my_list[1:10]  # gets the 2nd item to the 11th item
+               # (but not the 11th item)
+```
+
+NumPy arrays can also be sliced, but they can be sliced in multiple directions.
+
+To get the (0, 2)th item (1st row, 3rd item &mdash; in our case, the first row, and the "median age" column):
+
+```python
+population_data[0, 2]
+```
+
+If you want *all* items along a row or a column, use `:` instead of the number.
+```python
+population_data[:, 2]  # all median ages!
+```
 
 ---
 
-# Can we make pictures with it?
+## Can we make plots with it?
 
-<!-- TODO: Plots! Regression! -->
+No.
 
-<!-- 
-# Magic
+--
 
-Convert the CSV file into something called an array:
+We need MatPlotLib for that!
+
+---
+
+layout: true
+
+# MatPlotLib
+
+---
+
+Tell Python that you want to use MatPlotLib:
 
 ```python
-population_data = numpy.array(population_data.tolist())
+import matplotlib.pyplot
 ```
 
-You now have something that's a lot like a matrix. You can slice it like a list, but you also have the ability to  -->
+(MatPlotLib is actually lots of libraries all put together, which is why we need the dot &mdash; this tells Python that we want the part of MatPlotLib that plots things.)
+
+Then we can start to plot things. We need to have a list of all the `x` values and a list of all the `y` values. Say we want the `x` values to be the years (1st column of our data), and the `y` values to be the population (2nd column).
+
+```python
+years = population_data[:, 0]  # all rows, 1st column
+population = population_data[:, 1]  # all rows, 2nd column
+```
+
+---
+
+To plot, you write `matplotlib.pyplot.plot(x_values, y_values)`. After you've plotted, you have to tell Python to show you the results. (Why doesn't it show automatically? Because sometimes you might want to plot lots of things before you show the results.)
+
+```python
+matplotlib.pyplot.plot(years, population)
+matplotlib.pyplot.show()
+```
+
+---
+
+.centreimg[![Plot](plot1.png)]
+
+---
+
+## I want axis labels! Titles!
+
+Okay.
+
+```python
+matplotlib.pyplot.plot(years, population)
+matplotlib.pyplot.xlabel("Year")
+matplotlib.pyplot.ylabel("Population")
+matplotlib.pyplot.title("ACT Population Growth")
+matplotlib.pyplot.show()
+```
+
+(Now you can see why we have to explicitly tell Python to `show`.)
+
+---
+
+.centreimg[![Plot with labels](plot2.png)]
+
+
+<!-- TODO: Plots! Regression! -->
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>

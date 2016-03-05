@@ -1,10 +1,14 @@
 import numpy
+import matplotlib.pyplot
 
 population_data = numpy.genfromtxt("population_data.csv", delimiter=",", names=True, usecols=[0, 3, 7])
+population_data = numpy.array(population_data.tolist())
 
-for row in population_data:
-  year = row[0]
-  pop = row[1]
-  age = row[2]
+years = population_data[:, 0]
+population = population_data[:, 1]
 
-  print(year)
+matplotlib.pyplot.plot(years, population)
+matplotlib.pyplot.xlabel("Year")
+matplotlib.pyplot.ylabel("Population")
+matplotlib.pyplot.title("ACT Population Growth")
+matplotlib.pyplot.show()
