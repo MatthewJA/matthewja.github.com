@@ -665,17 +665,19 @@ matplotlib.pyplot.show()
 
 layout: true
 
-# Residuals
+# A simple model
 
 ---
 
-Let's find the residuals of a model. I think that the population is totally a linear function.
+I think that the population is totally a linear function.
 
 $$
 population = 4057 \times year - 7796730
 $$
 
-For each (year, population) pair, I want to subtract this model. Then I want to gather up all the resulting values, and plot them.
+<!-- For each (year, population) pair, I want to subtract this model. Then I want to gather up all the resulting values, and plot them. -->
+
+Let's see how close I am to being right. First, I want to plot this model against the real data. So we need to find all the populations predicted by this model.
 
 ---
 
@@ -684,29 +686,49 @@ population = 4057 \times year - 7796730
 $$
 
 ```python
-for row in population_data:
+years = population_data[:, 0]
+populations = population_data[:, 1]
+
+predicted_populations = []
+
+for year in years:
   # figure out what the model population is
-  year = row[0]
-  population = row[1]
   model_population = 4057 * year - 7796730
-  residual = population - model_population
+
+  # add it onto the predictions list
+  predicted_populations.append(model_population)
 ```
 
-But I still have to gather up the results, and then plot them.
+Plotting is then pretty straightforward. If you tell Python to `plot` two different things before `show`ing the plot, it will put them on the same graph.
+
+```python
+matplotlib.pyplot.plot(years, populations)
+matplotlib.pyplot.plot(years, predicted_populations)
+matplotlib.pyplot.xlabel("Year")
+matplotlib.pyplot.ylabel("Population")
+matplotlib.pyplot.title("Linear model of ACT population growth")
+matplotlib.pyplot.legend(["data", "model"])
+matplotlib.pyplot.show()
+```
 
 ---
 
 $$
 population = 4057 \times year - 7796730
 $$
+
+Now, let's find the residuals and plot those instead. To get the residuals, we have to subtract the model.
 
 ```python
 residuals = []
 for row in population_data:
-  # figure out what the model population is
   year = row[0]
   population = row[1]
+
+  # figure out what the model population is
   model_population = 4057 * year - 7796730
+
+  # calculate and store the residual
   residual = population - model_population
   residuals.append(residual)
 ```
@@ -717,23 +739,36 @@ $$
 population = 4057 \times year - 7796730
 $$
 
+Then we can plot it.
+
 ```python
 residuals = []
 for row in population_data:
-  # figure out what the model population is
   year = row[0]
   population = row[1]
+
+  # figure out what the model population is
   model_population = 4057 * year - 7796730
+
+  # calculate and store the residual
   residual = population - model_population
   residuals.append(residual)
 
 years = population_data[:, 0]
+
 matplotlib.pyplot.plot(years, residuals)
 matplotlib.pyplot.xlabel("Year")
 matplotlib.pyplot.ylabel("Residual")
 matplotlib.pyplot.title("Residuals for linear model of ACT population growth")
 matplotlib.pyplot.show()
 ```
+
+---
+
+layout: false
+
+# Summary
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
