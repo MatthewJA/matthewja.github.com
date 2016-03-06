@@ -80,12 +80,11 @@ We're going to learn how to do basic things in Python:
 .extralinespacing[
 - Make decisions
 - Do things repeatedly
-- Work with data
-- Use NumPy to work with data *better*
+- Use NumPy to work with data better
 - Use MatPlotLib to make pretty pictures of data
-- Read documentation]
+- Where to go next]
 
-After this, you should have some background to help you out when you need to solve a programming task.
+After this, you should have some background to help you out when you need to solve a programming task. You won't learn everything here, but you'll get some very useful exposure.
 
 ---
 
@@ -146,7 +145,7 @@ MatPlotLib:
 
 ## Running Python
 
-1. Open IDLE3 or IDLE.
+1. Open IDLE3 or IDLE
 2. You're running Python
 
 ---
@@ -322,36 +321,6 @@ x = x + 1
 
 ---
 
-# Converting between types
-
-```python
-"10" + "10"  # "1010" D:
-```
-
-Use `float(string)` to convert `string` into a number. Use `str(number)` to convert a number into a string.
-
-```python
-float("10") + float("10")  # 20 :D
-```
-
----
-
-# Adding items to a list
-
-If you have a list stored in a variable, you can add items to that list:
-
-```python
-cool_list = [1, 2, 3]
-
-cool_list.append(5)
-
-# cool_list is now [1, 2, 3, 5]
-```
-
-This is particularly useful for storing results if you do lots of repeated calculations.
-
----
-
 layout: true
 
 # Making decisions
@@ -415,7 +384,7 @@ if y < 80:
 else:
   x = 4
 
-print(x)  # what does this print? hint: it prints 781
+print(x)  # what does this print?
 ```
 
 ---
@@ -459,7 +428,37 @@ You can now write Python programs that compute *literally any computable values*
 
 --
 
-...though we should do more real-world stuff. First stop, `for` loops!
+...though we should do more real-world stuff.
+
+---
+
+# Converting between types
+
+```python
+"10" + "10"  # "1010" D:
+```
+
+Use `float(string)` to convert `string` into a number. Use `str(number)` to convert a number into a string.
+
+```python
+float("10") + float("10")  # 20 :D
+```
+
+---
+
+# Adding items to a list
+
+If you have a list stored in a variable, you can add items to that list:
+
+```python
+cool_list = [1, 2, 3]
+
+cool_list.append(5)
+
+# cool_list is now [1, 2, 3, 5]
+```
+
+This is particularly useful for storing results if you do lots of repeated calculations (like you might do in a loop!).
 
 ---
 
@@ -500,9 +499,9 @@ for sublist in z:
 
 $$
 \begin{bmatrix}
-  1 & 2 & 3\\\\
-  4 & 5 & 6\\\\
-  7 & 8 & 9\\\\
+  1 &amp; 2 &amp; 3\\\\
+  4 &amp; 5 &amp; 6\\\\
+  7 &amp; 8 &amp; 9\\\\
 \end{bmatrix}
 $$]
 
@@ -699,9 +698,27 @@ for year in years:
   predicted_populations.append(model_population)
 ```
 
+---
+
+$$
+population = 4057 \times year - 7796730
+$$
+
 Plotting is then pretty straightforward. If you tell Python to `plot` two different things before `show`ing the plot, it will put them on the same graph.
 
 ```python
+years = population_data[:, 0]
+populations = population_data[:, 1]
+
+predicted_populations = []
+
+for year in years:
+  # figure out what the model population is
+  model_population = 4057 * year - 7796730
+
+  # add it onto the predictions list
+  predicted_populations.append(model_population)
+
 matplotlib.pyplot.plot(years, populations)
 matplotlib.pyplot.plot(years, predicted_populations)
 matplotlib.pyplot.xlabel("Year")
@@ -765,10 +782,48 @@ matplotlib.pyplot.show()
 
 ---
 
+$$
+population = 4057 \times year - 7796730
+$$
+
+If you don't want to recalculate all the residuals (we already stored them all in a list called `residuals` anyway), we can `zip` different lists of data together and loop through all of them in one hit.
+
+```python
+years = population_data[:, 0]
+populations = population_data[:, 1]
+predicted_populations = [...]  # calculate as before...
+
+residuals = []
+for year, population, predicted in zip(years, populations, predicted_populations):
+  # calculate and store the residual
+  residual = population - predicted
+  residuals.append(residual)
+```
+
+---
+
 layout: false
 
 # Summary
 
+.extralinespacing[
+- `if`/`else` for doing different things based on conditions
+- `while` to loop until a condition is false
+- `for` to loop through data
+- `import numpy` for data magic
+- `import matplotlib.pyplot` for plotting]
+
+---
+
+# Next steps and other resources
+
+.extralinespacing[
+- The fairly comprehensive [official Python tutorial](https://docs.python.org/3/tutorial/)
+- The kinda slow but more structured [Codecademy Python course](https://www.codecademy.com/learn/python)
+- COMP1730
+- Computer science academic mentors (most of us know Python)
+- The documentation! [Python docs](https://docs.python.org/3/library/index.html), [NumPy docs](http://docs.scipy.org/doc/numpy/reference/), [MatPlotLib docs](http://matplotlib.org/api/pyplot_api.html) &mdash; if you have some exposure to Python (which you do), you can learn basically everything from examples in the docs
+- [PEP 0008](https://www.python.org/dev/peps/pep-0008/), the Python style guide (for learning how to write good-looking Python code)]
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
