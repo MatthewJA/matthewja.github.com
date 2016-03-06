@@ -33,6 +33,9 @@
       .centreimg img {
         max-height: 400px;
       }
+      .extralinespacing {
+        line-height: 1.5;
+      }
     </style>
   </head>
   <body>
@@ -53,26 +56,34 @@ Programming:
 - I want to make the computer do things for me
   - I need to use a programming language to tell it how to do the things
 
-Programming languages:
-- Can be specialised .sidenote[(e.g. R for statistics)] or general-purpose
-- Formal, meaning that grammar matters
+---
+
+# A brief introduction
+
+Programming:
+- I have a computer
+- I want to make the computer do things for me
+  - I need to use a programming language to tell it how to do the things
+
+<!-- remark is buggy if you use a slide break between lists. -->
 
 Python:
 - General-purpose programming language
 - *De facto* standard language used for machine learning, statistics, physics, biology, AI, ...
-- Powers Reddit, Bitbucket, Dropbox, Sublime Text, BitTorrent, Blender, Sage, Django, YouTube...
+- Powers Reddit, Dropbox, BitTorrent, Blender, YouTube...
 
 ---
 
 # What we're going to do
 
 We're going to learn how to do basic things in Python:
+.extralinespacing[
 - Make decisions
 - Do things repeatedly
 - Work with data
 - Use NumPy to work with data *better*
 - Use MatPlotLib to make pretty pictures of data
-- Read documentation
+- Read documentation]
 
 After this, you should have some background to help you out when you need to solve a programming task.
 
@@ -80,6 +91,7 @@ After this, you should have some background to help you out when you need to sol
 
 # Outline
 
+.extralinespacing[
 - Fundamentals
 - Types, lists, strings, and methods
 - Expressions, `print`
@@ -87,6 +99,7 @@ After this, you should have some background to help you out when you need to sol
 - Files and data
 - NumPy
 - MatPlotLib
+]
 
 ---
 
@@ -206,7 +219,8 @@ You can combine values with **operators** to make new values.
 1.0 + 2  # is 3.0
 1 / 2  # is 0.5
 "hello" + "world"  # is "helloworld"
-True and False  # is False
+(4 < 5) and (3 > 2)  # is True
+(4 < 5) and (3 < 2)  # is False
 ```
 
 Operators work on different types. `+`, `-`, `*`, and `/` work on numbers in ways you would expect; `and` and `or` work on `bool`s and let you do logic.
@@ -305,6 +319,36 @@ x = 1
 x = x + 1
 # x is now 2
 ```
+
+---
+
+# Converting between types
+
+```python
+"10" + "10"  # "1010" D:
+```
+
+Use `float(string)` to convert `string` into a number. Use `str(number)` to convert a number into a string.
+
+```python
+float("10") + float("10")  # 20 :D
+```
+
+---
+
+# Adding items to a list
+
+If you have a list stored in a variable, you can add items to that list:
+
+```python
+cool_list = [1, 2, 3]
+
+cool_list.append(5)
+
+# cool_list is now [1, 2, 3, 5]
+```
+
+This is particularly useful for storing results if you do lots of repeated calculations.
 
 ---
 
@@ -449,6 +493,8 @@ for sublist in z:
   for item in sublist:
     print(item)
 ```
+
+--
 
 .sidenote[Of course, when would we ever have a list of lists...?
 
@@ -615,8 +661,79 @@ matplotlib.pyplot.show()
 
 .centreimg[![Plot with labels](plot2.png)]
 
+---
 
-<!-- TODO: Plots! Regression! -->
+layout: true
+
+# Residuals
+
+---
+
+Let's find the residuals of a model. I think that the population is totally a linear function.
+
+$$
+population = 4057 \times year - 7796730
+$$
+
+For each (year, population) pair, I want to subtract this model. Then I want to gather up all the resulting values, and plot them.
+
+---
+
+$$
+population = 4057 \times year - 7796730
+$$
+
+```python
+for row in population_data:
+  # figure out what the model population is
+  year = row[0]
+  population = row[1]
+  model_population = 4057 * year - 7796730
+  residual = population - model_population
+```
+
+But I still have to gather up the results, and then plot them.
+
+---
+
+$$
+population = 4057 \times year - 7796730
+$$
+
+```python
+residuals = []
+for row in population_data:
+  # figure out what the model population is
+  year = row[0]
+  population = row[1]
+  model_population = 4057 * year - 7796730
+  residual = population - model_population
+  residuals.append(residual)
+```
+
+---
+
+$$
+population = 4057 \times year - 7796730
+$$
+
+```python
+residuals = []
+for row in population_data:
+  # figure out what the model population is
+  year = row[0]
+  population = row[1]
+  model_population = 4057 * year - 7796730
+  residual = population - model_population
+  residuals.append(residual)
+
+years = population_data[:, 0]
+matplotlib.pyplot.plot(years, residuals)
+matplotlib.pyplot.xlabel("Year")
+matplotlib.pyplot.ylabel("Residual")
+matplotlib.pyplot.title("Residuals for linear model of ACT population growth")
+matplotlib.pyplot.show()
+```
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
