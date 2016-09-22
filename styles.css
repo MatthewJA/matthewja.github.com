@@ -1,0 +1,134 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Oxygen';
+
+body, html {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Oxygen, sans-serif;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.backlink {
+    font-size: 15pt;
+}
+
+.image-reference {
+    max-width: 400pt;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    color: #999;
+    font-size: 90%;
+}
+
+article {
+    max-width: 400pt;
+    padding: 0 10pt;
+    margin: 0 auto;
+}
+
+nav {
+    text-align: center;
+    padding: 10pt;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    list-style-type: none;
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+nav li:not(:first-child):before {
+    content: ' | ';
+}
+
+/* Home */
+
+.spacer {
+    height: 40pt;
+}
+
+.top-image {
+    margin: 10pt auto;
+    display: block;
+}
+
+.top-title {
+    text-align: center;
+}
+
+#about {
+    text-align: left;
+    max-width: 400pt;
+    margin: 0 auto;
+    padding: 0 10pt;
+}
+
+#home-links {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+#home-links li {
+    display: inline-block;
+    margin: 10pt 20pt;
+}
+
+/* Projects */
+
+.project {
+    max-width: 400pt;
+    margin: 20pt auto;
+    padding: 0 10pt;
+    position: relative;
+}
+
+.project .links {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.project .links li {
+    list-style-type: none;
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.project:not(:first-of-type):before {
+    border-bottom: 1px solid #DDD;
+    width: 100%;
+    display: block;
+    height: 1px;
+    content: ' ';
+}
+
+.project .links li:not(:first-child):before {
+    content: ' | ';
+}
+
+.project time {
+    position: absolute;
+    right: 10pt;
+    top: 4pt;
+    color: #999;
+}
+
+.project:not(:first-of-type) time {
+    top: 20pt;
+}
