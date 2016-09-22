@@ -68,6 +68,7 @@ nav li:not(:first-child):before {
 .top-image {
     margin: 10pt auto;
     display: block;
+    border-radius: 120px;
 }
 
 .top-title {
