@@ -143,7 +143,7 @@ nav li:not(:first-child):before {
 }
 
 .coming-soon:after {
-    content: "(coming soon!)";
+    content: " (coming soon!)";
 }
 
 .coming-soon {
