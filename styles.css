@@ -149,3 +149,8 @@ nav li:not(:first-child):before {
 .coming-soon {
     color: #999;
 }
+
+.top-image {
+    max-width: 205px;
+    max-height: 205px;
+}
