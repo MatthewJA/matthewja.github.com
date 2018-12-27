@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Dice Roller</title>
+    <style type="text/css">
+        #buttons {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .dice-count {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+            display: inline-block;
+            margin: 5px;
+            background-color: lightgrey;
+        }
+
+        #result {
+            width: 100%;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .result {
+            width: 12vw;
+            height: 12vw;
+            display: none;
+            font-size: 12vw;
+        }
+
+        #total-box {
+            width: 100%;
+            text-align: center;
+            font-size: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="buttons">
+    <button class="dice-count" data-dice="0">&nbsp;</button>
+    <button class="dice-count" data-dice="1">1</button>
+    <button class="dice-count" data-dice="2">2</button>
+    <button class="dice-count" data-dice="3">3</button>
+    <button class="dice-count" data-dice="4">4</button>
+    <button class="dice-count" data-dice="5">5</button>
+    <button class="dice-count" data-dice="6">6</button>
+    <button class="dice-count" data-dice="7">7</button>
+    <button class="dice-count" data-dice="8">8</button>
+</div>
+
+<div id="result">
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+    <div class="result"></div>
+</div>
+
+<div id="total-box"><span>Total: </span><span id="total"></span></div>
+
+<script>
+    let buttons = document.getElementsByClassName('dice-count');
+    for (let button of buttons) {
+        button.onclick = function(e) {
+            let nDice = e.target.dataset.dice;
+            let results = document.getElementsByClassName('result');
+            let sum = 0;
+            for (let i = 0; i < nDice; i++) {
+                // Roll a die.
+                let result = Math.floor(Math.random() * 6) + 1;
+                sum += result;
+                results[i].innerHTML = '&#' + (9855 + result) + ';';
+                results[i].style.display = 'inline-block';
+            }
+            for (let i = nDice; i < 8; i++) {
+                results[i].innerHTML = '';
+                results[i].style.display = 'none';
+            }
+            document.getElementById('total').innerHTML = sum;
+            if (nDice != 0) {
+                document.getElementById('total-box').style.display = 'block';
+            } else {
+                document.getElementById('total-box').style.display = 'none';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
