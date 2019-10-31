@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gaussians</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <meta charset="utf-8">
+    <style type="text/css">
+        canvas {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="controls" width="400" height="400"></canvas>
+    <canvas id="gaussian" width="400" height="400"></canvas>
+    <script>
+    function getGaussian(mu, sig) {
+        let resolution = 100;
+        let xs = [...Array(2 * resolution).keys()];
+        // Array from -1 to 1.
+        xs = xs.map(a => 5 * a / resolution - 5);
+        // Make a Gaussian.
+        points = xs.map(a => ({
+            x: a,
+            y: 1 / Math.sqrt(2 * Math.PI) / sig * Math.exp(-Math.pow(a - mu, 2) / (2 * sig ** 2))}));
+        return points;
+    }
+
+    var ctxGaussian = document.getElementById('gaussian').getContext('2d');
+    var gaussianChart = new Chart(ctxGaussian, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                data: getGaussian(0, 1),
+                showLine: true,
+                pointRadius: 0,
+            }],
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        max: 5,
+                        min: -5,
+                    },
+                }],
+                yAxes: [{
+                    ticks: {
+                        max: 1,
+                        beginAtZero: true,
+                    }
+                }]
+            },
+            responsive: false,
+        }
+    });
+
+    var ctxControls = document.getElementById('controls').getContext('2d');
+    var controlsChart = new Chart(ctxControls, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                data: [{x: 0, y: 1}],
+                showLine: false,
+            }],
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                 enabled: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        max: 5,
+                        min: -5,
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'mu'
+                    },
+                }],
+                yAxes: [{
+                    ticks: {
+                        max: 2,
+                        beginAtZero: true,
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'sigma'
+                    },
+                }]
+            },
+            responsive: false,
+        }
+    });
+    ctxControls.canvas.addEventListener('mousemove', (event) => {
+        // https://stackoverflow.com/questions/46107009/get-x-y-onclick-chart-coordinates-in-chartjs
+        var yTop = controlsChart.chartArea.top;
+        var yBottom = controlsChart.chartArea.bottom;
+
+        var yMin = controlsChart.scales['y-axis-1'].min;
+        var yMax = controlsChart.scales['y-axis-1'].max;
+        var newY = 0;
+
+        if (event.offsetY <= yBottom && event.offsetY >= yTop) {
+            newY = Math.abs((event.offsetY - yTop) / (yBottom - yTop));
+            newY = (newY - 1) * -1;
+            newY = newY * (Math.abs(yMax - yMin)) + yMin;
+        };
+
+        var xTop = controlsChart.chartArea.left;
+        var xBottom = controlsChart.chartArea.right;
+        var xMin = controlsChart.scales['x-axis-1'].min;
+        var xMax = controlsChart.scales['x-axis-1'].max;
+        var newX = 0;
+
+        if (event.offsetX <= xBottom && event.offsetX >= xTop) {
+            newX = Math.abs((event.offsetX - xTop) / (xBottom - xTop));
+            newX = newX * (Math.abs(xMax - xMin)) + xMin;
+        };
+
+        gaussianChart.data.datasets[0].data = getGaussian(newX, newY);
+        controlsChart.data.datasets[0].data = [{x: newX, y: newY}];
+
+        gaussianChart.update();
+        controlsChart.update();
+    });
+    </script>
+</body>
+</html>
