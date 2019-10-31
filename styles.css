@@ -127,6 +127,10 @@ nav li:not(:first-child):before {
     content: ' | ';
 }
 
+.project h2 {
+    padding-right: 35px; /* Clear some space for the date. */
+}
+
 .project time {
     position: absolute;
     right: 10pt;
@@ -136,4 +140,17 @@ nav li:not(:first-child):before {
 
 .project:not(:first-of-type) time {
     top: 20pt;
+}
+
+.coming-soon:after {
+    content: " (coming soon!)";
+}
+
+.coming-soon {
+    color: #999;
+}
+
+.top-image {
+    max-width: 205px;
+    max-height: 205px;
 }
