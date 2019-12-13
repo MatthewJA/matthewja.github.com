@@ -14,6 +14,7 @@
     <input type="text" name="jstring" id="jstring" placeholder="J105007.2+304037.5">
     <button onclick="parseJ()" type="button">Translate</button>
     <button onclick="goFIRST()" type="button">FIRST</button>
+    <button onclick="goSDSS()" type="button">SDSS</button>
     <br>
     <input type="text" readonly name="output" id="output">
 </form>
@@ -57,14 +58,26 @@
         ded = parseFloat(ded);
         dem = parseFloat(dem);
         des = parseFloat(des);
+        let dec = (ded < 0 ? '' : '+') + ded + ' ' + dem + ' ' + des
         window.output.value = (rah + ' ' + ram + ' ' + ras + ' ' +
-            (ded < 0 ? '' : '+') + ded + ' ' + dem + ' ' + des);
+            dec);
+        window.output.dataset['ra'] = rah + ' ' + ram + ' ' + ras;
+        window.output.dataset['dec'] = dec;
     }
 
     function goFIRST() {
         parseJ();
         window.firstRA.value = window.output.value;
         window.firstSubmit.click();
+    }
+
+    function goSDSS() {
+        parseJ();
+        let ra = window.output.dataset['ra'];
+        let dec = window.output.dataset['dec'];
+        let uri = ('http://skyserver.sdss.org/dr12/en/tools/quicklook/summary.aspx?ra=' + ra +
+            '&dec=' + dec)
+        window.firstIframe.src = uri;
     }
 </script>
 </body>
