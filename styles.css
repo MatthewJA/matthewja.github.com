@@ -154,3 +154,13 @@ nav li:not(:first-child):before {
     max-width: 205px;
     max-height: 205px;
 }
+
+
+/* Publications */
+
+#publications {
+    max-width: 400pt;
+    margin: 20pt auto;
+    padding: 0 10pt;
+    position: relative;
+}
