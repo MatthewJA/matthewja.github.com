@@ -164,3 +164,7 @@ nav li:not(:first-child):before {
     padding: 0 10pt;
     position: relative;
 }
+
+emph {
+    font-style: italic;
+}
